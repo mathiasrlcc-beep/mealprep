@@ -100,6 +100,58 @@
   .sync.live{color:var(--blue)}
   .sync.warn{color:#FFB86B}
   .sync button{background:none;border:0;color:var(--blue);font:600 12.5px Inter,sans-serif;padding:0;margin-left:6px;cursor:pointer;text-decoration:underline}
+
+  .frm{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .frm.one{grid-template-columns:1fr}
+  .frm label{font-size:12px;color:var(--muted);font-weight:600;display:flex;flex-direction:column;gap:6px}
+  .frm input,.frm select{background:var(--card2);border:1px solid var(--line);color:var(--text);font:600 16px Inter,sans-serif;padding:11px 12px;border-radius:12px;width:100%;min-width:0;-webkit-appearance:none;appearance:none}
+  .frm input:focus,.frm select:focus{outline:none;border-color:var(--blue)}
+  input[type=date]{min-height:46px}
+  .preview{font-size:14px;color:var(--muted);padding:12px 14px;background:var(--card2);border-radius:12px;margin-top:2px}
+  .preview.ok{color:var(--text)} .preview.ok b{color:var(--blue)} .preview.bad{color:var(--red)}
+  .btn.primary{background:var(--blue);color:#0E0F12;border-color:var(--blue)}
+  .mnav{display:flex;align-items:center;justify-content:space-between;margin:22px 0 10px;text-align:center}
+  .mnav button{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:22px;cursor:pointer}
+  .mt{font-size:18px;font-weight:800}
+  .slip .big{padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:6px}
+  .sl{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:7px 0;font-size:14px}
+  .sl span:nth-child(2){font-size:12px;text-align:right}
+  .sl span:last-child{text-align:right;min-width:96px;font-variant-numeric:tabular-nums}
+  .sl.tot{font-weight:800;border-top:1px solid var(--line);padding-top:10px;margin-top:4px}
+  .sl.blue span:last-child{color:var(--blue);font-size:16px}
+  .sl input{width:96px;text-align:right;background:var(--card2);border:1px solid var(--line);color:var(--text);font:600 14px Inter,sans-serif;padding:6px 8px;border-radius:8px}
+  .exp{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:6px}
+  .exp .ed{width:52px;font-size:13px}
+  .exp .en{flex:1;min-width:0;font-size:14px}
+  .exp .en>div:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .exp .ea{font-weight:700;font-size:14px;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .dotc{width:10px;height:10px;border-radius:50%;flex:none}
+  .x{border:0;background:var(--card2);color:var(--muted);width:30px;height:30px;border-radius:9px;font-size:17px;cursor:pointer;flex:none}
+  .x.armed{width:auto;padding:0 10px;font-size:12px;font-weight:700;background:rgba(255,107,107,.18);color:var(--red)}
+  .dayh{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:14px 4px 8px}
+  .cat{padding:12px 0;border-bottom:1px solid var(--line)}
+  .cat:last-child{border-bottom:none}
+  .ct{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .ct .l{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600}
+  .cv{font-weight:700;font-size:14px;white-space:nowrap}
+  .cv.bad{color:var(--red)}
+  .cs{font-size:12px;margin-top:6px}
+  .cat .bar{margin-top:8px}
+  .lock{font-size:12px}
+  .ce{padding:10px 0;border-bottom:1px solid var(--line)}
+  .ce .cn{width:100%;background:transparent;border:0;border-bottom:1px dashed var(--line);color:var(--text);font:700 15px Inter,sans-serif;padding:4px 0 8px}
+  .ce .cn:focus{outline:none;border-color:var(--blue)}
+  .ce2{display:flex;align-items:center;gap:8px;margin-top:8px}
+  .tg{flex:1;border:1px solid var(--line);background:var(--card2);color:var(--muted);font:600 13px Inter,sans-serif;padding:9px;border-radius:10px;cursor:pointer}
+  .tg.on{color:var(--orange);border-color:rgba(255,122,69,.4);background:rgba(255,122,69,.1)}
+  .unit{display:flex;align-items:center;gap:6px}
+  .unit input{width:92px;text-align:right;background:var(--card2);border:1px solid var(--line);color:var(--text);font:700 14px Inter,sans-serif;padding:8px 10px;border-radius:10px}
+  .unit em{font-style:normal;font-size:12px;color:var(--muted);width:22px}
+  .setbox{margin-top:22px}
+  .setbox .row{padding:10px 16px}
+  .filebtn{display:block;text-align:center;position:relative;overflow:hidden}
+  .filebtn input{position:absolute;inset:0;opacity:0;cursor:pointer}
+  #eFilter button{font-size:13px;padding:8px 4px}
   /* nav */
   nav{position:fixed;left:0;right:0;bottom:0;background:rgba(14,15,18,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:8px 0 calc(env(safe-area-inset-bottom) + 8px);z-index:9}
   nav .in{max-width:480px;margin:0 auto;display:flex}
@@ -158,29 +210,95 @@
   <button class="btn" id="reset">Nulstil listen</button>
 </section>
 
-<!-- BUDGET -->
-<section class="view" id="v-budget">
-  <h1>Budget</h1>
-  <div class="sub">Pr. måned. Mad og faste udgifter står fast – resten tilpasser sig lønnen.</div>
+<!-- LØN -->
+<section class="view" id="v-lon">
+  <h1>Løn</h1>
+  <div class="sub">Skriv din vagt som fx <b>16-21</b>, <b>16:30-21</b> eller <b>9.30-14</b>.</div>
+
   <div class="card" style="margin-top:16px">
-    <div class="sub" id="leftLbl">Til opsparing, gaver og fritid</div>
-    <div class="left" id="left"></div>
-    <div class="stack" id="stack"></div>
-    <div class="adj" id="adj"></div>
+    <div class="frm">
+      <label>Dato<input type="date" id="sDate"></label>
+      <label>Vagt<input id="sTxt" placeholder="16-21" autocomplete="off" inputmode="text"></label>
+    </div>
+    <div class="frm">
+      <label>Type<select id="sType"><option>Arbejde</option><option>Syg</option></select></label>
+      <label>Anden pause (min)<input id="sPause" inputmode="numeric" placeholder="auto"></label>
+    </div>
+    <div class="preview" id="sPrev">Skriv en vagt for at se lønnen</div>
+    <button class="btn primary" id="sAdd">Tilføj vagt</button>
   </div>
-  <h2>Indtægt</h2>
-  <div class="card"><div class="row"><label>💼 Løn</label><input inputmode="numeric" data-b="income"></div></div>
-  <h2>Står fast 🔒</h2>
-  <div class="card" id="bFixed"></div>
-  <h2>Tilpasser sig ↕️</h2>
-  <div class="card" id="bFlex"></div>
-  <div class="tomorrow" style="margin-top:8px">Det lille tal er din plan. Det store tal er, hvad du får med den løn, du har nu.</div>
-  <h2>Om et år</h2>
-  <div class="stats">
-    <div class="card stat"><div class="v ok" id="ySave"></div><div class="k">sparet op</div></div>
-    <div class="card stat"><div class="v" style="color:var(--orange)" id="yGift"></div><div class="k">til gaver</div></div>
+
+  <div class="mnav">
+    <button data-step="-1" data-for="lon">‹</button>
+    <div><div class="mt" id="lMonth"></div><div class="sub" id="lPeriod"></div></div>
+    <button data-step="1" data-for="lon">›</button>
   </div>
-  <div class="tomorrow">Regel: Tag kun fra opsparingen til ting, der ikke kan vente.</div>
+
+  <div class="card slip">
+    <div class="big"><span class="sub">Udbetalt til Nemkonto</span><div class="left" id="lNet"></div></div>
+    <div id="slip"></div>
+  </div>
+
+  <h2>Vagter i perioden</h2>
+  <div id="shiftList"></div>
+
+  <details class="setbox" id="rateBox">
+    <summary>⚙️ Dine satser og skat</summary>
+    <div id="rates"></div>
+    <div class="how">Satserne står på din lønseddel og dit skattekort. Ret dem, hvis du får lønstigning eller nyt skattekort.</div>
+  </details>
+</section>
+
+<!-- PENGE -->
+<section class="view" id="v-penge">
+  <h1>Penge</h1>
+  <div class="mnav" style="margin-top:12px">
+    <button data-step="-1" data-for="penge">‹</button>
+    <div><div class="mt" id="pMonth"></div></div>
+    <button data-step="1" data-for="penge">›</button>
+  </div>
+
+  <div class="card">
+    <div class="row"><label>💼 Løn</label><input inputmode="numeric" id="pIncome"></div>
+    <div class="sync" id="pSrc"></div>
+  </div>
+
+  <div class="stats" style="margin-top:10px">
+    <div class="card stat"><div class="v" id="pSpent"></div><div class="k">brugt</div><div class="bar"><i id="pBar"></i></div></div>
+    <div class="card stat"><div class="v" id="pLeft"></div><div class="k" id="pLeftK">tilbage</div></div>
+  </div>
+  <div class="adj card" id="pAdj" style="margin-top:10px"></div>
+
+  <h2>Kategorier</h2>
+  <div class="card" id="catList"></div>
+  <button class="btn" id="catEditBtn">Rediger kategorier</button>
+  <div id="catEdit" class="card" style="display:none;margin-top:10px"></div>
+
+  <h2>Tilføj udgift</h2>
+  <div class="card">
+    <div class="frm">
+      <label>Beløb<input id="eAmt" inputmode="decimal" placeholder="0"></label>
+      <label>Dato<input type="date" id="eDate"></label>
+    </div>
+    <div class="frm one"><label>Hvad<input id="eDesc" placeholder="fx Netto"></label></div>
+    <div class="frm">
+      <label>Kategori<select id="eCat"></select></label>
+      <label>Betaling<select id="ePay"><option>Kort</option><option>MobilePay</option><option>Kontant</option><option>Overførsel</option></select></label>
+    </div>
+    <button class="btn primary" id="eAdd">Tilføj udgift</button>
+  </div>
+
+  <h2>Udgifter i måneden</h2>
+  <div class="seg" id="eFilter" style="margin-top:0"></div>
+  <div id="expList" style="margin-top:10px"></div>
+
+  <h2>Data</h2>
+  <div class="card">
+    <div class="sub" style="line-height:1.5">Alt gemmes kun på denne telefon. Lav en backup en gang imellem, så du ikke mister noget.</div>
+    <button class="btn" id="exportBtn">💾 Gem backup</button>
+    <label class="btn filebtn">📥 Importér fil<input type="file" id="importFile" accept=".json,application/json"></label>
+    <div class="sync" id="dataMsg"></div>
+  </div>
 </section>
 
 </div>
@@ -189,7 +307,8 @@
   <a href="#idag" data-v="idag"><span class="e">☀️</span>I dag</a>
   <a href="#uge" data-v="uge"><span class="e">📅</span>Ugen</a>
   <a href="#indkob" data-v="indkob"><span class="e">🛒</span>Indkøb</a>
-  <a href="#budget" data-v="budget"><span class="e">💰</span>Budget</a>
+  <a href="#lon" data-v="lon"><span class="e">⏱️</span>Løn</a>
+  <a href="#penge" data-v="penge"><span class="e">💰</span>Penge</a>
 </div></nav>
 
 <script>
@@ -328,74 +447,373 @@ document.getElementById('reset').addEventListener('click', () => {
   store.set('mp_checks', checks); renderShop();
 });
 
-// ---------- BUDGET ----------
-const FIXED = [
-  {k:"fast", n:"🏠 Faste udgifter", c:"#8B8F98"},
-  {k:"mad", n:"🍽️ Mad", c:"#C4A7E7"}
-];
-const FLEX = [
-  {k:"spar", n:"🏦 Opsparing", c:"var(--blue)"},
-  {k:"gave", n:"🎁 Gaver", c:"var(--orange)"},
-  {k:"fri", n:"🎮 Fritid og tøj", c:"#FFD166"}
-];
-let budget = Object.assign({income:6700, fast:2600, mad:1400, spar:1600, gave:400, fri:700}, store.get('mp_budget', {}));
-document.getElementById('bFixed').innerHTML = FIXED.map(r =>
-  `<div class="row"><label><span class="sw" style="background:${r.c}"></span>${r.n}</label><input inputmode="numeric" data-b="${r.k}"></div>`).join('');
-document.getElementById('bFlex').innerHTML = FLEX.map(r =>
-  `<div class="frow"><div><div class="l"><span class="sw" style="background:${r.c}"></span>${r.n}</div>
-     <div class="plan">Plan <input inputmode="numeric" data-b="${r.k}"> kr.</div></div>
-   <div class="act" id="act-${r.k}"></div></div>`).join('');
+// ================= FÆLLES =================
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+const MONTHS = ["januar","februar","marts","april","maj","juni","juli","august","september","oktober","november","december"];
+const cap = s => s[0].toUpperCase() + s.slice(1);
+const kr = n => (Math.round(n*100)/100).toLocaleString('da-DK',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' kr.';
+const kr0 = n => fmt(n) + ' kr.';
+const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const parseISO = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); };
+const mKey = (y,m) => `${y}-${String(m+1).padStart(2,'0')}`;
+const num = v => { const n = parseFloat(String(v ?? '').replace(/\s/g,'').replace(/\./g,'').replace(',', '.')); return isNaN(n) ? 0 : n; };
+const numDot = v => { const s = String(v ?? '').trim(); if (/^\d+\.\d{1,2}$/.test(s)) return parseFloat(s); return num(s); };
 
-// Fordeling: mad + faste står fast. Mangler der penge, skæres opsparing, gaver og fritid ned med samme %.
-// Er der penge tilovers, går det ekstra i opsparingen.
-function allocate(){
-  const fixed = FIXED.reduce((a,r)=>a+(+budget[r.k]||0),0);
-  const avail = budget.income - fixed;
-  const plan = FLEX.reduce((a,r)=>a+(+budget[r.k]||0),0);
-  const act = {};
-  if (avail <= 0) FLEX.forEach(r => act[r.k] = 0);
-  else if (avail < plan) {
-    const f = avail / plan; let used = 0;
-    FLEX.forEach((r,i) => { act[r.k] = i === FLEX.length-1 ? avail - used : Math.floor((budget[r.k]||0) * f); used += act[r.k]; });
-  } else {
-    FLEX.forEach(r => act[r.k] = +budget[r.k] || 0);
-    act.spar += avail - plan;
-  }
-  return { fixed, avail, plan, act };
+const DEFAULT_RATES = { hour:0, aften:0, sun:0, aftenFra:"18:00", aftenFraLor:"15:00", trk:0, fradrag:0, am:8, atp:0, pf:0,
+  ferie:12.5, fritvalg:10, feriefri:2.5, periodStart:19, pauseFra:"4:31", pause:30 };
+let rates = Object.assign({}, DEFAULT_RATES, store.get('mp_rates', {}));
+let shifts = store.get('mp_shifts', []);
+let extra = store.get('mp_extra', {});
+let cats = store.get('mp_cats', null) || [
+  {id:"bolig", name:"Bolig", type:"fast", plan:0},
+  {id:"abon", name:"Abonnementer", type:"fast", plan:0},
+  {id:"mad", name:"Mad & dagligvarer", type:"fast", plan:1400},
+  {id:"spar", name:"Opsparing", type:"flex", plan:0},
+  {id:"gave", name:"Gaver", type:"flex", plan:0},
+  {id:"fri", name:"Fritid & underholdning", type:"flex", plan:0},
+  {id:"toj", name:"Tøj", type:"flex", plan:0},
+  {id:"andet", name:"Andet", type:"flex", plan:0}
+];
+let exps = store.get('mp_exp', []);
+let manualIncome = store.get('mp_income', {});
+const saveAll = () => { store.set('mp_rates', rates); store.set('mp_shifts', shifts); store.set('mp_extra', extra);
+  store.set('mp_cats', cats); store.set('mp_exp', exps); store.set('mp_income', manualIncome); };
+
+// ================= LØNBEREGNER =================
+const hm = s => { const m = String(s).match(/^(\d{1,2})(?:[:.](\d{1,2}))?$/); return m ? (+m[1]) + (+(m[2]||0))/60 : NaN; };
+function parseShift(t){
+  const m = String(t||'').replace(/\s/g,'').match(/^(\d{1,2}(?:[:.]\d{2})?)-(\d{1,2}(?:[:.]\d{2})?)$/);
+  if (!m) return null;
+  const a = hm(m[1]), b = hm(m[2]);
+  if (isNaN(a) || isNaN(b) || a >= 24 || b > 24) return null;
+  return { start:a, end:b };
 }
-function renderBudget(){
-  document.querySelectorAll('input[data-b]').forEach(i => { if (document.activeElement !== i) i.value = fmt(budget[i.dataset.b]); });
-  const { fixed, avail, plan, act } = allocate();
-  const el = document.getElementById('left'), adj = document.getElementById('adj');
-  el.textContent = fmt(Math.max(0, avail)) + ' kr.';
-  el.style.color = avail <= 0 ? 'var(--red)' : 'var(--blue)';
-  if (avail < 0) {
-    adj.innerHTML = `<span class="bad"><b style="color:var(--red)">Lønnen dækker ikke mad og faste udgifter.</b> Du mangler ${fmt(-avail)} kr. Opsparing, gaver og fritid er sat til 0.</span>`;
-  } else if (avail < plan) {
-    const pct = Math.round((1 - avail/plan) * 100);
-    adj.innerHTML = `Lønnen er <b>${fmt(plan - avail)} kr.</b> lavere end din plan, så opsparing, gaver og fritid er skruet ned med <b>${pct} %</b>.`;
-  } else if (avail > plan) {
-    adj.innerHTML = `Lønnen er <b>${fmt(avail - plan)} kr.</b> højere end din plan. Det ekstra er lagt i <b style="color:var(--blue)">opsparingen</b> 🎉`;
-  } else adj.innerHTML = `Lønnen passer præcis til din plan ✓`;
-  FLEX.forEach(r => {
-    const a = act[r.k], p = +budget[r.k] || 0, d = a - p;
-    document.getElementById('act-'+r.k).innerHTML = `${fmt(a)} kr.` +
-      (d ? `<small style="color:${d<0?'var(--red)':'var(--blue)'}">${d>0?'+':'−'}${fmt(Math.abs(d))} kr.</small>` : `<small class="sub">som planlagt</small>`);
-  });
-  const parts = [...FIXED.map(r => [budget[r.k]||0, r.c]), ...FLEX.map(r => [act[r.k], r.c])];
-  const tot = Math.max(budget.income, fixed) || 1;
-  document.getElementById('stack').innerHTML = parts.map(([v,c]) => `<i style="width:${v/tot*100}%;background:${c}"></i>`).join('');
-  document.getElementById('ySave').textContent = fmt(act.spar*12) + ' kr.';
-  document.getElementById('yGift').textContent = fmt(act.gave*12) + ' kr.';
+// Samme regler som dit Excel-ark (fanen Vagter)
+function calcShift(s){
+  const p = parseShift(s.txt); if (!p || !s.date) return null;
+  const endAdj = p.end + (p.end < p.start ? 24 : 0);
+  const durMin = Math.round((endAdj - p.start) * 60);
+  const pauseFra = Math.round(hm(rates.pauseFra) * 60);
+  const pause = (s.pause !== '' && s.pause != null) ? +s.pause : (durMin >= pauseFra ? +rates.pause : 0);
+  const paid = Math.max(0, (durMin - pause) / 60);
+  const wd = (parseISO(s.date).getDay() + 6) % 7 + 1;
+  const syg = s.type === 'Syg';
+  const thr = hm(wd === 6 ? rates.aftenFraLor : rates.aftenFra);
+  const aften = (syg || wd === 7) ? 0 : Math.min(paid, Math.max(0, endAdj - Math.max(p.start, thr)));
+  const sun = (!syg && wd === 7) ? paid : 0;
+  const pay = paid * rates.hour + aften * rates.aften + sun * rates.sun;
+  return { paid, aften, sun, pause, pay, wd };
 }
-document.addEventListener('input', e => {
-  const i = e.target.closest('input[data-b]'); if (!i) return;
-  const v = parseInt(i.value.replace(/\D/g,''),10); budget[i.dataset.b] = isNaN(v) ? 0 : v;
-  store.set('mp_budget', budget); renderBudget();
+// Udbetalingsmåned m (0-11) dækker vagter fra d. 19 i måneden før til d. 18
+function periodOf(y, m){
+  const ps = +rates.periodStart || 19;
+  return { from: new Date(y, m-1, ps), to: new Date(y, m, ps-1) };
+}
+function payslip(y, m){
+  const { from, to } = periodOf(y, m);
+  const list = shifts.filter(s => { const d = parseISO(s.date); return d >= from && d <= to; })
+                     .sort((a,b) => a.date.localeCompare(b.date));
+  let hours=0, aften=0, sun=0, loen=0;
+  list.forEach(s => { const c = calcShift(s); if (c) { hours += c.paid; aften += c.aften; sun += c.sun; loen += c.pay; } });
+  const andet = +extra[mKey(y,m)] || 0;
+  const brutto = loen + andet;
+  const atp = brutto > 0 ? +rates.atp : 0;
+  const am = Math.round((brutto - atp) * rates.am / 100);
+  const grund = Math.max(0, Math.floor(brutto - atp - am - rates.fradrag + 1e-9));
+  const askat = Math.ceil(grund * rates.trk / 100 - 1e-9);
+  const pf = brutto > 0 ? +rates.pf : 0;
+  const net = brutto === 0 ? 0 : brutto - atp - am - askat - pf;
+  return { list, from, to, hours, aften, sun, loen, andet, brutto, atp, am, askat, pf, net,
+    ferie: loen * rates.ferie/100, fritvalg: loen * rates.fritvalg/100, feriefri: loen * rates.feriefri/100 };
+}
+
+const now = new Date();
+let lonY = now.getFullYear(), lonM = now.getMonth();
+if (now.getDate() >= (+rates.periodStart || 19)) { lonM++; if (lonM > 11) { lonM = 0; lonY++; } }
+let penY = now.getFullYear(), penM = now.getMonth();
+
+document.getElementById('sDate').value = iso(now);
+function shiftPreview(){
+  const s = { date: document.getElementById('sDate').value, txt: document.getElementById('sTxt').value,
+              type: document.getElementById('sType').value, pause: document.getElementById('sPause').value };
+  const el = document.getElementById('sPrev');
+  if (!s.txt) { el.textContent = 'Skriv en vagt for at se lønnen'; el.className = 'preview'; return null; }
+  const c = calcShift(s);
+  if (!c) { el.textContent = 'Skriv vagten som fx 16-21 eller 9.30-14'; el.className = 'preview bad'; return null; }
+  const bits = [`${c.paid.toLocaleString('da-DK',{maximumFractionDigits:2})} t`];
+  if (c.pause) bits.push(`${c.pause} min pause`);
+  if (c.aften) bits.push(`${c.aften.toLocaleString('da-DK',{maximumFractionDigits:2})} t aften`);
+  if (c.sun) bits.push('søndag');
+  el.innerHTML = `${bits.join(' · ')} → <b>${kr(c.pay)}</b> før skat`; el.className = 'preview ok';
+  return s;
+}
+['sDate','sTxt','sType','sPause'].forEach(id => document.getElementById(id).addEventListener('input', shiftPreview));
+document.getElementById('sAdd').addEventListener('click', () => {
+  const s = shiftPreview(); if (!s) return;
+  shifts.push({ id: uid(), ...s }); saveAll();
+  document.getElementById('sTxt').value = ''; document.getElementById('sPause').value = '';
+  // hop til den lønseddel, vagten hører til
+  const d = parseISO(s.date); lonY = d.getFullYear(); lonM = d.getMonth();
+  if (d.getDate() >= (+rates.periodStart || 19)) { lonM++; if (lonM > 11) { lonM = 0; lonY++; } }
+  shiftPreview(); renderLon(); renderPenge();
+});
+
+const RATE_FIELDS = [
+  ["hour","Timeløn","kr."],["aften","Aftentillæg pr. time","kr."],["sun","Søndagstillæg pr. time","kr."],
+  ["aftenFra","Aftentillæg fra kl. (man–fre)",""],["aftenFraLor","Aftentillæg fra kl. (lørdag)",""],
+  ["trk","Trækprocent","%"],["fradrag","Fradrag pr. måned","kr."],["am","AM-bidrag","%"],
+  ["atp","ATP pr. måned","kr."],["pf","Personaleforening","kr."],
+  ["ferie","Feriepenge (opspares)","%"],["fritvalg","Fritvalg (opspares)","%"],["feriefri","Feriefri (opspares)","%"],
+  ["periodStart","Lønperiode starter d.",""],["pauseFra","Pause ved vagt på mindst (t:mm)",""],["pause","Ubetalt pause (min)",""]
+];
+const TEXT_RATES = ["aftenFra","aftenFraLor","pauseFra"];
+document.getElementById('rates').innerHTML = RATE_FIELDS.map(([k,l,u]) =>
+  `<div class="row"><label style="font-size:14px">${l}</label><span class="unit"><input data-rate="${k}" inputmode="${TEXT_RATES.includes(k)?'text':'decimal'}">${u?`<em>${u}</em>`:''}</span></div>`).join('');
+function fillRates(){ document.querySelectorAll('[data-rate]').forEach(i => { if (document.activeElement !== i) {
+  const k = i.dataset.rate; i.value = TEXT_RATES.includes(k) ? rates[k] : String(rates[k]).replace('.', ','); } }); }
+document.getElementById('rates').addEventListener('input', e => {
+  const i = e.target.closest('[data-rate]'); if (!i) return;
+  const k = i.dataset.rate; rates[k] = TEXT_RATES.includes(k) ? i.value.trim() : numDot(i.value);
+  saveAll(); renderLon(); renderPenge(); shiftPreview();
+});
+
+function renderLon(){
+  const p = payslip(lonY, lonM);
+  document.getElementById('lMonth').textContent = `${cap(MONTHS[lonM])} ${lonY}`;
+  const f = d => d.toLocaleDateString('da-DK',{day:'numeric',month:'short'});
+  document.getElementById('lPeriod').textContent = `Vagter fra ${f(p.from)} til ${f(p.to)}`;
+  document.getElementById('lNet').textContent = kr(p.net);
+  const noRates = !rates.hour;
+  const line = (a, b, c, cls='') => `<div class="sl ${cls}"><span>${a}</span><span class="sub">${b}</span><span>${c}</span></div>`;
+  const h = n => n.toLocaleString('da-DK',{maximumFractionDigits:2}) + ' t';
+  document.getElementById('slip').innerHTML =
+    (noRates ? `<div class="sync warn" style="border:0">Udfyld dine satser nederst, eller importér din datafil under Penge → Data.</div>` : '') +
+    line('Timeløn', h(p.hours), kr(p.hours*rates.hour)) +
+    line('Aftentillæg', h(p.aften), kr(p.aften*rates.aften)) +
+    line('Søndagstillæg', h(p.sun), kr(p.sun*rates.sun)) +
+    `<div class="sl"><span>Andet / retro</span><span></span><span><input id="lExtra" inputmode="decimal" placeholder="0" value="${p.andet ? String(p.andet).replace('.',',') : ''}"></span></div>` +
+    line('Bruttoløn', '', kr(p.brutto), 'tot') +
+    line('ATP', '', '−' + kr(p.atp)) +
+    line('AM-bidrag', String(rates.am).replace('.',',') + ' %', '−' + kr(p.am)) +
+    line('A-skat', String(rates.trk).replace('.',',') + ' %', '−' + kr(p.askat)) +
+    line('Personaleforening', '', '−' + kr(p.pf)) +
+    line('Udbetalt', '', kr(p.net), 'tot blue') +
+    `<div class="sub" style="margin:14px 0 6px;font-size:11px;font-weight:700;letter-spacing:.08em">OPSPARES (UDBETALES SENERE)</div>` +
+    line('Feriepenge', String(rates.ferie).replace('.',',') + ' %', kr(p.ferie)) +
+    line('Fritvalg', String(rates.fritvalg).replace('.',',') + ' %', kr(p.fritvalg)) +
+    line('Feriefri', String(rates.feriefri).replace('.',',') + ' %', kr(p.feriefri));
+  const DN = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"];
+  document.getElementById('shiftList').innerHTML = p.list.length ? p.list.map(s => {
+    const c = calcShift(s) || {paid:0,pay:0,wd:1};
+    return `<div class="exp"><div class="ed"><b>${DN[c.wd-1]} ${parseISO(s.date).getDate()}.</b></div>
+      <div class="en"><div>${s.txt}${s.type==='Syg'?' <span class="pill" style="background:rgba(255,107,107,.15);color:var(--red)">SYG</span>':''}</div>
+      <div class="sub" style="font-size:12px">${c.paid.toLocaleString('da-DK',{maximumFractionDigits:2})} t${c.aften?` · ${c.aften.toLocaleString('da-DK',{maximumFractionDigits:2})} t aften`:''}${c.sun?' · søndag':''}</div></div>
+      <div class="ea">${kr0(c.pay)}</div><button class="x" data-del-shift="${s.id}">×</button></div>`;
+  }).join('') : `<div class="sub" style="padding:4px 2px">Ingen vagter i denne periode endnu.</div>`;
+  fillRates();
+}
+document.getElementById('v-lon').addEventListener('input', e => {
+  if (e.target.id !== 'lExtra') return;
+  const v = numDot(e.target.value); if (v) extra[mKey(lonY,lonM)] = v; else delete extra[mKey(lonY,lonM)];
+  saveAll();
+  const p = payslip(lonY, lonM); document.getElementById('lNet').textContent = kr(p.net);
+  renderPenge();
+});
+document.getElementById('v-lon').addEventListener('focusout', e => { if (e.target.id === 'lExtra') renderLon(); });
+document.getElementById('shiftList').addEventListener('click', e => {
+  const b = e.target.closest('[data-del-shift]'); if (!b) return;
+  if (b.dataset.armed) { shifts = shifts.filter(s => s.id !== b.dataset.delShift); saveAll(); renderLon(); renderPenge(); }
+  else { b.dataset.armed = 1; b.textContent = 'Slet?'; b.classList.add('armed'); setTimeout(() => { if (b.isConnected) { delete b.dataset.armed; b.textContent = '×'; b.classList.remove('armed'); } }, 3000); }
+});
+
+// ================= PENGE =================
+const CAT_COLORS = ["#8B8F98","#5AB4FF","#C4A7E7","#FF7A45","#FFD166","#7CE0C3","#FF6B6B","#9FB4FF","#F4A6C6","#B8C0CC","#E0B07C","#6FD3FF"];
+const catColor = id => CAT_COLORS[Math.max(0, cats.findIndex(c => c.id === id)) % CAT_COLORS.length];
+function incomeFor(y, m){
+  const k = mKey(y,m);
+  if (manualIncome[k] != null) return { amount: manualIncome[k], src: 'manual' };
+  const p = payslip(y, m);
+  if (p.brutto > 0) return { amount: p.net, src: 'calc', n: p.list.length };
+  return { amount: 0, src: 'none' };
+}
+// Faste kategorier står fast. Mangler der penge, skæres de fleksible ned med samme %. Er der penge tilovers, går de i Opsparing.
+function allocate(income){
+  const fixed = cats.filter(c => c.type === 'fast'), flex = cats.filter(c => c.type !== 'fast');
+  const fixedSum = fixed.reduce((a,c) => a + (+c.plan||0), 0);
+  const avail = income - fixedSum, plan = flex.reduce((a,c) => a + (+c.plan||0), 0);
+  const got = {}; fixed.forEach(c => got[c.id] = +c.plan || 0);
+  if (avail <= 0) flex.forEach(c => got[c.id] = 0);
+  else if (avail < plan) { const f = avail/plan; let used = 0;
+    flex.forEach((c,i) => { got[c.id] = i === flex.length-1 ? avail - used : Math.floor((+c.plan||0) * f); used += got[c.id]; }); }
+  else { flex.forEach(c => got[c.id] = +c.plan || 0);
+    const sink = flex.find(c => /opspar/i.test(c.name)) || flex[0]; if (sink) got[sink.id] += avail - plan; }
+  return { got, avail, plan, fixedSum };
+}
+const monthExps = (y,m) => exps.filter(x => { const d = parseISO(x.date); return d.getFullYear() === y && d.getMonth() === m; });
+let expFilter = 'alle', expAll = false;
+
+function renderPenge(){
+  document.getElementById('pMonth').textContent = `${cap(MONTHS[penM])} ${penY}`;
+  const inc = incomeFor(penY, penM);
+  const ii = document.getElementById('pIncome'); if (document.activeElement !== ii) ii.value = inc.amount ? fmt(inc.amount) : '';
+  const src = document.getElementById('pSrc');
+  if (inc.src === 'manual') {
+    const p = payslip(penY, penM);
+    src.className = 'sync'; src.innerHTML = `✏️ Du har selv skrevet lønnen.${p.brutto > 0 ? ` Beregnet ud fra vagter: <b>${kr0(p.net)}</b>` : ''}<button id="useCalc">${p.brutto > 0 ? 'Brug den beregnede' : 'Fjern'}</button>`;
+  } else if (inc.src === 'calc') { src.className = 'sync live'; src.innerHTML = `⏱️ Beregnet ud fra ${inc.n} ${inc.n===1?'vagt':'vagter'} på fanen Løn`; }
+  else { src.className = 'sync'; src.innerHTML = `Ingen vagter for denne måned. Skriv lønnen her, eller tilføj vagter under Løn.`; }
+
+  const { got, avail, plan, fixedSum } = allocate(inc.amount);
+  const list = monthExps(penY, penM);
+  const spentBy = {}; list.forEach(x => spentBy[x.cat] = (spentBy[x.cat]||0) + x.amt);
+  const spent = list.reduce((a,x) => a + x.amt, 0);
+  const left = inc.amount - spent;
+  document.getElementById('pSpent').textContent = kr0(spent);
+  const pl = document.getElementById('pLeft'); pl.textContent = kr0(left); pl.className = 'v ' + (left < 0 ? 'bad' : 'ok');
+  document.getElementById('pLeftK').textContent = left < 0 ? 'brugt for meget' : 'tilbage af lønnen';
+  const pb = document.getElementById('pBar'); pb.style.width = Math.min(100, inc.amount ? spent/inc.amount*100 : 0) + '%';
+  pb.style.background = spent > inc.amount ? 'var(--red)' : 'var(--blue)';
+
+  const adj = document.getElementById('pAdj');
+  if (!inc.amount) adj.innerHTML = `Når der er en løn for måneden, fordeles den automatisk på kategorierne.`;
+  else if (avail < 0) adj.innerHTML = `<b style="color:var(--red)">Lønnen dækker ikke de faste udgifter.</b> Du mangler ${kr0(-avail)}.`;
+  else if (avail < plan) adj.innerHTML = `Lønnen er <b>${kr0(plan-avail)}</b> lavere end planen, så de fleksible kategorier er skruet ned med <b>${Math.round((1-avail/plan)*100)} %</b>. De faste 🔒 er ikke rørt.`;
+  else if (avail > plan) adj.innerHTML = `Lønnen er <b>${kr0(avail-plan)}</b> højere end planen. Det ekstra er lagt i <b style="color:var(--blue)">opsparingen</b> 🎉`;
+  else adj.innerHTML = `Lønnen passer præcis til planen ✓`;
+
+  const known = new Set(cats.map(c => c.id));
+  const other = Object.keys(spentBy).filter(k => !known.has(k));
+  document.getElementById('catList').innerHTML = cats.map(c => {
+    const g = got[c.id] || 0, s = spentBy[c.id] || 0, over = s > g && g >= 0 && (g > 0 || s > 0);
+    const pct = g ? Math.min(100, s/g*100) : (s ? 100 : 0);
+    const diff = g - (+c.plan||0);
+    return `<div class="cat">
+      <div class="ct"><span class="l"><span class="sw" style="background:${catColor(c.id)}"></span>${c.name}${c.type==='fast'?' <span class="lock">🔒</span>':''}</span>
+        <span class="cv ${over?'bad':''}">${kr0(s)} <span class="sub">/ ${kr0(g)}</span></span></div>
+      <div class="bar"><i style="width:${pct}%;background:${over?'var(--red)':catColor(c.id)}"></i></div>
+      <div class="cs sub">${c.type==='fast' ? 'Står fast' : `Plan ${kr0(+c.plan||0)}${diff ? ` → <span style="color:${diff<0?'var(--red)':'var(--blue)'}">${diff>0?'+':'−'}${kr0(Math.abs(diff))}</span>` : ''}`}${over ? ` · <span style="color:var(--red)">${kr0(s-g)} over</span>` : g ? ` · ${kr0(g-s)} tilbage` : ''}</div>
+    </div>`;
+  }).join('') + other.map(k => `<div class="cat"><div class="ct"><span class="l">${k}</span><span class="cv">${kr0(spentBy[k])}</span></div><div class="cs sub">Kategori findes ikke længere</div></div>`).join('');
+
+  // kategori-dropdown + filter
+  const ec = document.getElementById('eCat'), keep = ec.value;
+  ec.innerHTML = cats.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+  if (cats.some(c => c.id === keep)) ec.value = keep; else { const mad = cats.find(c => /mad/i.test(c.name)); if (mad) ec.value = mad.id; }
+  const used = cats.filter(c => spentBy[c.id]);
+  document.getElementById('eFilter').innerHTML = [`<button data-f="alle" class="${expFilter==='alle'?'on':''}">Alle</button>`]
+    .concat(used.slice(0,3).map(c => `<button data-f="${c.id}" class="${expFilter===c.id?'on':''}">${c.name.split(' ')[0]}</button>`)).join('');
+  const allShown = list.filter(x => expFilter === 'alle' || x.cat === expFilter).sort((a,b) => b.date.localeCompare(a.date));
+  const shown = expAll ? allShown : allShown.slice(0, 20);
+  const byDay = {}; shown.forEach(x => (byDay[x.date] = byDay[x.date] || []).push(x));
+  document.getElementById('expList').innerHTML = shown.length ? Object.keys(byDay).map(d =>
+    `<div class="dayh">${parseISO(d).toLocaleDateString('da-DK',{weekday:'short',day:'numeric',month:'short'})}<span>${kr0(byDay[d].reduce((a,x)=>a+x.amt,0))}</span></div>` +
+    byDay[d].map(x => `<div class="exp"><span class="dotc" style="background:${catColor(x.cat)}"></span>
+      <div class="en"><div>${x.desc ? x.desc.replace(/</g,'&lt;') : '(uden tekst)'}</div><div class="sub" style="font-size:12px">${(cats.find(c=>c.id===x.cat)||{name:x.cat}).name}${x.pay && x.pay!=='Kort' ? ' · '+x.pay : ''}</div></div>
+      <div class="ea">${kr(x.amt)}</div><button class="x" data-del-exp="${x.id}">×</button></div>`).join('')
+  ).join('') + (allShown.length > shown.length ? `<button class="btn" id="expMore">Vis alle ${allShown.length} udgifter</button>` : '') : `<div class="sub" style="padding:4px 2px">Ingen udgifter i denne måned.</div>`;
+}
+document.getElementById('pIncome').addEventListener('input', e => {
+  const v = num(e.target.value); const k = mKey(penY,penM);
+  if (e.target.value.trim() === '') delete manualIncome[k]; else manualIncome[k] = v;
+  saveAll(); renderPenge();
+});
+document.getElementById('pSrc').addEventListener('click', e => { if (e.target.id === 'useCalc') { delete manualIncome[mKey(penY,penM)]; saveAll(); renderPenge(); } });
+document.getElementById('eFilter').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; expFilter = b.dataset.f; expAll = false; renderPenge(); });
+document.getElementById('eDate').value = iso(now);
+document.getElementById('eAdd').addEventListener('click', () => {
+  const amt = numDot(document.getElementById('eAmt').value);
+  const date = document.getElementById('eDate').value;
+  if (!amt || !date) { document.getElementById('eAmt').focus(); return; }
+  exps.push({ id: uid(), date, desc: document.getElementById('eDesc').value.trim(), cat: document.getElementById('eCat').value,
+              amt, pay: document.getElementById('ePay').value });
+  saveAll();
+  document.getElementById('eAmt').value = ''; document.getElementById('eDesc').value = '';
+  const d = parseISO(date); penY = d.getFullYear(); penM = d.getMonth(); renderPenge();
+});
+document.getElementById('expList').addEventListener('click', e => {
+  if (e.target.id === 'expMore') { expAll = true; renderPenge(); return; }
+  const b = e.target.closest('[data-del-exp]'); if (!b) return;
+  if (b.dataset.armed) { exps = exps.filter(x => x.id !== b.dataset.delExp); saveAll(); renderPenge(); }
+  else { b.dataset.armed = 1; b.textContent = 'Slet?'; b.classList.add('armed'); setTimeout(() => { if (b.isConnected) { delete b.dataset.armed; b.textContent = '×'; b.classList.remove('armed'); } }, 3000); }
+});
+
+// kategori-redigering
+function renderCatEdit(){
+  document.getElementById('catEdit').innerHTML = cats.map((c,i) => `
+    <div class="ce" data-i="${i}">
+      <input class="cn" value="${c.name.replace(/"/g,'&quot;')}" data-k="name">
+      <div class="ce2">
+        <button class="tg ${c.type==='fast'?'on':''}" data-k="type">${c.type==='fast'?'🔒 Fast':'↕️ Tilpasser sig'}</button>
+        <span class="unit"><input inputmode="numeric" value="${fmt(+c.plan||0)}" data-k="plan"><em>kr.</em></span>
+        <button class="x" data-k="del">×</button>
+      </div>
+    </div>`).join('') + `<button class="btn" id="catAdd">+ Ny kategori</button>
+    <div class="sub" style="margin-top:10px;font-size:12px;line-height:1.5">🔒 Fast = bliver aldrig skåret ned. ↕️ Tilpasser sig = går op og ned med lønnen. Overskud går til en kategori med "Opsparing" i navnet.</div>`;
+}
+document.getElementById('catEditBtn').addEventListener('click', () => {
+  const box = document.getElementById('catEdit'), open = box.style.display === 'none';
+  box.style.display = open ? 'block' : 'none'; document.getElementById('catEditBtn').textContent = open ? 'Færdig' : 'Rediger kategorier';
+  if (open) renderCatEdit(); else renderPenge();
+});
+document.getElementById('catEdit').addEventListener('input', e => {
+  const row = e.target.closest('.ce'); if (!row) return; const c = cats[+row.dataset.i], k = e.target.dataset.k;
+  if (k === 'name') c.name = e.target.value; if (k === 'plan') c.plan = num(e.target.value);
+  saveAll(); renderPenge();
+});
+document.getElementById('catEdit').addEventListener('click', e => {
+  if (e.target.id === 'catAdd') { cats.push({ id: uid(), name: 'Ny kategori', type: 'flex', plan: 0 }); saveAll(); renderCatEdit(); renderPenge(); return; }
+  const row = e.target.closest('.ce'); if (!row) return; const i = +row.dataset.i, k = e.target.dataset.k;
+  if (k === 'type') { cats[i].type = cats[i].type === 'fast' ? 'flex' : 'fast'; }
+  else if (k === 'del') {
+    if (!e.target.dataset.armed) { e.target.dataset.armed = 1; e.target.textContent = 'Slet?'; e.target.classList.add('armed'); return; }
+    cats.splice(i, 1);
+  } else return;
+  saveAll(); renderCatEdit(); renderPenge();
+});
+
+// måned-skift
+document.addEventListener('click', e => {
+  const b = e.target.closest('.mnav button'); if (!b) return;
+  const st = +b.dataset.step;
+  if (b.dataset.for === 'lon') { lonM += st; if (lonM < 0) { lonM = 11; lonY--; } if (lonM > 11) { lonM = 0; lonY++; } renderLon(); }
+  else { penM += st; if (penM < 0) { penM = 11; penY--; } if (penM > 11) { penM = 0; penY++; } expFilter = 'alle'; expAll = false; renderPenge(); }
+});
+
+// backup / import
+document.getElementById('exportBtn').addEventListener('click', async () => {
+  const data = JSON.stringify({ app: 'mealprep', version: 1, saved: new Date().toISOString(), rates, shifts, extra, cats, exps, manualIncome }, null, 1);
+  const name = `mealprep-backup-${iso(new Date())}.json`;
+  const msg = document.getElementById('dataMsg');
+  try {
+    const file = new File([data], name, { type: 'application/json' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: name }); msg.textContent = '✓ Backup delt – gem den i Filer.'; return; }
+  } catch (err) { if (err && err.name === 'AbortError') return; }
+  try {
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([data], { type: 'application/json' })); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove(); msg.textContent = '✓ Backup gemt i Overførsler.';
+  } catch (err) { msg.textContent = 'Kunne ikke gemme backup på denne enhed.'; }
+});
+document.getElementById('importFile').addEventListener('change', async e => {
+  const f = e.target.files && e.target.files[0]; const msg = document.getElementById('dataMsg'); if (!f) return;
+  try {
+    const d = JSON.parse(await f.text());
+    if (d.app !== 'mealprep') throw new Error('forkert fil');
+    if (d.rates) rates = Object.assign({}, DEFAULT_RATES, d.rates);
+    if (Array.isArray(d.cats) && d.cats.length) cats = d.cats;
+    if (d.extra) extra = d.extra;
+    if (d.manualIncome) manualIncome = d.manualIncome;
+    const addS = (d.shifts||[]).filter(s => !shifts.some(o => o.date === s.date && o.txt === s.txt));
+    const addE = (d.exps||[]).filter(x => !exps.some(o => o.date === x.date && o.desc === x.desc && Math.abs(o.amt - x.amt) < .001));
+    shifts = shifts.concat(addS.map(s => ({ id: s.id || uid(), ...s })));
+    exps = exps.concat(addE.map(x => ({ id: x.id || uid(), ...x })));
+    saveAll(); renderLon(); renderPenge(); shiftPreview();
+    msg.className = 'sync live'; msg.textContent = `✓ Importeret: satser, ${cats.length} kategorier, ${addS.length} vagter og ${addE.length} udgifter.`;
+  } catch (err) { msg.className = 'sync warn'; msg.textContent = 'Filen kunne ikke læses. Vælg en mealprep-fil (.json).'; }
+  e.target.value = '';
 });
 
 // ---------- routing ----------
-const VIEWS = ['idag','uge','indkob','budget'];
+const VIEWS = ['idag','uge','indkob','lon','penge'];
 function route(){
   const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'idag';
   VIEWS.forEach(x => document.getElementById('v-'+x).classList.toggle('on', x === v));
@@ -404,7 +822,7 @@ function route(){
 }
 window.addEventListener('hashchange', route);
 
-renderToday(); renderCook(); renderShop(); renderBudget(); route();
+renderToday(); renderCook(); renderShop(); renderLon(); renderPenge(); route();
 // opdater "I dag" når appen åbnes igen fra hjemmeskærmen
 document.addEventListener('visibilitychange', () => { if (!document.hidden) renderToday(); });
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
