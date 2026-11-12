@@ -174,13 +174,41 @@
   #menu a .e{font-size:22px}
   #menu a small{display:block;font-size:11px;font-weight:500;color:var(--muted);margin-top:1px}
   #menu a.on{outline:2px solid var(--blue);background:rgba(90,180,255,.1)}
+  .kb{display:none}
+  @media (hover:hover) and (pointer:fine){ .kb{display:inline} }
+  /* computer-layout */
+  @media (min-width: 900px){
+    .wrap{max-width:1120px;padding:0 32px}
+    .top{margin:0 -32px}
+    .top .in{max-width:1120px;padding:0 32px}
+    #menu{max-width:1056px;left:32px;right:32px;grid-template-columns:repeat(4,1fr)}
+    h1{font-size:36px;margin-top:22px}
+    .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+    #v-lon .cols{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+    #v-penge .cols{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+    .meals3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .meals3 .meal{flex-direction:column;align-items:flex-start;padding:18px}
+    #v-hjem .stats{grid-template-columns:repeat(2,minmax(0,280px))}
+    .logo{margin-top:28px}
+    .logo .lt{font-size:40px}
+    .ilist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 10px}
+    #v-indkob .seg{max-width:520px}
+    #v-indkob #reset{max-width:520px}
+    .mnav{max-width:520px;margin-left:auto;margin-right:auto}
+    #v-penge .mnav,#v-lon .mnav{max-width:none}
+    .hero{padding:28px}
+    .stat .v{font-size:30px}
+    .meal:hover,.item:hover,.tile:hover{border-color:#3A3F4A}
+    .btn:hover{border-color:#3A3F4A}
+    .game canvas{height:300px}
+  }
   /* forside */
   .logo{display:flex;align-items:center;gap:14px;margin:16px 0 4px}
   .logo .lt{font-size:30px;font-weight:800;letter-spacing:.04em;line-height:1}
   .logo .lt span{color:var(--orange);font-weight:700;letter-spacing:0;font-size:22px;margin-left:3px}
   .logo .ls{color:var(--muted);font-size:13px;margin-top:5px}
   .game{margin-top:16px;padding:0;overflow:hidden;position:relative;touch-action:manipulation;user-select:none;-webkit-user-select:none}
-  .game canvas{display:block;width:100%;height:170px;cursor:pointer}
+  .game canvas{display:block;width:100%;height:200px;cursor:pointer}
   .gbar{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--line);font-weight:800;font-variant-numeric:tabular-nums}
   .gbar .sub b{color:var(--orange)}
   .hero{margin-top:14px;border-radius:22px;padding:20px;background:linear-gradient(135deg,rgba(90,180,255,.18),rgba(255,122,69,.12));border:1px solid var(--line)}
@@ -217,6 +245,7 @@
     <a href="#indkob" data-v="indkob"><span class="e">🛒</span><span>Indkøb<small>Lister</small></span></a>
     <a href="#lon" data-v="lon"><span class="e">⏱️</span><span>Løn<small>Vagter</small></span></a>
     <a href="#penge" data-v="penge"><span class="e">💰</span><span>Penge<small>Budget</small></span></a>
+    <a href="#spil" data-v="spil"><span class="e">🎮</span><span>Spil<small>Risskålen</small></span></a>
   </div>
 </header>
 <div id="menuBg"></div>
@@ -233,17 +262,22 @@
     <div><div class="lt">MEAL<span>prep</span></div><div class="ls" id="hDate"></div></div>
   </div>
 
-  <div class="card game">
-    <canvas id="game" height="170"></canvas>
-    <div class="gbar"><span id="gScore">0</span><span class="sub">Rekord <b id="gBest">0</b></span></div>
-  </div>
-
   <h2 id="hHi">Dagens mad</h2>
   <div id="hCook"></div>
-  <div class="meals" id="hMeals"></div>
+  <div class="meals meals3" id="hMeals"></div>
   <div class="stats" style="margin-top:10px">
     <div class="card stat"><div class="v" id="hKcal"></div><div class="k">kcal i dag</div></div>
     <div class="card stat"><div class="v" id="hProt"></div><div class="k">protein i dag</div></div>
+  </div>
+</section>
+
+<!-- SPIL -->
+<section class="view" id="v-spil">
+  <h1>Risskålen 🌶️</h1>
+  <div class="sub">Hop over chilierne. Tryk på banen<span class="kb"> eller brug mellemrum / pil op</span>.</div>
+  <div class="card game">
+    <canvas id="game"></canvas>
+    <div class="gbar"><span id="gScore">0</span><span class="sub">Rekord <b id="gBest">0</b></span></div>
   </div>
 </section>
 
@@ -253,27 +287,33 @@
   <h1 id="greet">God dag</h1>
   <div class="sub" id="dateline"></div>
   <div id="cookBanner"></div>
+  <div class="cols"><div>
   <h2>Dagens mad</h2>
   <div class="meals" id="meals"></div>
   <div id="freezer"></div>
+  </div><div>
   <h2>Din dag i alt</h2>
   <div class="stats">
     <div class="card stat"><div class="v" id="sKcal"></div><div class="k" id="sKcalK"></div><div class="bar"><i id="bKcal"></i></div></div>
     <div class="card stat"><div class="v" id="sProt"></div><div class="k" id="sProtK"></div><div class="bar"><i id="bProt"></i></div></div>
   </div>
   <div class="tomorrow" id="tomorrow"></div>
+  </div></div>
 </section>
 
 <!-- UGE -->
 <section class="view" id="v-uge">
   <h1>Ugen</h1>
   <div class="sub">Du laver mad søndag og onsdag aften.</div>
+  <div class="cols"><div>
   <h2>Hvad du spiser</h2>
   <div id="week"></div>
+  </div><div>
   <h2>🍳 Søndag aften</h2>
   <div id="cookSun"></div>
   <h2>🍳 Onsdag aften</h2>
   <div id="cookWed"></div>
+  </div></div>
 </section>
 
 <!-- INDKØB -->
@@ -287,7 +327,7 @@
   </div>
   <div class="seg-note" id="segNote"></div>
   <div class="progress"><span id="progTxt"></span><span id="progPct"></span></div>
-  <div id="list"></div>
+  <div id="list" class="ilist"></div>
   <button class="btn" id="reset">Nulstil listen</button>
 </section>
 
@@ -296,6 +336,7 @@
   <h1>Løn</h1>
   <div class="sub">Skriv din vagt som fx <b>16-21</b>, <b>16:30-21</b> eller <b>9.30-14</b>.</div>
 
+  <div class="cols"><div>
   <div class="card" style="margin-top:16px">
     <div class="frm">
       <label>Dato<input type="date" id="sDate"></label>
@@ -308,6 +349,9 @@
     <div class="preview" id="sPrev">Skriv en vagt for at se lønnen</div>
     <button class="btn primary" id="sAdd">Tilføj vagt</button>
   </div>
+  <h2>Vagter i perioden</h2>
+  <div id="shiftList"></div>
+  </div><div>
 
   <div class="mnav">
     <button data-step="-1" data-for="lon">‹</button>
@@ -320,14 +364,12 @@
     <div id="slip"></div>
   </div>
 
-  <h2>Vagter i perioden</h2>
-  <div id="shiftList"></div>
-
   <details class="setbox" id="rateBox">
     <summary>⚙️ Dine satser og skat</summary>
     <div id="rates"></div>
     <div class="how">Satserne står på din lønseddel og dit skattekort. Ret dem, hvis du får lønstigning eller nyt skattekort.</div>
   </details>
+  </div></div>
 </section>
 
 <!-- PENGE -->
@@ -339,6 +381,7 @@
     <button data-step="1" data-for="penge">›</button>
   </div>
 
+  <div class="cols"><div>
   <div class="card">
     <div class="row"><label>💼 Løn</label><input inputmode="numeric" id="pIncome"></div>
     <div class="sync" id="pSrc"></div>
@@ -354,6 +397,7 @@
   <div class="card" id="catList"></div>
   <button class="btn" id="catEditBtn">Rediger kategorier</button>
   <div id="catEdit" class="card" style="display:none;margin-top:10px"></div>
+  </div><div>
 
   <h2>Tilføj udgift</h2>
   <div class="card">
@@ -375,11 +419,12 @@
 
   <h2>Data</h2>
   <div class="card">
-    <div class="sub" style="line-height:1.5">Alt gemmes kun på denne telefon. Lav en backup en gang imellem, så du ikke mister noget.</div>
+    <div class="sub" style="line-height:1.5">Alt gemmes kun på denne enhed. Lav en backup en gang imellem, så du ikke mister noget.</div>
     <button class="btn" id="exportBtn">💾 Gem backup</button>
     <label class="btn filebtn">📥 Importér fil<input type="file" id="importFile" accept=".json,application/json"></label>
     <div class="sync" id="dataMsg"></div>
   </div>
+  </div></div>
 </section>
 
 </div>
@@ -909,13 +954,13 @@ function renderHome(){
 // ================= MINISPIL: Risskålen hopper over chilier =================
 (() => {
   const cv = document.getElementById('game'), ctx = cv.getContext('2d');
-  const H = 170, GROUND = 138;
+  let H = 200, GROUND = 166;
   let W = 360, dpr = 1, raf = 0, last = 0, state = 'idle';
   let bowl, obs, speed, score, nextGap, clouds, t;
   let best = store.get('mp_best', 0);
   document.getElementById('gBest').textContent = best;
   function size(){
-    dpr = window.devicePixelRatio || 1; W = cv.clientWidth || 360;
+    dpr = window.devicePixelRatio || 1; W = cv.clientWidth || 360; H = W > 700 ? 300 : 200; GROUND = H - 34; cv.style.height = H + 'px';
     cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0); draw();
   }
   function reset(){
@@ -997,16 +1042,16 @@ function renderHome(){
   }
   cv.addEventListener('pointerdown', e => { e.preventDefault(); jump(); });
   document.addEventListener('keydown', e => {
-    if ((e.code === 'Space' || e.code === 'ArrowUp') && document.getElementById('v-hjem').classList.contains('on') && !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); jump(); }
+    if ((e.code === 'Space' || e.code === 'ArrowUp') && document.getElementById('v-spil').classList.contains('on') && !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); jump(); }
   });
   document.addEventListener('visibilitychange', () => { if (document.hidden && state === 'run') { state = 'over'; draw(); } });
-  window.addEventListener('hashchange', () => { if (state === 'run' && location.hash && location.hash !== '#hjem') { state = 'idle'; cancelAnimationFrame(raf); } setTimeout(size, 30); });
+  window.addEventListener('hashchange', () => { if (state === 'run' && location.hash !== '#spil') { state = 'idle'; cancelAnimationFrame(raf); } setTimeout(size, 30); });
   window.addEventListener('resize', size);
   reset(); setTimeout(size, 0);
 })();
 
 // ================= MENU =================
-const TITLES = {hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge'};
+const TITLES = {hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge', spil:'Spil'};
 const setMenu = open => document.body.classList.toggle('menu-open', open);
 document.getElementById('mealBtn').addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
 document.getElementById('menuBg').addEventListener('click', () => setMenu(false));
@@ -1015,7 +1060,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(fals
 window.addEventListener('scroll', () => document.getElementById('top').classList.toggle('scrolled', window.scrollY > 4), { passive: true });
 
 // ---------- routing ----------
-const VIEWS = ['hjem','idag','uge','indkob','lon','penge'];
+const VIEWS = ['hjem','idag','uge','indkob','lon','penge','spil'];
 function route(){
   const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'hjem';
   VIEWS.forEach(x => document.getElementById('v-'+x).classList.toggle('on', x === v));
