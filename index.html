@@ -284,6 +284,53 @@
     .tip{max-width:none;font-size:17px}
     #menu{grid-template-columns:repeat(5,1fr)}
   }
+  /* v8 */
+  .alerts{display:grid;gap:8px;margin-top:14px}
+  .alert{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:16px;background:var(--card);border:1px solid var(--line);text-decoration:none;color:var(--text)}
+  .alert>span{font-size:24px}.alert>div{flex:1;min-width:0}.alert b{display:block;font-size:14px}.alert small{color:var(--muted);font-size:12px}
+  .alert em{font-style:normal;color:var(--muted);font-size:20px}
+  .a-bk{border-color:rgba(255,184,107,.45);background:rgba(255,184,107,.08)}
+  .a-pay{background:linear-gradient(120deg,rgba(124,224,195,.12),var(--card) 70%)}
+  .a-rp{background:linear-gradient(120deg,rgba(196,167,231,.16),var(--card) 70%)}
+  .fc{margin-top:10px;line-height:1.5;font-size:14px}
+  .rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .rt{display:flex;flex-direction:column;gap:2px}.rt span{font-size:24px}.rt .k{font-size:12px;color:var(--muted);font-weight:700;margin-top:6px}
+  .rt b{font-size:22px;font-weight:800}.rt small{font-size:12px;color:var(--muted)}
+  .addrow{display:flex;gap:8px;margin-top:6px}
+  .addrow input{flex:1;background:var(--card);border:1px dashed var(--line);color:var(--text);font:500 15px Inter,sans-serif;padding:13px 14px;border-radius:14px;min-width:0}
+  .addrow input:focus{outline:none;border-color:var(--blue);border-style:solid}
+  .addrow .btn{width:52px;margin:0;font-size:20px;padding:0}
+  .own{font-size:10px;font-weight:700;color:var(--orange);background:rgba(255,122,69,.12);padding:2px 6px;border-radius:6px;margin-left:4px;vertical-align:2px}
+  .item .x{margin-left:6px}
+  .skins{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+  .skin{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 6px;color:var(--text);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:Inter,sans-serif}
+  .skin .sw2{width:44px;height:34px;border-radius:6px 6px 22px 22px;display:grid;place-items:center;font-size:16px}
+  .skin b{font-size:13px}.skin small{font-size:10.5px;color:var(--muted);text-align:center;line-height:1.25}
+  .skin.on{outline:2px solid var(--blue);background:rgba(90,180,255,.08)}
+  .skin.lock{opacity:.5;cursor:default}
+  .rec{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:8px}
+  .rec .ric{font-size:24px}.rec .en{flex:1;min-width:0;font-size:14px}
+  .rec2 summary{padding:12px 14px}.rec2 .en{font-size:14px}
+  .recbtn{display:flex;gap:8px;padding:10px 14px 14px}.recbtn .btn{margin:0}
+  .ingr{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.2fr) 30px;gap:6px;margin-bottom:6px;align-items:center}
+  .ingr input{background:var(--card2);border:1px solid var(--line);color:var(--text);font:500 14px Inter,sans-serif;padding:10px 8px;border-radius:10px;min-width:0;width:100%}
+  .ingr input:focus{outline:none;border-color:var(--blue)}
+  .frm textarea{background:var(--card2);border:1px solid var(--line);color:var(--text);font:500 15px Inter,sans-serif;padding:11px 12px;border-radius:12px;width:100%;resize:vertical}
+  #rbSum{margin:10px 0 0}
+  /* lyst tema */
+  body.light{--bg:#F4F5F7;--card:#FFFFFF;--card2:#EEF0F3;--line:#E1E4E9;--text:#14161A;--muted:#6B7280}
+  body.light .top{background:rgba(244,245,247,.88)}
+  body.light .glass{border-color:#C9CED6}
+  body.light #toast{border-color:#D5D9E0;box-shadow:0 16px 40px rgba(0,0,0,.15)}
+  body.light .meal:hover,body.light .item:hover,body.light .btn:hover{border-color:#C9CED6}
+  body.light .mealbtn{box-shadow:0 6px 20px rgba(90,180,255,.35)}
+  body.light .cd{color:#6B7280}
+  body.light .kchart .gl{stroke:#E1E4E9}
+  body.light .kchart .kd{fill:#fff}
+  body.light .wave{background:radial-gradient(circle at 10px -4px,transparent 12px,#7CC4FF 13px) 0 0/20px 16px repeat-x}
+  body.light .b7b i[style*="3A5878"]{background:#A9CFF3!important}
+  body.light .pin{color:#14161A;text-shadow:none}
+  @media (min-width: 900px){ .rgrid{grid-template-columns:repeat(3,1fr)} .alerts{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))} }
   /* forside */
   .logo{display:flex;align-items:center;gap:14px;margin:16px 0 4px}
   .logo .lt{font-size:30px;font-weight:800;letter-spacing:.04em;line-height:1}
@@ -328,10 +375,12 @@
     <a href="#indkob" data-v="indkob"><span class="e">🛒</span><span>Indkøb<small>Lister</small></span></a>
     <a href="#timer" data-v="timer"><span class="e">⏲️</span><span>Timer<small>Madlavning</small></span></a>
     <a href="#hjul" data-v="hjul"><span class="e">🎡</span><span>Smagshjul<small>Ny smag</small></span></a>
+    <a href="#opskrifter" data-v="opskrifter"><span class="e">📖</span><span>Opskrifter<small>Din bog</small></span></a>
     <div class="mg">Krop</div>
     <a href="#streak" data-v="streak"><span class="e">🔥</span><span>Streak<small>Hold planen</small></span></a>
     <a href="#vand" data-v="vand"><span class="e">💧</span><span>Vand<small>Glas i dag</small></span></a>
     <a href="#vaegt" data-v="vaegt"><span class="e">⚖️</span><span>Vægt<small>Graf</small></span></a>
+    <a href="#rapport" data-v="rapport"><span class="e">📊</span><span>Rapport<small>Ugens tal</small></span></a>
     <div class="mg">Penge</div>
     <a href="#lon" data-v="lon"><span class="e">⏱️</span><span>Løn<small>Vagter</small></span></a>
     <a href="#penge" data-v="penge"><span class="e">💰</span><span>Penge<small>Budget</small></span></a>
@@ -339,6 +388,8 @@
     <div class="mg">Sjov</div>
     <a href="#badges" data-v="badges"><span class="e">🏆</span><span>Badges<small>Samling</small></span></a>
     <a href="#spil" data-v="spil"><span class="e">🎮</span><span>Spil<small>Risskålen</small></span></a>
+    <div class="mg">Andet</div>
+    <a href="#indstillinger" data-v="indstillinger"><span class="e">⚙️</span><span>Indstillinger<small>Backup og mere</small></span></a>
   </div>
 </header>
 <div id="menuBg"></div>
@@ -355,6 +406,7 @@
     <div><div class="lt">MEAL<span>prep</span></div><div class="ls" id="hDate"></div></div>
   </div>
 
+  <div id="hAlerts" class="alerts"></div>
   <div class="card tip"><div class="tk">💡 Dagens tip</div><div id="hTip"></div></div>
   <div class="quickrow" id="hQuick"></div>
   <div class="funs" id="hFun"></div>
@@ -368,6 +420,9 @@
     <canvas id="game"></canvas>
     <div class="gbar"><span id="gScore">0</span><span class="sub">Rekord <b id="gBest">0</b></span></div>
   </div>
+  <h2>Skins 🎨</h2>
+  <div class="sub" style="margin-bottom:10px">Lås nye skåle op ved at samle badges.</div>
+  <div class="skins" id="skins"></div>
 </section>
 <!-- STREAK -->
 <section class="view" id="v-streak">
@@ -419,6 +474,7 @@
     <div class="card stat"><div class="v" id="kNow">–</div><div class="k">seneste</div></div>
     <div class="card stat"><div class="v" id="kDiff">–</div><div class="k" id="kDiffK">siden start</div></div>
   </div>
+  <div class="card fc" id="kFc"></div>
   </div><div>
   <div class="card" style="margin-top:16px"><div id="kChart"></div></div>
   <div id="kList" style="margin-top:10px"></div>
@@ -483,6 +539,74 @@
   <div class="card" style="margin-top:10px"><div class="frm"><label>Egen tid (min)<input id="tCustom" inputmode="numeric" placeholder="12"></label><label>&nbsp;<button class="btn primary" id="tGo" style="margin:0">Start</button></label></div></div>
   </div></div>
 </section>
+<!-- RAPPORT -->
+<section class="view" id="v-rapport">
+  <h1>Ugens rapport 📊</h1>
+  <div class="mnav"><button data-wk="-1">‹</button><div><div class="mt" id="rpW"></div><div class="sub" id="rpD"></div></div><button data-wk="1">›</button></div>
+  <div class="card bigc"><div style="font-size:52px" id="rpE"></div><div class="bignum" style="font-size:30px" id="rpG"></div><div class="sub" id="rpS"></div></div>
+  <div class="rgrid" id="rpGrid"></div>
+</section>
+
+<!-- OPSKRIFTER -->
+<section class="view" id="v-opskrifter">
+  <h1>Opskriftsbog 📖</h1>
+  <div class="sub">Dine faste retter, dine egne opskrifter og gemte smage fra smagshjulet.</div>
+  <div class="cols"><div>
+  <h2>Dine faste retter</h2>
+  <div id="rbBase"></div>
+  <h2>Dine egne opskrifter</h2>
+  <div id="rbOwn"></div>
+  <h2>Gemte smage 🎡</h2>
+  <div id="rbFlav"></div>
+  </div><div>
+  <h2 id="rbFormH">Ny opskrift</h2>
+  <div class="card">
+    <div class="frm"><label>Navn<input id="rbName" placeholder="fx Kylling i karry"></label><label>Portioner<input id="rbPort" inputmode="numeric" value="4"></label></div>
+    <div id="rbIngs"></div>
+    <button class="btn" id="rbAddIng">＋ Ingrediens</button>
+    <div class="frm one" style="margin-top:10px"><label>Fremgangsmåde / noter<textarea id="rbNote" rows="3" placeholder="Steg kyllingen…"></textarea></label></div>
+    <div class="preview ok" id="rbSum"></div>
+    <button class="btn primary" id="rbSave">Gem opskrift</button>
+    <button class="btn" id="rbCancel" style="display:none">Annuller redigering</button>
+  </div>
+  <datalist id="nutriList"></datalist>
+  </div></div>
+</section>
+
+<!-- INDSTILLINGER -->
+<section class="view" id="v-indstillinger">
+  <h1>Indstillinger ⚙️</h1>
+  <div class="cols"><div>
+  <h2>💾 Backup</h2>
+  <div class="card">
+    <div class="sub" style="line-height:1.5">Alt i appen gemmes kun på denne enhed. Tag en backup en gang om ugen og gem filen i Filer eller iCloud – så mister du aldrig noget.</div>
+    <div class="sync" id="bkLast"></div>
+    <button class="btn primary" id="exportBtn">💾 Gem backup nu</button>
+    <label class="btn filebtn">📥 Importér backup / datafil<input type="file" id="importFile" accept=".json,application/json"></label>
+    <div class="sync" id="dataMsg"></div>
+    <div class="row"><label>Påmind mig hver</label><span class="unit"><input id="bkEvery" inputmode="numeric"><em>dage</em></span></div>
+  </div>
+  <h2>🎨 Udseende</h2>
+  <div class="card">
+    <div class="seg" id="themeSeg" style="margin-top:0"><button data-t="dark">🌙 Mørkt</button><button data-t="light">☀️ Lyst</button></div>
+  </div>
+  </div><div>
+  <h2>🎯 Dine mål</h2>
+  <div class="card">
+    <div class="row"><label>Kalorier pr. dag (under)</label><span class="unit"><input id="gKcal" inputmode="numeric"><em>kcal</em></span></div>
+    <div class="row"><label>Protein pr. dag (mindst)</label><span class="unit"><input id="gProt" inputmode="numeric"><em>g</em></span></div>
+    <div class="sub" style="font-size:12px;margin-top:6px">Vandmål og vægtmål retter du på siderne Vand og Vægt.</div>
+  </div>
+  <h2>💰 Lønudbetaling</h2>
+  <div class="card">
+    <div class="frm"><label>Løn udbetales<select id="payMode"><option value="last">Sidste bankdag</option><option value="day">Fast dato</option></select></label><label>Dato<input id="payDay" inputmode="numeric" placeholder="1"></label></div>
+    <div class="sync" id="payNext"></div>
+  </div>
+  <h2>ℹ️ Om appen</h2>
+  <div class="card"><div class="sub" style="line-height:1.6">Mealprep · version 8<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
+  </div></div>
+</section>
+
 
 
 
@@ -532,6 +656,7 @@
   <div class="seg-note" id="segNote"></div>
   <div class="progress"><span id="progTxt"></span><span id="progPct"></span></div>
   <div id="list" class="ilist"></div>
+  <div class="addrow"><input id="customName" placeholder="Tilføj egen vare, fx kattemad"><button class="btn primary" id="customAdd">＋</button></div>
   <button class="btn" id="reset">Nulstil listen</button>
 </section>
 
@@ -621,13 +746,7 @@
   <div class="seg" id="eFilter" style="margin-top:0"></div>
   <div id="expList" style="margin-top:10px"></div>
 
-  <h2>Data</h2>
-  <div class="card">
-    <div class="sub" style="line-height:1.5">Alt gemmes kun på denne enhed. Lav en backup en gang imellem, så du ikke mister noget.</div>
-    <button class="btn" id="exportBtn">💾 Gem backup</button>
-    <label class="btn filebtn">📥 Importér fil<input type="file" id="importFile" accept=".json,application/json"></label>
-    <div class="sync" id="dataMsg"></div>
-  </div>
+  <a class="alert" href="#indstillinger" style="margin-top:22px"><span>💾</span><div><b>Backup og import</b><small>Ligger nu under ⚙️ Indstillinger</small></div><em>›</em></a>
   </div></div>
 </section>
 
@@ -746,16 +865,19 @@ function renderCook(){
 let seg = store.get('mp_seg', null);
 if (!seg){ const d = ((new Date().getDay()+6)%7)+1; seg = (d >= 3 && d <= 5) ? 'ons' : 'son'; }
 let checks = store.get('mp_checks', {});
+var customShop = (function(){ try { return JSON.parse(localStorage.getItem('mp_custom')) || {son:[],ons:[],skab:[]}; } catch(e) { return {son:[],ons:[],skab:[]}; } })();
+function shopItems(k){ return SHOP[k].items.concat((customShop[k] || []).map(n => [n, '', true])); }
 function renderShop(){
   document.querySelectorAll('#seg button').forEach(b => b.classList.toggle('on', b.dataset.k === seg));
   const s = SHOP[seg];
   document.getElementById('segNote').textContent = s.note;
-  const done = s.items.filter(([n]) => checks[seg+':'+n]).length;
-  document.getElementById('progTxt').textContent = `${done} af ${s.items.length} i kurven`;
-  document.getElementById('progPct').textContent = done === s.items.length ? '✓ Færdig' : '';
-  document.getElementById('list').innerHTML = s.items.map(([n,q]) => {
-    const k = seg+':'+n;
-    return `<div class="item ${checks[k]?'done':''}" data-k="${k}"><span class="box"></span><span class="iname">${n}</span>${q?`<span class="iqty">${q}</span>`:'<span class="sub" style="font-size:12px">næsten tom?</span>'}</div>`;
+  const items = shopItems(seg);
+  const done = items.filter(([n]) => checks[seg+':'+n]).length;
+  document.getElementById('progTxt').textContent = `${done} af ${items.length} i kurven`;
+  document.getElementById('progPct').textContent = done === items.length ? '✓ Færdig' : '';
+  document.getElementById('list').innerHTML = items.map(([n,q,own]) => {
+    const k = seg+':'+n, nm = n.replace(/</g,'&lt;');
+    return `<div class="item ${checks[k]?'done':''}" data-k="${k}"><span class="box"></span><span class="iname">${nm}${own?' <span class="own">egen</span>':''}</span>${q?`<span class="iqty">${q}</span>`:own?'':'<span class="sub" style="font-size:12px">næsten tom?</span>'}${own?`<button class="x" data-rm-own="${nm}">×</button>`:''}</div>`;
   }).join('');
 }
 document.getElementById('seg').addEventListener('click', e => {
@@ -763,6 +885,8 @@ document.getElementById('seg').addEventListener('click', e => {
   seg = b.dataset.k; store.set('mp_seg', seg); renderShop();
 });
 document.getElementById('list').addEventListener('click', e => {
+  const rm = e.target.closest('[data-rm-own]');
+  if (rm) { customShop[seg] = (customShop[seg]||[]).filter(x => x !== rm.dataset.rmOwn); delete checks[seg+':'+rm.dataset.rmOwn]; store.set('mp_custom', customShop); store.set('mp_checks', checks); renderShop(); return; }
   const it = e.target.closest('.item'); if (!it) return;
   const k = it.dataset.k; checks[k] = !checks[k]; store.set('mp_checks', checks); renderShop();
 });
@@ -1111,11 +1235,11 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
   const msg = document.getElementById('dataMsg');
   try {
     const file = new File([data], name, { type: 'application/json' });
-    if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: name }); msg.textContent = '✓ Backup delt – gem den i Filer.'; return; }
+    if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: name }); msg.textContent = '✓ Backup delt – gem den i Filer.'; onBackupDone(); return; }
   } catch (err) { if (err && err.name === 'AbortError') return; }
   try {
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([data], { type: 'application/json' })); a.download = name;
-    document.body.appendChild(a); a.click(); a.remove(); msg.textContent = '✓ Backup gemt i Overførsler.';
+    document.body.appendChild(a); a.click(); a.remove(); msg.textContent = '✓ Backup gemt i Overførsler.'; onBackupDone();
   } catch (err) { msg.textContent = 'Kunne ikke gemme backup på denne enhed.'; }
 });
 document.getElementById('importFile').addEventListener('change', async e => {
@@ -1143,6 +1267,11 @@ function renderHome(){
   const n = new Date(), d = ((n.getDay()+6)%7)+1, h = n.getHours();
   document.getElementById('hDate').textContent = `${h < 10 ? 'Godmorgen' : h < 17 ? 'God dag' : 'God aften'} · ${DAYS[d-1]} d. ${n.toLocaleDateString('da-DK',{day:'numeric',month:'long'})}`;
 }
+
+function curSkin(){ return (typeof SKINS !== 'undefined' && SKINS && SKINS.find(s => s[0] === skin)) || ['klassisk','Klassisk',null,'#5AB4FF','#FF7A45','#ECEDEF','']; }
+function gameColors(){ const light = document.body.classList.contains('light');
+  return light ? { cloud:'#E3E6EB', ground:'#C9CED6', dash:'#DADDE3', text:'#14161A', muted:'#6B7280' }
+               : { cloud:'#262A32', ground:'#3A3F4A', dash:'#2A2E36', text:'#ECEDEF', muted:'#8B8F98' }; }
 
 // ================= MINISPIL: Risskålen hopper over chilier =================
 (() => {
@@ -1203,10 +1332,12 @@ function renderHome(){
   function drawBowl(x, y, squish){
     const w = 34, h = 24;
     ctx.save(); ctx.translate(x, y);
-    ctx.fillStyle = '#ECEDEF'; ctx.beginPath(); ctx.ellipse(0, -h + 4, w/2 - 2, 8, 0, 0, Math.PI*2); ctx.fill();   // ris
-    ctx.fillStyle = '#5AB4FF'; ctx.beginPath(); ctx.moveTo(-w/2, -h + 6); ctx.lineTo(w/2, -h + 6);
+    const sk = curSkin();
+    ctx.fillStyle = sk[5]; ctx.beginPath(); ctx.ellipse(0, -h + 4, w/2 - 2, 8, 0, 0, Math.PI*2); ctx.fill();   // top
+    ctx.fillStyle = sk[3]; ctx.beginPath(); ctx.moveTo(-w/2, -h + 6); ctx.lineTo(w/2, -h + 6);
     ctx.quadraticCurveTo(w/2, 0, 0, 0); ctx.quadraticCurveTo(-w/2, 0, -w/2, -h + 6); ctx.fill();                // skål
-    ctx.fillStyle = '#FF7A45'; ctx.fillRect(-w/2 + 4, -h + 11, w - 8, 3);                                        // stribe
+    ctx.fillStyle = sk[4]; ctx.fillRect(-w/2 + 4, -h + 11, w - 8, 3);                                            // stribe
+    if (sk[6]) { ctx.font = '14px serif'; ctx.textAlign = 'center'; ctx.fillText(sk[6], 0, -h - 2); ctx.textAlign = 'left'; }
     ctx.fillStyle = '#0E0F12'; const blink = (t % 3) < 0.12;
     if (state === 'over') { ctx.font = 'bold 9px Inter,sans-serif'; ctx.fillText('x', -8, -5); ctx.fillText('x', 4, -5); }
     else if (!blink) { ctx.beginPath(); ctx.arc(-6, -7, 2, 0, 7); ctx.arc(6, -7, 2, 0, 7); ctx.fill(); }
@@ -1223,16 +1354,16 @@ function renderHome(){
   }
   function draw(){
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#262A32';
+    const GC = gameColors(); ctx.fillStyle = GC.cloud;
     (clouds || []).forEach(c => { ctx.beginPath(); ctx.ellipse(c.x, c.y, 22, 7, 0, 0, 7); ctx.ellipse(c.x + 14, c.y - 5, 14, 7, 0, 0, 7); ctx.fill(); });
-    ctx.strokeStyle = '#3A3F4A'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(0, GROUND + 1); ctx.lineTo(W, GROUND + 1); ctx.stroke();
-    ctx.fillStyle = '#2A2E36'; for (let i = 0; i < W; i += 23) { const off = ((t||0) * (speed||0)) % 23; ctx.fillRect(i - off, GROUND + 8 + (i % 3) * 4, 6, 2); }
+    ctx.strokeStyle = GC.ground; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(0, GROUND + 1); ctx.lineTo(W, GROUND + 1); ctx.stroke();
+    ctx.fillStyle = GC.dash; for (let i = 0; i < W; i += 23) { const off = ((t||0) * (speed||0)) % 23; ctx.fillRect(i - off, GROUND + 8 + (i % 3) * 4, 6, 2); }
     (obs || []).forEach(o => { drawChili(o.x, o.w, o.h); if (o.pair) drawChili(o.x + o.w + 4, o.w, o.h - 6); });
     drawBowl(bowl ? bowl.x : 44, bowl ? bowl.y : GROUND);
-    ctx.textAlign = 'center'; ctx.fillStyle = '#ECEDEF';
+    ctx.textAlign = 'center'; ctx.fillStyle = GC.text;
     if (state === 'idle') { ctx.font = '700 15px Inter,sans-serif'; ctx.fillText('Tryk for at hoppe over chilierne 🌶️', W/2, 70); }
     if (state === 'over') { ctx.font = '800 18px Inter,sans-serif'; ctx.fillText('Av, det var stærkt!', W/2, 62);
-      ctx.font = '600 13px Inter,sans-serif'; ctx.fillStyle = '#8B8F98'; ctx.fillText('Tryk for at prøve igen', W/2, 84); }
+      ctx.font = '600 13px Inter,sans-serif'; ctx.fillStyle = GC.muted; ctx.fillText('Tryk for at prøve igen', W/2, 84); }
     ctx.textAlign = 'left';
   }
   cv.addEventListener('pointerdown', e => { e.preventDefault(); jump(); });
@@ -1469,7 +1600,7 @@ document.getElementById('spinBtn').addEventListener('click', () => {
     wAng = start + (end - start) * e; drawWheel();
     if (p < 1) return requestAnimationFrame(step);
     spinning = false; const [name, col, tip] = FLAVORS[pick];
-    document.getElementById('spinRes').innerHTML = `<div class="sub">Næste mealprep bliver…</div><div class="bignum" style="color:${col};font-size:32px;margin:6px 0">${name}</div><div style="line-height:1.5">${tip}</div>`;
+    document.getElementById('spinRes').innerHTML = `<div class="sub">Næste mealprep bliver…</div><div class="bignum" style="color:${col};font-size:32px;margin:6px 0">${name}</div><div style="line-height:1.5">${tip}</div><button class="btn" id="saveFlav" data-n="${name}">📖 Gem smagen i opskriftsbogen</button>`;
     confetti(60); unlock('spin');
   })(t0);
 });
@@ -1562,18 +1693,251 @@ document.getElementById('v-hjem').addEventListener('click', e => {
 // badge-tjek fra andre dele af appen
 function checkMisc(){
   if (shifts.length) unlock('shift');
-  ['son','ons','skab'].forEach(k => { const it = SHOP[k].items; if (it.every(([n]) => checks[k+':'+n])) unlock('shop'); });
+  ['son','ons','skab'].forEach(k => { const it = shopItems(k); if (it.every(([n]) => checks[k+':'+n])) unlock('shop'); });
   const best = store.get('mp_best', 0); if (best >= 500) unlock('g500'); if (best >= 2000) unlock('g2000');
 }
 document.addEventListener('click', e => {
   if (e.target.closest('#list .item') || e.target.id === 'sAdd') setTimeout(checkMisc, 50);
-  if (e.target.id === 'exportBtn') setTimeout(() => unlock('backup'), 400);
 });
 
 function renderFun(){ renderStreak(); renderWater(); renderWeight(); renderSaved(); renderBadges(); drawWheel(); renderTimer(); renderHome2(); }
 
+
+// ================= VERSION 8 =================
+const DAYMS = 864e5;
+const daysBetween = (a, b) => Math.round((parseISO(b) - parseISO(a)) / DAYMS);
+let cfg = Object.assign({ theme: 'dark', bkEvery: 7, lastBackup: null, payMode: 'last', payDay: 1 }, store.get('mp_cfg', {}));
+Object.assign(GOAL, store.get('mp_goals', {}));
+const saveCfg8 = () => { store.set('mp_cfg', cfg); store.set('mp_goals', GOAL); };
+const hasData = () => shifts.length || exps.length || Object.keys(streak).length || weights.length;
+
+// ---------- tema ----------
+function applyTheme(){
+  document.body.classList.toggle('light', cfg.theme === 'light');
+  const m = document.querySelector('meta[name=theme-color]'); if (m) m.content = cfg.theme === 'light' ? '#F4F5F7' : '#0E0F12';
+  document.querySelectorAll('#themeSeg button').forEach(b => b.classList.toggle('on', b.dataset.t === cfg.theme));
+  if (typeof drawWheel === 'function') drawWheel();
+}
+document.getElementById('themeSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cfg.theme = b.dataset.t; saveCfg8(); applyTheme(); });
+
+// ---------- indstillinger ----------
+function renderSettings(){
+  const el = document.getElementById('bkLast');
+  if (cfg.lastBackup) { const d = daysBetween(cfg.lastBackup, todayISO());
+    el.className = 'sync ' + (d >= cfg.bkEvery ? 'warn' : 'live');
+    el.textContent = `Sidste backup: ${parseISO(cfg.lastBackup).toLocaleDateString('da-DK',{day:'numeric',month:'long'})} (${d === 0 ? 'i dag' : d === 1 ? 'i går' : d + ' dage siden'})`;
+  } else { el.className = 'sync warn'; el.textContent = 'Du har ikke taget en backup endnu.'; }
+  const set = (id, v) => { const i = document.getElementById(id); if (document.activeElement !== i) i.value = v; };
+  set('bkEvery', cfg.bkEvery); set('gKcal', GOAL.kcal); set('gProt', GOAL.prot); set('payDay', cfg.payDay);
+  document.getElementById('payMode').value = cfg.payMode;
+  document.getElementById('payDay').disabled = cfg.payMode === 'last';
+  const p = nextPayday();
+  document.getElementById('payNext').innerHTML = `Næste løn: <b>${p.date.toLocaleDateString('da-DK',{weekday:'long',day:'numeric',month:'long'})}</b>`;
+  applyTheme();
+}
+document.getElementById('bkEvery').addEventListener('input', e => { cfg.bkEvery = Math.max(1, num(e.target.value) || 7); saveCfg8(); renderSettings(); renderHome3(); });
+document.getElementById('gKcal').addEventListener('input', e => { GOAL.kcal = num(e.target.value) || 2300; saveCfg8(); renderToday(); });
+document.getElementById('gProt').addEventListener('input', e => { GOAL.prot = num(e.target.value) || 150; saveCfg8(); renderToday(); });
+document.getElementById('payMode').addEventListener('change', e => { cfg.payMode = e.target.value; saveCfg8(); renderSettings(); renderHome3(); });
+document.getElementById('payDay').addEventListener('input', e => { cfg.payDay = Math.min(31, Math.max(1, num(e.target.value) || 1)); saveCfg8(); renderSettings(); renderHome3(); });
+function onBackupDone(){ cfg.lastBackup = todayISO(); saveCfg8(); renderSettings(); renderHome3(); unlock('backup'); }
+
+// ---------- lønnedtælling ----------
+function paydayIn(y, m){
+  const dim = new Date(y, m + 1, 0).getDate();
+  let d = cfg.payMode === 'last' ? new Date(y, m, dim) : new Date(y, m, Math.min(cfg.payDay, dim));
+  while (d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate() - 1);
+  return d;
+}
+function nextPayday(){
+  const n = new Date(); n.setHours(0,0,0,0);
+  let y = n.getFullYear(), m = n.getMonth(), d = paydayIn(y, m);
+  if (d < n) { m++; if (m > 11) { m = 0; y++; } d = paydayIn(y, m); }
+  // lønsedlen for måned m dækker 19. (m-1) til 18. m. Udbetales lønnen før periodens slut (fx d. 1.), er det forrige måneds lønseddel
+  let py = y, pm = m; if (d.getDate() < (+rates.periodStart || 19)) { pm = m - 1; if (pm < 0) { pm = 11; py--; } }
+  const p = payslip(py, pm), man = manualIncome[mKey(py, pm)];
+  return { date: d, days: Math.round((d - n) / DAYMS), amount: p.brutto > 0 ? p.net : (man || 0) };
+}
+
+// ---------- ugens rapport ----------
+let rpOff = 0;
+const weekStart = off => { const d = new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate() - ((d.getDay() + 6) % 7) + off * 7); return iso(d); };
+const isoWeek = s => { const d = parseISO(s); d.setDate(d.getDate() + 3 - ((d.getDay() + 6) % 7)); const w1 = new Date(d.getFullYear(), 0, 4);
+  return 1 + Math.round(((d - w1) / DAYMS - 3 + ((w1.getDay() + 6) % 7)) / 7); };
+function weekData(off){
+  const ws = weekStart(off), days = [...Array(7)].map((_, i) => addDays(ws, i)), we = days[6];
+  const plan = days.filter(d => streak[d]).length;
+  const wv = days.map(d => water[d] || 0), wGoalDays = wv.filter(v => v >= wGoal).length, wAvg = wv.reduce((a,b) => a+b, 0) / 7;
+  const ws_ = weights.slice().sort((a,b) => a.date.localeCompare(b.date));
+  const before = ws_.filter(w => w.date < ws).pop(), inWeek = ws_.filter(w => w.date >= ws && w.date <= we);
+  const lastIn = inWeek.pop(); const firstRef = before || ws_.find(w => w.date >= ws && w.date <= we);
+  const wChange = (lastIn && firstRef && lastIn !== firstRef) ? lastIn.kg - firstRef.kg : null;
+  let earned = 0; shifts.filter(s => s.date >= ws && s.date <= we).forEach(s => { const c = calcShift(s); if (c) earned += c.pay; });
+  const spent = exps.filter(x => x.date >= ws && x.date <= we).reduce((a,x) => a + x.amt, 0);
+  return { ws, we, plan, wGoalDays, wAvg, wChange, earned, spent, saved: plan * perDay(), nShifts: shifts.filter(s => s.date >= ws && s.date <= we).length };
+}
+function renderReport(){
+  const r = weekData(rpOff);
+  document.getElementById('rpW').textContent = `Uge ${isoWeek(r.ws)}${rpOff === 0 ? ' (denne uge)' : rpOff === -1 ? ' (sidste uge)' : ''}`;
+  const f = s => parseISO(s).toLocaleDateString('da-DK',{day:'numeric',month:'short'});
+  document.getElementById('rpD').textContent = `${f(r.ws)} – ${f(r.we)}`;
+  const [e, g] = r.plan >= 6 ? ['🏆','Fantastisk uge!'] : r.plan >= 4 ? ['💪','God uge!'] : r.plan >= 2 ? ['🙂','Okay uge'] : ['🌱','Ny uge, ny chance'];
+  document.getElementById('rpE').textContent = e; document.getElementById('rpG').textContent = g;
+  document.getElementById('rpS').textContent = `Du holdt planen ${r.plan} af 7 dage`;
+  const f1 = n => n.toLocaleString('da-DK',{minimumFractionDigits:1,maximumFractionDigits:1});
+  const tiles = [
+    ['🔥','Planen holdt', `${r.plan}/7`, 'dage'],
+    ['💧','Vand', f1(r.wAvg), `glas i snit · mål nået ${r.wGoalDays} dage`],
+    ['⚖️','Vægt', r.wChange == null ? '–' : (r.wChange > 0 ? '+' : r.wChange < 0 ? '−' : '') + f1(Math.abs(r.wChange)) + ' kg', r.wChange == null ? 'vej dig for at se ændring' : 'i forhold til sidste vejning'],
+    ['💸','Sparet', kr0(r.saved), 'på mealprep'],
+    ['⏱️','Tjent', kr0(r.earned), `før skat · ${r.nShifts} ${r.nShifts === 1 ? 'vagt' : 'vagter'}`],
+    ['💳','Brugt', kr0(r.spent), 'udgifter i ugen']
+  ];
+  document.getElementById('rpGrid').innerHTML = tiles.map(([i, k, v, s]) => `<div class="card rt"><span>${i}</span><div class="k">${k}</div><b class="${k === 'Vægt' && r.wChange != null ? (r.wChange <= 0 ? 'ok' : 'bad') : ''}">${v}</b><small>${s}</small></div>`).join('');
+  if (rpOff <= 0 && r.plan >= 5 && !renderReport.cel?.[r.ws]) { renderReport.cel = Object.assign(renderReport.cel || {}, {[r.ws]: 1}); if (location.hash === '#rapport') confetti(110); }
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-wk]'); if (!b) return; rpOff = Math.min(0, rpOff + +b.dataset.wk); renderReport(); });
+
+// ---------- vægt-prognose ----------
+function forecast(){
+  const l = weights.slice().sort((a,b) => a.date.localeCompare(b.date)).slice(-8);
+  if (!l.length) return '';
+  const last = l[l.length-1].kg;
+  if (last <= kGoal) return `🎉 Du har nået dit mål på ${String(kGoal).replace('.',',')} kg!`;
+  if (l.length < 2 || daysBetween(l[0].date, l[l.length-1].date) < 6) return 'Vej dig et par gange mere (over mindst en uge), så kan jeg lave en prognose.';
+  const xs = l.map(w => daysBetween(l[0].date, w.date)), ys = l.map(w => w.kg), n = l.length;
+  const mx = xs.reduce((a,b)=>a+b)/n, my = ys.reduce((a,b)=>a+b)/n;
+  const slope = xs.reduce((a,x,i) => a + (x-mx)*(ys[i]-my), 0) / xs.reduce((a,x) => a + (x-mx)**2, 0);
+  const perWeek = slope * 7, f1 = v => v.toLocaleString('da-DK',{minimumFractionDigits:1,maximumFractionDigits:1});
+  if (slope >= -0.005) return `Vægten står stille eller stiger lige nu (${perWeek >= 0 ? '+' : '−'}${f1(Math.abs(perWeek))} kg/uge). Hold fast i planen – det kommer.`;
+  const days = Math.ceil((last - kGoal) / -slope), d = new Date(parseISO(l[l.length-1].date).getTime() + days * DAYMS);
+  return `📈 Med dit tempo (−${f1(-perWeek)} kg/uge) når du <b>${String(kGoal).replace('.',',')} kg</b> omkring <b>${d.toLocaleDateString('da-DK',{day:'numeric',month:'long',year:'numeric'})}</b>.`;
+}
+
+// ---------- skins ----------
+var SKINS = [
+  ['klassisk','Klassisk',null,'#5AB4FF','#FF7A45','#ECEDEF',''],
+  ['chili','Chili','g500','#FF6B6B','#FFD166','#ECEDEF','🌶️'],
+  ['ocean','Ocean','w5','#3DD6C6','#5AB4FF','#ECEDEF','🌊'],
+  ['lilla','Lilla','s7','#C4A7E7','#FF7A45','#ECEDEF','💜'],
+  ['sushi','Sushi','sv500','#1F1F1F','#FF6B6B','#ECEDEF','🍣'],
+  ['burger','Burger','k2','#E0B07C','#7CE0C3','#C98A4B','🍔'],
+  ['guld','Guld','g2000','#FFD166','#E0B07C','#FFF3C4','👑'],
+  ['maskine','Maskine','s30','#8B8F98','#5AB4FF','#B8C0CC','🤖']
+];
+var skin = (function(){ try { return JSON.parse(localStorage.getItem('mp_skin')) || 'klassisk'; } catch(e) { return 'klassisk'; } })();
+function renderSkins(){
+  const el = document.getElementById('skins'); if (!el) return;
+  el.innerHTML = SKINS.map(([id, name, need, c1, c2, c3, ic]) => { const open = !need || badges[need];
+    const bn = need ? (BADGES.find(b => b[0] === need) || [])[2] : '';
+    return `<button class="skin ${skin === id ? 'on' : ''} ${open ? '' : 'lock'}" data-skin="${id}" ${open ? '' : 'disabled'}>
+      <span class="sw2" style="background:linear-gradient(180deg,${c3} 0 35%,${c1} 35% 100%)">${open ? ic : '🔒'}</span><b>${name}</b><small>${open ? (skin === id ? 'Valgt' : 'Vælg') : bn}</small></button>`; }).join('');
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-skin]'); if (!b || b.disabled) return; skin = b.dataset.skin; store.set('mp_skin', skin); renderSkins(); window.dispatchEvent(new Event('resize')); });
+
+// ---------- egne varer ----------
+document.getElementById('customAdd').addEventListener('click', addCustom);
+document.getElementById('customName').addEventListener('keydown', e => { if (e.key === 'Enter') addCustom(); });
+function addCustom(){
+  const i = document.getElementById('customName'), n = i.value.trim(); if (!n) return;
+  customShop[seg] = (customShop[seg] || []).filter(x => x !== n).concat([n]); store.set('mp_custom', customShop); i.value = ''; renderShop();
+}
+
+// ---------- opskriftsbog ----------
+const NUTRI = {
+  'Hakket oksekød 8-12%':[176,20],'Hakket kylling 4-7%':[120,19],'Kyllingebryst':[106,23],'Hakket svin 8-12%':[180,19],'Laks':[200,20],'Tun i vand':[110,25],'Æg':[143,13],
+  'Ris (ukogt)':[355,7],'Fuldkornspasta (ukogt)':[350,13],'Pasta (ukogt)':[355,12],'Kartofler':[77,2],'Havregryn':[370,13],'Rugbrød':[220,6.5],'Tortilla':[300,8],
+  'Røde linser (tørre)':[340,24],'Kidneybønner (dåse)':[100,7],'Kikærter (dåse)':[120,7],
+  'Frosne grøntsager':[35,2],'Broccoli':[34,3],'Løg':[40,1.1],'Hvidløg':[149,6.4],'Gulerødder':[35,0.9],'Peberfrugt':[30,1],'Spinat':[23,3],'Majs (dåse)':[80,3],
+  'Hakkede tomater':[25,1.2],'Tomatpuré':[80,4],'Kokosmælk light':[75,0.8],
+  'Skyr naturel':[63,11],'Hytteost':[90,12],'Revet ost':[350,25],'Mælk let':[47,3.5],'Græsk yoghurt 2%':[70,9],
+  'Olie':[900,0],'Smør':[740,0.5],'Light mayo':[270,1],'Sriracha':[100,2],'Soja':[60,8],'Sweet chili':[200,0.5],'Pesto':[450,5],'Banan':[90,1.1]
+};
+document.getElementById('nutriList').innerHTML = Object.keys(NUTRI).map(n => `<option value="${n}">`).join('');
+let recipes = store.get('mp_recipes', []), flavors = store.get('mp_flavors', []), rbEdit = null;
+const ingRow = (ig = {}) => `<div class="ingr">
+  <input class="in" list="nutriList" placeholder="Ingrediens" value="${(ig.n||'').replace(/"/g,'&quot;')}">
+  <input class="ig" inputmode="decimal" placeholder="g" value="${ig.g ?? ''}">
+  <input class="ik" inputmode="decimal" placeholder="kcal/100g" value="${ig.kcal ?? ''}">
+  <input class="ip" inputmode="decimal" placeholder="prot/100g" value="${ig.prot ?? ''}">
+  <button class="x" data-rm-ing>×</button></div>`;
+function readIngs(){
+  return [...document.querySelectorAll('#rbIngs .ingr')].map(r => ({ n: r.querySelector('.in').value.trim(), g: numDot(r.querySelector('.ig').value),
+    kcal: numDot(r.querySelector('.ik').value), prot: numDot(r.querySelector('.ip').value) })).filter(i => i.n || i.g);
+}
+const recTotals = (ings, port) => { const k = ings.reduce((a,i) => a + i.g*i.kcal/100, 0), p = ings.reduce((a,i) => a + i.g*i.prot/100, 0);
+  return { k, p, kp: port ? k/port : 0, pp: port ? p/port : 0 }; };
+function rbSummary(){
+  const t = recTotals(readIngs(), num(document.getElementById('rbPort').value) || 1);
+  document.getElementById('rbSum').innerHTML = `Pr. portion: <b>${fmt(t.kp)} kcal</b> · <b>${fmt(t.pp)} g protein</b> <span class="sub">(i alt ${fmt(t.k)} kcal)</span>`;
+}
+function resetForm(){
+  rbEdit = null; document.getElementById('rbName').value = ''; document.getElementById('rbPort').value = 4; document.getElementById('rbNote').value = '';
+  document.getElementById('rbIngs').innerHTML = ingRow() + ingRow() + ingRow();
+  document.getElementById('rbFormH').textContent = 'Ny opskrift'; document.getElementById('rbCancel').style.display = 'none'; rbSummary();
+}
+document.getElementById('rbIngs').addEventListener('input', e => {
+  const r = e.target.closest('.ingr'); if (r && e.target.classList.contains('in')) { const d = NUTRI[e.target.value];
+    if (d) { r.querySelector('.ik').value = String(d[0]).replace('.',','); r.querySelector('.ip').value = String(d[1]).replace('.',','); } }
+  rbSummary();
+});
+document.getElementById('rbPort').addEventListener('input', rbSummary);
+document.getElementById('rbIngs').addEventListener('click', e => { if (e.target.hasAttribute('data-rm-ing')) { e.target.closest('.ingr').remove(); rbSummary(); } });
+document.getElementById('rbAddIng').addEventListener('click', () => { document.getElementById('rbIngs').insertAdjacentHTML('beforeend', ingRow()); });
+document.getElementById('rbCancel').addEventListener('click', resetForm);
+document.getElementById('rbSave').addEventListener('click', () => {
+  const name = document.getElementById('rbName').value.trim(); if (!name) { document.getElementById('rbName').focus(); return; }
+  const r = { id: rbEdit || uid(), name, port: num(document.getElementById('rbPort').value) || 1, ings: readIngs(), note: document.getElementById('rbNote').value.trim() };
+  recipes = rbEdit ? recipes.map(x => x.id === rbEdit ? r : x) : recipes.concat([r]); store.set('mp_recipes', recipes);
+  resetForm(); renderRecipes(); toast('<span style="font-size:24px">📖</span><div><b>Opskrift gemt</b></div>');
+});
+function renderRecipes(){
+  const base = [MEAL.okse, MEAL.kyl, MEAL.pasta, MEAL.morgen];
+  document.getElementById('rbBase').innerHTML = base.map(m => `<div class="rec"><span class="ric">${m.ic}</span><div class="en"><b>${m.name}</b><div class="sub" style="font-size:12px">${fmt(m.kcal)} kcal · ${m.prot} g protein pr. boks</div></div></div>`).join('');
+  document.getElementById('rbOwn').innerHTML = recipes.length ? recipes.map(r => { const t = recTotals(r.ings, r.port);
+    return `<details class="rec2"><summary><div class="en"><b>${r.name.replace(/</g,'&lt;')}</b><div class="sub" style="font-size:12px">${fmt(t.kp)} kcal · ${fmt(t.pp)} g protein pr. portion · ${r.port} port.</div></div></summary>
+      ${r.ings.map(i => `<div class="ing"><span>${i.n.replace(/</g,'&lt;')}</span><span>${fmt(i.g)} g</span></div>`).join('')}
+      ${r.note ? `<div class="how">${r.note.replace(/</g,'&lt;')}</div>` : ''}
+      <div class="recbtn"><button class="btn" data-ed="${r.id}">✏️ Rediger</button><button class="btn" data-del-rec="${r.id}">🗑️ Slet</button></div></details>`; }).join('')
+    : `<div class="sub">Ingen egne opskrifter endnu. Lav din første til højre${innerWidth < 900 ? ' (længere nede)' : ''}.</div>`;
+  document.getElementById('rbFlav').innerHTML = flavors.length ? flavors.map((f, i) => `<div class="rec"><span class="ric">🎡</span><div class="en"><b>${f.name}</b><div class="sub" style="font-size:12px">${f.tip}</div></div><button class="x" data-del-flav="${i}">×</button></div>`).join('')
+    : `<div class="sub">Drej smagshjulet og tryk "Gem smagen".</div>`;
+}
+document.getElementById('v-opskrifter').addEventListener('click', e => {
+  const ed = e.target.closest('[data-ed]'), del = e.target.closest('[data-del-rec]'), df = e.target.closest('[data-del-flav]');
+  if (ed) { const r = recipes.find(x => x.id === ed.dataset.ed); if (!r) return; rbEdit = r.id;
+    document.getElementById('rbName').value = r.name; document.getElementById('rbPort').value = r.port; document.getElementById('rbNote').value = r.note || '';
+    document.getElementById('rbIngs').innerHTML = (r.ings.length ? r.ings : [{}]).map(ingRow).join('');
+    document.getElementById('rbFormH').textContent = 'Rediger opskrift'; document.getElementById('rbCancel').style.display = 'block'; rbSummary();
+    document.getElementById('rbName').scrollIntoView({block:'center'}); }
+  if (del) { if (!del.dataset.armed) { del.dataset.armed = 1; del.textContent = 'Sikker?'; return; } recipes = recipes.filter(x => x.id !== del.dataset.delRec); store.set('mp_recipes', recipes); renderRecipes(); }
+  if (df) { flavors.splice(+df.dataset.delFlav, 1); store.set('mp_flavors', flavors); renderRecipes(); }
+});
+document.getElementById('spinRes').addEventListener('click', e => {
+  if (e.target.id !== 'saveFlav') return; const name = e.target.dataset.n, f = FLAVORS.find(x => x[0] === name); if (!f) return;
+  if (!flavors.some(x => x.name === name)) { flavors.push({ name, tip: f[2] }); store.set('mp_flavors', flavors); }
+  e.target.textContent = '✓ Gemt i opskriftsbogen'; e.target.disabled = true; renderRecipes();
+});
+
+// ---------- forside: backup-påmindelse, løn, rapport ----------
+function renderHome3(){
+  const el = document.getElementById('hAlerts'); if (!el) return; let h = '';
+  const bkDays = cfg.lastBackup ? daysBetween(cfg.lastBackup, todayISO()) : null;
+  if (hasData() && (bkDays === null || bkDays >= cfg.bkEvery))
+    h += `<a class="alert a-bk" href="#indstillinger"><span>💾</span><div><b>${bkDays === null ? 'Tag din første backup' : `Det er ${bkDays} dage siden din sidste backup`}</b><small>Tryk for at gå til Indstillinger</small></div><em>›</em></a>`;
+  const p = nextPayday();
+  h += `<a class="alert a-pay" href="#lon"><span>💰</span><div><b>${p.days === 0 ? 'Løn i dag! 🎉' : `Løn om ${p.days} ${p.days === 1 ? 'dag' : 'dage'}`}</b><small>${p.date.toLocaleDateString('da-DK',{weekday:'long',day:'numeric',month:'short'})}${p.amount ? ` · ca. ${kr0(p.amount)}` : ''}</small></div><em>›</em></a>`;
+  const wd = new Date().getDay();
+  if (wd === 0 || wd === 1) { const r = weekData(wd === 1 ? -1 : 0);
+    h += `<a class="alert a-rp" href="#rapport"><span>📊</span><div><b>Ugens rapport er klar</b><small>Planen holdt ${r.plan}/7 dage · sparet ${kr0(r.saved)}</small></div><em>›</em></a>`; }
+  el.innerHTML = h;
+}
+
+const _rW = renderWeight;
+renderWeight = function(){ _rW(); const f = document.getElementById('kFc'); if (f) { const t = forecast(); f.innerHTML = t; f.style.display = t ? '' : 'none'; } };
+
 // ================= MENU =================
-const TITLES = {hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge', spil:'Spil', streak:'Streak', vand:'Vand', vaegt:'Vægt', sparet:'Sparet', badges:'Badges', hjul:'Smagshjul', timer:'Timer'};
+const TITLES = {hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge', spil:'Spil', streak:'Streak', vand:'Vand', vaegt:'Vægt', sparet:'Sparet', badges:'Badges', hjul:'Smagshjul', timer:'Timer', rapport:'Rapport', opskrifter:'Opskrifter', indstillinger:'Indstillinger'};
 const setMenu = open => document.body.classList.toggle('menu-open', open);
 document.getElementById('mealBtn').addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
 document.getElementById('menuBg').addEventListener('click', () => setMenu(false));
@@ -1582,13 +1946,17 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(fals
 window.addEventListener('scroll', () => document.getElementById('top').classList.toggle('scrolled', window.scrollY > 4), { passive: true });
 
 // ---------- routing ----------
-const VIEWS = ['hjem','idag','uge','indkob','lon','penge','spil','streak','vand','vaegt','sparet','badges','hjul','timer'];
+const VIEWS = ['hjem','idag','uge','indkob','lon','penge','spil','streak','vand','vaegt','sparet','badges','hjul','timer','rapport','opskrifter','indstillinger'];
 function route(){
   const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'hjem';
   VIEWS.forEach(x => document.getElementById('v-'+x).classList.toggle('on', x === v));
   document.querySelectorAll('#menu a').forEach(a => a.classList.toggle('on', a.dataset.v === v));
   document.getElementById('curV').textContent = TITLES[v] || '';
-  if (v === 'hjem') { renderHome(); renderHome2(); }
+  if (v === 'hjem') { renderHome(); renderHome2(); renderHome3(); }
+  if (v === 'rapport') renderReport();
+  if (v === 'opskrifter') renderRecipes();
+  if (v === 'indstillinger') renderSettings();
+  if (v === 'spil') renderSkins();
   if (v === 'hjul') drawWheel();
   if (v === 'badges') renderBadges();
   if (typeof tm !== 'undefined' && tm.total && v !== 'timer') document.getElementById('curV').textContent = `⏲️ ${fmtT(tm.left)}`;
@@ -1597,9 +1965,9 @@ function route(){
 }
 window.addEventListener('hashchange', route);
 
-renderToday(); renderCook(); renderShop(); renderLon(); renderPenge(); renderHome(); renderFun(); route(); setTimeout(checkMisc, 500);
+renderToday(); renderCook(); renderShop(); renderLon(); renderPenge(); renderHome(); renderFun(); applyTheme(); resetForm(); renderRecipes(); renderSettings(); renderHome3(); renderSkins(); route(); setTimeout(checkMisc, 500);
 // opdater "I dag" når appen åbnes igen fra hjemmeskærmen
-document.addEventListener('visibilitychange', () => { if (!document.hidden) { renderToday(); renderHome(); renderFun(); if (tm.total) tickTimer(); } });
+document.addEventListener('visibilitychange', () => { if (!document.hidden) { renderToday(); renderHome(); renderFun(); renderHome3(); if (tm.total) tickTimer(); } });
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 </script>
 </body>
