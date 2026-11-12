@@ -20,9 +20,9 @@
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,sans-serif}
-  body{padding:calc(env(safe-area-inset-top) + 8px) 0 calc(env(safe-area-inset-bottom) + 84px)}
+  body{padding:0 0 calc(env(safe-area-inset-bottom) + 40px)}
   .wrap{max-width:480px;margin:0 auto;padding:0 18px}
-  h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:18px 0 2px}
+  h1{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:14px 0 2px}
   h2{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:26px 0 10px}
   .sub{color:var(--muted);font-size:14px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
@@ -153,12 +153,44 @@
   .filebtn input{position:absolute;inset:0;opacity:0;cursor:pointer}
   #eFilter button{font-size:13px;padding:8px 4px}
   /* nav */
-  nav{position:fixed;left:0;right:0;bottom:0;background:rgba(14,15,18,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:8px 0 calc(env(safe-area-inset-bottom) + 8px);z-index:9}
-  nav .in{max-width:480px;margin:0 auto;display:flex}
-  nav a{flex:1;text-align:center;text-decoration:none;color:var(--muted);font-size:11px;font-weight:600;padding:4px 0}
-  nav a .e{display:block;font-size:22px;margin-bottom:2px;filter:grayscale(1);opacity:.6}
-  nav a.on{color:var(--text)}
-  nav a.on .e{filter:none;opacity:1}
+  .top{position:sticky;top:0;z-index:20;background:rgba(14,15,18,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:calc(env(safe-area-inset-top) + 10px) 0 10px;margin:0 -18px;border-bottom:1px solid transparent;transition:border-color .2s}
+  .top.scrolled{border-bottom-color:var(--line)}
+  .top .in{max-width:480px;margin:0 auto;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
+  .mealbtn{display:flex;align-items:center;gap:8px;background:var(--blue);color:#0E0F12;border:0;border-radius:99px;padding:10px 16px 10px 13px;font:800 15px Inter,sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(90,180,255,.25);transition:transform .15s}
+  .mealbtn:active{transform:scale(.96)}
+  .mealbtn .bars{width:16px;height:12px;position:relative}
+  .mealbtn .bars i{position:absolute;left:0;right:0;height:2px;background:#0E0F12;border-radius:2px;transition:transform .25s,opacity .2s,top .25s}
+  .mealbtn .bars i:nth-child(1){top:0}.mealbtn .bars i:nth-child(2){top:5px}.mealbtn .bars i:nth-child(3){top:10px}
+  .menu-open .mealbtn .bars i:nth-child(1){top:5px;transform:rotate(45deg)}
+  .menu-open .mealbtn .bars i:nth-child(2){opacity:0}
+  .menu-open .mealbtn .bars i:nth-child(3){top:5px;transform:rotate(-45deg)}
+  .curv{font-size:14px;font-weight:700;color:var(--muted)}
+  #menuBg{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:18;opacity:0;pointer-events:none;transition:opacity .2s}
+  .menu-open #menuBg{opacity:1;pointer-events:auto}
+  #menu{position:absolute;left:18px;right:18px;top:calc(100% + 8px);max-width:444px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:6px;
+    transform:translateY(-8px) scale(.97);transform-origin:top left;opacity:0;pointer-events:none;transition:opacity .18s,transform .22s;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+  .menu-open #menu{opacity:1;transform:none;pointer-events:auto}
+  #menu a{display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;text-decoration:none;color:var(--text);font-weight:700;font-size:15px;background:var(--card2)}
+  #menu a .e{font-size:22px}
+  #menu a small{display:block;font-size:11px;font-weight:500;color:var(--muted);margin-top:1px}
+  #menu a.on{outline:2px solid var(--blue);background:rgba(90,180,255,.1)}
+  /* forside */
+  .hero{margin-top:14px;border-radius:22px;padding:20px;background:linear-gradient(135deg,rgba(90,180,255,.18),rgba(255,122,69,.12));border:1px solid var(--line)}
+  .hero .hi{font-size:28px;font-weight:800;letter-spacing:-.02em}
+  .hero .sub{margin-top:4px}
+  .hero .today{display:flex;gap:8px;margin-top:16px}
+  .hero .today div{flex:1;background:rgba(14,15,18,.55);border-radius:14px;padding:10px;text-align:center;font-size:12px;color:var(--muted)}
+  .hero .today b{display:block;font-size:22px;margin-bottom:4px}
+  .hero .today span{display:block;color:var(--text);font-weight:600;font-size:12.5px;line-height:1.3}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;text-decoration:none;color:var(--text);display:block;position:relative;overflow:hidden}
+  .tile .ti{font-size:22px}
+  .tile .tk{font-size:12px;color:var(--muted);font-weight:600;margin-top:10px}
+  .tile .tv{font-size:20px;font-weight:800;margin-top:2px;letter-spacing:-.01em}
+  .tile .ts{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.35}
+  .tile::after{content:"›";position:absolute;right:14px;top:12px;color:var(--muted);font-size:20px}
+  .quick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .quick a{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;border:1px dashed var(--line);color:var(--blue);text-decoration:none;font-weight:700;font-size:14px}
   .view{display:none;animation:fade .25s ease}
   .view.on{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -166,6 +198,40 @@
 </head>
 <body>
 <div class="wrap">
+<header class="top" id="top"><div class="in">
+  <button class="mealbtn" id="mealBtn" aria-label="Menu"><span class="bars"><i></i><i></i><i></i></span>Meal</button>
+  <div class="curv" id="curV"></div>
+</div>
+  <div id="menu">
+    <a href="#hjem" data-v="hjem"><span class="e">🏠</span><span>Forside<small>Overblik</small></span></a>
+    <a href="#idag" data-v="idag"><span class="e">☀️</span><span>I dag<small>Dagens mad</small></span></a>
+    <a href="#uge" data-v="uge"><span class="e">📅</span><span>Ugen<small>Madplan</small></span></a>
+    <a href="#indkob" data-v="indkob"><span class="e">🛒</span><span>Indkøb<small>Lister</small></span></a>
+    <a href="#lon" data-v="lon"><span class="e">⏱️</span><span>Løn<small>Vagter</small></span></a>
+    <a href="#penge" data-v="penge"><span class="e">💰</span><span>Penge<small>Budget</small></span></a>
+  </div>
+</header>
+<div id="menuBg"></div>
+
+<!-- FORSIDE -->
+<section class="view" id="v-hjem">
+  <div class="hero">
+    <div class="hi" id="hHi"></div>
+    <div class="sub" id="hDate"></div>
+    <div class="today" id="hToday"></div>
+  </div>
+  <div class="tiles">
+    <a class="tile" href="#uge"><div class="ti">🍳</div><div class="tk">Madlavning</div><div class="tv" id="hCook"></div><div class="ts" id="hCookS"></div></a>
+    <a class="tile" href="#indkob"><div class="ti">🛒</div><div class="tk">Indkøb</div><div class="tv" id="hShop"></div><div class="ts" id="hShopS"></div></a>
+    <a class="tile" href="#lon"><div class="ti">⏱️</div><div class="tk" id="hPayK">Løn</div><div class="tv" id="hPay"></div><div class="ts" id="hPayS"></div></a>
+    <a class="tile" href="#penge"><div class="ti">💰</div><div class="tk">Penge tilbage</div><div class="tv" id="hMoney"></div><div class="ts" id="hMoneyS"></div></a>
+  </div>
+  <div class="quick">
+    <a href="#lon" data-focus="sTxt">＋ Ny vagt</a>
+    <a href="#penge" data-focus="eAmt">＋ Ny udgift</a>
+  </div>
+</section>
+
 
 <!-- I DAG -->
 <section class="view" id="v-idag">
@@ -303,13 +369,7 @@
 
 </div>
 
-<nav><div class="in">
-  <a href="#idag" data-v="idag"><span class="e">☀️</span>I dag</a>
-  <a href="#uge" data-v="uge"><span class="e">📅</span>Ugen</a>
-  <a href="#indkob" data-v="indkob"><span class="e">🛒</span>Indkøb</a>
-  <a href="#lon" data-v="lon"><span class="e">⏱️</span>Løn</a>
-  <a href="#penge" data-v="penge"><span class="e">💰</span>Penge</a>
-</div></nav>
+
 
 <script>
 const store = {
@@ -453,6 +513,7 @@ const MONTHS = ["januar","februar","marts","april","maj","juni","juli","august",
 const cap = s => s[0].toUpperCase() + s.slice(1);
 const kr = n => (Math.round(n*100)/100).toLocaleString('da-DK',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' kr.';
 const kr0 = n => fmt(n) + ' kr.';
+const neg = n => n ? '−' + kr(n) : kr(0);
 const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const parseISO = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); };
 const mKey = (y,m) => `${y}-${String(m+1).padStart(2,'0')}`;
@@ -593,10 +654,10 @@ function renderLon(){
     line('Søndagstillæg', h(p.sun), kr(p.sun*rates.sun)) +
     `<div class="sl"><span>Andet / retro</span><span></span><span><input id="lExtra" inputmode="decimal" placeholder="0" value="${p.andet ? String(p.andet).replace('.',',') : ''}"></span></div>` +
     line('Bruttoløn', '', kr(p.brutto), 'tot') +
-    line('ATP', '', '−' + kr(p.atp)) +
-    line('AM-bidrag', String(rates.am).replace('.',',') + ' %', '−' + kr(p.am)) +
-    line('A-skat', String(rates.trk).replace('.',',') + ' %', '−' + kr(p.askat)) +
-    line('Personaleforening', '', '−' + kr(p.pf)) +
+    line('ATP', '', neg(p.atp)) +
+    line('AM-bidrag', String(rates.am).replace('.',',') + ' %', neg(p.am)) +
+    line('A-skat', String(rates.trk).replace('.',',') + ' %', neg(p.askat)) +
+    line('Personaleforening', '', neg(p.pf)) +
     line('Udbetalt', '', kr(p.net), 'tot blue') +
     `<div class="sub" style="margin:14px 0 6px;font-size:11px;font-weight:700;letter-spacing:.08em">OPSPARES (UDBETALES SENERE)</div>` +
     line('Feriepenge', String(rates.ferie).replace('.',',') + ' %', kr(p.ferie)) +
@@ -812,19 +873,67 @@ document.getElementById('importFile').addEventListener('change', async e => {
   e.target.value = '';
 });
 
+
+// ================= FORSIDE =================
+function renderHome(){
+  const n = new Date(), d = ((n.getDay()+6)%7)+1, h = n.getHours();
+  document.getElementById('hHi').textContent = (h < 10 ? 'Godmorgen' : h < 17 ? 'God dag' : 'God aften') + ' 👋';
+  document.getElementById('hDate').textContent = `${cap(DAYS[d-1])} d. ${n.toLocaleDateString('da-DK',{day:'numeric',month:'long'})}`;
+  const meals = [MEAL.morgen, lunchFor(d), MEAL.pasta];
+  document.getElementById('hToday').innerHTML = meals.map((m,i) =>
+    `<div><b>${m.ic}</b>${['Morgen','Frokost','Aften'][i]}<span>${m.name.split(',')[0]}</span></div>`).join('');
+  // madlavning
+  const cookToday = d === 3 || d === 7, until = d < 3 ? 3 - d : 7 - d;
+  document.getElementById('hCook').textContent = cookToday ? 'I aften!' : (d < 3 ? 'Onsdag' : 'Søndag');
+  document.getElementById('hCookS').textContent = cookToday ? (d === 3 ? 'Kylling + pasta' : 'Oksekød + pasta') : `om ${until} ${until===1?'dag':'dage'}`;
+  document.getElementById('hCook').style.color = cookToday ? 'var(--orange)' : '';
+  // indkøb
+  const sk = (d >= 3 && d <= 5) ? 'ons' : 'son', it = SHOP[sk].items;
+  const done = it.filter(([nm]) => checks[sk+':'+nm]).length;
+  document.getElementById('hShop').textContent = done === it.length ? 'Færdig ✓' : `${done} / ${it.length}`;
+  document.getElementById('hShopS').textContent = `${sk === 'son' ? 'Søndagens' : 'Onsdagens'} liste`;
+  // løn
+  const p = payslip(lonY, lonM);
+  document.getElementById('hPayK').textContent = `Løn ${MONTHS[lonM]}`;
+  document.getElementById('hPay').textContent = kr0(p.net);
+  document.getElementById('hPayS').textContent = p.list.length ? `${p.list.length} ${p.list.length===1?'vagt':'vagter'} · ${p.hours.toLocaleString('da-DK',{maximumFractionDigits:1})} t` : 'Ingen vagter endnu';
+  // penge
+  const ny = n.getFullYear(), nm = n.getMonth(), inc = incomeFor(ny, nm);
+  const spent = monthExps(ny, nm).reduce((a,x) => a + x.amt, 0), left = inc.amount - spent;
+  const hm2 = document.getElementById('hMoney'); hm2.textContent = inc.amount ? kr0(left) : '–';
+  hm2.style.color = !inc.amount ? '' : left < 0 ? 'var(--red)' : 'var(--blue)';
+  document.getElementById('hMoneyS').textContent = inc.amount ? `brugt ${kr0(spent)} i ${MONTHS[nm]}` : 'Ingen løn for måneden';
+}
+
+// ================= MENU =================
+const TITLES = {hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge'};
+const setMenu = open => document.body.classList.toggle('menu-open', open);
+document.getElementById('mealBtn').addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+document.getElementById('menuBg').addEventListener('click', () => setMenu(false));
+document.getElementById('menu').addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+window.addEventListener('scroll', () => document.getElementById('top').classList.toggle('scrolled', window.scrollY > 4), { passive: true });
+document.querySelector('.quick').addEventListener('click', e => {
+  const a = e.target.closest('[data-focus]'); if (!a) return;
+  setTimeout(() => { const el = document.getElementById(a.dataset.focus); if (el) { el.scrollIntoView({block:'center'}); el.focus(); } }, 250);
+});
+
 // ---------- routing ----------
-const VIEWS = ['idag','uge','indkob','lon','penge'];
+const VIEWS = ['hjem','idag','uge','indkob','lon','penge'];
 function route(){
-  const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'idag';
+  const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'hjem';
   VIEWS.forEach(x => document.getElementById('v-'+x).classList.toggle('on', x === v));
-  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.dataset.v === v));
+  document.querySelectorAll('#menu a').forEach(a => a.classList.toggle('on', a.dataset.v === v));
+  document.getElementById('curV').textContent = TITLES[v] || '';
+  if (v === 'hjem') renderHome();
+  setMenu(false);
   window.scrollTo(0,0);
 }
 window.addEventListener('hashchange', route);
 
-renderToday(); renderCook(); renderShop(); renderLon(); renderPenge(); route();
+renderToday(); renderCook(); renderShop(); renderLon(); renderPenge(); renderHome(); route();
 // opdater "I dag" når appen åbnes igen fra hjemmeskærmen
-document.addEventListener('visibilitychange', () => { if (!document.hidden) renderToday(); });
+document.addEventListener('visibilitychange', () => { if (!document.hidden) { renderToday(); renderHome(); } });
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 </script>
 </body>
