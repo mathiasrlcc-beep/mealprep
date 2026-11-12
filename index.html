@@ -175,6 +175,14 @@
   #menu a small{display:block;font-size:11px;font-weight:500;color:var(--muted);margin-top:1px}
   #menu a.on{outline:2px solid var(--blue);background:rgba(90,180,255,.1)}
   /* forside */
+  .logo{display:flex;align-items:center;gap:14px;margin:16px 0 4px}
+  .logo .lt{font-size:30px;font-weight:800;letter-spacing:.04em;line-height:1}
+  .logo .lt span{color:var(--orange);font-weight:700;letter-spacing:0;font-size:22px;margin-left:3px}
+  .logo .ls{color:var(--muted);font-size:13px;margin-top:5px}
+  .game{margin-top:16px;padding:0;overflow:hidden;position:relative;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+  .game canvas{display:block;width:100%;height:170px;cursor:pointer}
+  .gbar{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--line);font-weight:800;font-variant-numeric:tabular-nums}
+  .gbar .sub b{color:var(--orange)}
   .hero{margin-top:14px;border-radius:22px;padding:20px;background:linear-gradient(135deg,rgba(90,180,255,.18),rgba(255,122,69,.12));border:1px solid var(--line)}
   .hero .hi{font-size:28px;font-weight:800;letter-spacing:-.02em}
   .hero .sub{margin-top:4px}
@@ -215,20 +223,27 @@
 
 <!-- FORSIDE -->
 <section class="view" id="v-hjem">
-  <div class="hero">
-    <div class="hi" id="hHi"></div>
-    <div class="sub" id="hDate"></div>
-    <div class="today" id="hToday"></div>
+  <div class="logo">
+    <svg viewBox="0 0 64 64" width="54" height="54" aria-hidden="true">
+      <path d="M22 14c0-4 4-4 4-8M32 14c0-4 4-4 4-8M42 14c0-4 4-4 4-8" stroke="#8B8F98" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="32" cy="30" rx="22" ry="8" fill="#ECEDEF"/>
+      <path d="M8 30h48c0 15-11 26-24 26S8 45 8 30z" fill="#5AB4FF"/>
+      <path d="M14 38h36" stroke="#FF7A45" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div><div class="lt">MEAL<span>prep</span></div><div class="ls" id="hDate"></div></div>
   </div>
-  <div class="tiles">
-    <a class="tile" href="#uge"><div class="ti">🍳</div><div class="tk">Madlavning</div><div class="tv" id="hCook"></div><div class="ts" id="hCookS"></div></a>
-    <a class="tile" href="#indkob"><div class="ti">🛒</div><div class="tk">Indkøb</div><div class="tv" id="hShop"></div><div class="ts" id="hShopS"></div></a>
-    <a class="tile" href="#lon"><div class="ti">⏱️</div><div class="tk" id="hPayK">Løn</div><div class="tv" id="hPay"></div><div class="ts" id="hPayS"></div></a>
-    <a class="tile" href="#penge"><div class="ti">💰</div><div class="tk">Penge tilbage</div><div class="tv" id="hMoney"></div><div class="ts" id="hMoneyS"></div></a>
+
+  <div class="card game">
+    <canvas id="game" height="170"></canvas>
+    <div class="gbar"><span id="gScore">0</span><span class="sub">Rekord <b id="gBest">0</b></span></div>
   </div>
-  <div class="quick">
-    <a href="#lon" data-focus="sTxt">＋ Ny vagt</a>
-    <a href="#penge" data-focus="eAmt">＋ Ny udgift</a>
+
+  <h2 id="hHi">Dagens mad</h2>
+  <div id="hCook"></div>
+  <div class="meals" id="hMeals"></div>
+  <div class="stats" style="margin-top:10px">
+    <div class="card stat"><div class="v" id="hKcal"></div><div class="k">kcal i dag</div></div>
+    <div class="card stat"><div class="v" id="hProt"></div><div class="k">protein i dag</div></div>
   </div>
 </section>
 
@@ -877,33 +892,118 @@ document.getElementById('importFile').addEventListener('change', async e => {
 // ================= FORSIDE =================
 function renderHome(){
   const n = new Date(), d = ((n.getDay()+6)%7)+1, h = n.getHours();
-  document.getElementById('hHi').textContent = (h < 10 ? 'Godmorgen' : h < 17 ? 'God dag' : 'God aften') + ' 👋';
-  document.getElementById('hDate').textContent = `${cap(DAYS[d-1])} d. ${n.toLocaleDateString('da-DK',{day:'numeric',month:'long'})}`;
+  document.getElementById('hDate').textContent = `${h < 10 ? 'Godmorgen' : h < 17 ? 'God dag' : 'God aften'} · ${DAYS[d-1]} d. ${n.toLocaleDateString('da-DK',{day:'numeric',month:'long'})}`;
   const meals = [MEAL.morgen, lunchFor(d), MEAL.pasta];
-  document.getElementById('hToday').innerHTML = meals.map((m,i) =>
-    `<div><b>${m.ic}</b>${['Morgen','Frokost','Aften'][i]}<span>${m.name.split(',')[0]}</span></div>`).join('');
-  // madlavning
-  const cookToday = d === 3 || d === 7, until = d < 3 ? 3 - d : 7 - d;
-  document.getElementById('hCook').textContent = cookToday ? 'I aften!' : (d < 3 ? 'Onsdag' : 'Søndag');
-  document.getElementById('hCookS').textContent = cookToday ? (d === 3 ? 'Kylling + pasta' : 'Oksekød + pasta') : `om ${until} ${until===1?'dag':'dage'}`;
-  document.getElementById('hCook').style.color = cookToday ? 'var(--orange)' : '';
-  // indkøb
-  const sk = (d >= 3 && d <= 5) ? 'ons' : 'son', it = SHOP[sk].items;
-  const done = it.filter(([nm]) => checks[sk+':'+nm]).length;
-  document.getElementById('hShop').textContent = done === it.length ? 'Færdig ✓' : `${done} / ${it.length}`;
-  document.getElementById('hShopS').textContent = `${sk === 'son' ? 'Søndagens' : 'Onsdagens'} liste`;
-  // løn
-  const p = payslip(lonY, lonM);
-  document.getElementById('hPayK').textContent = `Løn ${MONTHS[lonM]}`;
-  document.getElementById('hPay').textContent = kr0(p.net);
-  document.getElementById('hPayS').textContent = p.list.length ? `${p.list.length} ${p.list.length===1?'vagt':'vagter'} · ${p.hours.toLocaleString('da-DK',{maximumFractionDigits:1})} t` : 'Ingen vagter endnu';
-  // penge
-  const ny = n.getFullYear(), nm = n.getMonth(), inc = incomeFor(ny, nm);
-  const spent = monthExps(ny, nm).reduce((a,x) => a + x.amt, 0), left = inc.amount - spent;
-  const hm2 = document.getElementById('hMoney'); hm2.textContent = inc.amount ? kr0(left) : '–';
-  hm2.style.color = !inc.amount ? '' : left < 0 ? 'var(--red)' : 'var(--blue)';
-  document.getElementById('hMoneyS').textContent = inc.amount ? `brugt ${kr0(spent)} i ${MONTHS[nm]}` : 'Ingen løn for måneden';
+  document.getElementById('hMeals').innerHTML = meals.map(m => `
+    <div class="meal" style="--c:${m.c}"><div class="ic">${m.ic}</div>
+      <div><div class="lbl">${m.lbl}</div><div class="name">${m.name}</div><div class="nums">${fmt(m.kcal)} kcal · ${m.prot} g protein</div></div></div>`).join('');
+  const cook = d === 3 || d === 7;
+  let note = cook ? `<div class="banner b-cook">🍳 Du skal lave mad i aften – ${d === 3 ? 'kylling og pasta' : 'oksekød og pasta'}</div>` : '';
+  if (d === 5 || d === 6) note += `<div class="banner b-ice">🧊 Tag morgendagens kyllingeboks op af fryseren i aften</div>`;
+  document.getElementById('hCook').innerHTML = note;
+  const kc = meals.reduce((a,m)=>a+m.kcal,0), pr = meals.reduce((a,m)=>a+m.prot,0);
+  const k = document.getElementById('hKcal'); k.textContent = fmt(kc); k.className = 'v ' + (kc <= GOAL.kcal ? 'ok' : 'bad');
+  const p = document.getElementById('hProt'); p.textContent = pr + ' g'; p.className = 'v ' + (pr >= GOAL.prot ? 'ok' : 'bad');
 }
+
+// ================= MINISPIL: Risskålen hopper over chilier =================
+(() => {
+  const cv = document.getElementById('game'), ctx = cv.getContext('2d');
+  const H = 170, GROUND = 138;
+  let W = 360, dpr = 1, raf = 0, last = 0, state = 'idle';
+  let bowl, obs, speed, score, nextGap, clouds, t;
+  let best = store.get('mp_best', 0);
+  document.getElementById('gBest').textContent = best;
+  function size(){
+    dpr = window.devicePixelRatio || 1; W = cv.clientWidth || 360;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0); draw();
+  }
+  function reset(){
+    bowl = { x: 44, y: GROUND, vy: 0, w: 34, h: 24 };
+    obs = []; speed = 260; score = 0; nextGap = 0.9; t = 0;
+    clouds = [{x: W*0.3, y: 36}, {x: W*0.8, y: 58}];
+    document.getElementById('gScore').textContent = 0;
+  }
+  function jump(){
+    if (state === 'idle' || state === 'over') { reset(); state = 'run'; last = performance.now(); loop(last); return; }
+    if (bowl.y >= GROUND - 0.5) bowl.vy = -560;
+  }
+  function spawn(){
+    const big = Math.random() < 0.35, pair = !big && score > 300 && Math.random() < 0.3;
+    obs.push({ x: W + 10, w: big ? 18 : 14, h: big ? 38 : 28, pair });
+  }
+  function hit(o){
+    const bx = bowl.x - bowl.w/2 + 5, by = bowl.y - bowl.h + 4, bw = bowl.w - 10, bh = bowl.h - 6;
+    const n = o.pair ? 2 : 1;
+    for (let i = 0; i < n; i++) {
+      const ox = o.x + i * (o.w + 4) + 2, oy = GROUND - o.h + 4, ow = o.w - 4, oh = o.h - 4;
+      if (bx < ox + ow && bx + bw > ox && by < oy + oh && by + bh > oy) return true;
+    }
+    return false;
+  }
+  function loop(now){
+    const dt = Math.min(0.033, (now - last) / 1000); last = now;
+    if (state !== 'run') return;
+    t += dt;
+    bowl.vy += 1700 * dt; bowl.y += bowl.vy * dt;
+    if (bowl.y > GROUND) { bowl.y = GROUND; bowl.vy = 0; }
+    speed = Math.min(620, speed + 9 * dt);
+    nextGap -= dt; if (nextGap <= 0) { spawn(); nextGap = 0.75 + Math.random() * 1.1 * (300 / speed) + 0.25; }
+    obs.forEach(o => o.x -= speed * dt); obs = obs.filter(o => o.x > -50);
+    clouds.forEach(c => { c.x -= speed * 0.15 * dt; if (c.x < -60) { c.x = W + 40; c.y = 26 + Math.random()*40; } });
+    score += speed * dt / 10;
+    document.getElementById('gScore').textContent = Math.floor(score);
+    if (obs.some(hit)) {
+      state = 'over';
+      if (Math.floor(score) > best) { best = Math.floor(score); store.set('mp_best', best); document.getElementById('gBest').textContent = best; }
+      draw(); return;
+    }
+    draw(); raf = requestAnimationFrame(loop);
+  }
+  function drawBowl(x, y, squish){
+    const w = 34, h = 24;
+    ctx.save(); ctx.translate(x, y);
+    ctx.fillStyle = '#ECEDEF'; ctx.beginPath(); ctx.ellipse(0, -h + 4, w/2 - 2, 8, 0, 0, Math.PI*2); ctx.fill();   // ris
+    ctx.fillStyle = '#5AB4FF'; ctx.beginPath(); ctx.moveTo(-w/2, -h + 6); ctx.lineTo(w/2, -h + 6);
+    ctx.quadraticCurveTo(w/2, 0, 0, 0); ctx.quadraticCurveTo(-w/2, 0, -w/2, -h + 6); ctx.fill();                // skål
+    ctx.fillStyle = '#FF7A45'; ctx.fillRect(-w/2 + 4, -h + 11, w - 8, 3);                                        // stribe
+    ctx.fillStyle = '#0E0F12'; const blink = (t % 3) < 0.12;
+    if (state === 'over') { ctx.font = 'bold 9px Inter,sans-serif'; ctx.fillText('x', -8, -5); ctx.fillText('x', 4, -5); }
+    else if (!blink) { ctx.beginPath(); ctx.arc(-6, -7, 2, 0, 7); ctx.arc(6, -7, 2, 0, 7); ctx.fill(); }
+    ctx.restore();
+  }
+  function drawChili(x, w, h){
+    ctx.save(); ctx.translate(x, GROUND);
+    ctx.fillStyle = '#FF6B6B'; ctx.beginPath();
+    ctx.moveTo(w*0.15, -h + 6); ctx.quadraticCurveTo(w + 2, -h + 4, w*0.85, -h*0.35);
+    ctx.quadraticCurveTo(w*0.7, -2, w*0.4, 0); ctx.quadraticCurveTo(-2, -h*0.4, w*0.15, -h + 6); ctx.fill();
+    ctx.strokeStyle = '#7CE0C3'; ctx.lineWidth = 3; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(w*0.3, -h + 6); ctx.quadraticCurveTo(w*0.3, -h - 3, w*0.65, -h - 5); ctx.stroke();
+    ctx.restore();
+  }
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#262A32';
+    (clouds || []).forEach(c => { ctx.beginPath(); ctx.ellipse(c.x, c.y, 22, 7, 0, 0, 7); ctx.ellipse(c.x + 14, c.y - 5, 14, 7, 0, 0, 7); ctx.fill(); });
+    ctx.strokeStyle = '#3A3F4A'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(0, GROUND + 1); ctx.lineTo(W, GROUND + 1); ctx.stroke();
+    ctx.fillStyle = '#2A2E36'; for (let i = 0; i < W; i += 23) { const off = ((t||0) * (speed||0)) % 23; ctx.fillRect(i - off, GROUND + 8 + (i % 3) * 4, 6, 2); }
+    (obs || []).forEach(o => { drawChili(o.x, o.w, o.h); if (o.pair) drawChili(o.x + o.w + 4, o.w, o.h - 6); });
+    drawBowl(bowl ? bowl.x : 44, bowl ? bowl.y : GROUND);
+    ctx.textAlign = 'center'; ctx.fillStyle = '#ECEDEF';
+    if (state === 'idle') { ctx.font = '700 15px Inter,sans-serif'; ctx.fillText('Tryk for at hoppe over chilierne 🌶️', W/2, 70); }
+    if (state === 'over') { ctx.font = '800 18px Inter,sans-serif'; ctx.fillText('Av, det var stærkt!', W/2, 62);
+      ctx.font = '600 13px Inter,sans-serif'; ctx.fillStyle = '#8B8F98'; ctx.fillText('Tryk for at prøve igen', W/2, 84); }
+    ctx.textAlign = 'left';
+  }
+  cv.addEventListener('pointerdown', e => { e.preventDefault(); jump(); });
+  document.addEventListener('keydown', e => {
+    if ((e.code === 'Space' || e.code === 'ArrowUp') && document.getElementById('v-hjem').classList.contains('on') && !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); jump(); }
+  });
+  document.addEventListener('visibilitychange', () => { if (document.hidden && state === 'run') { state = 'over'; draw(); } });
+  window.addEventListener('hashchange', () => { if (state === 'run' && location.hash && location.hash !== '#hjem') { state = 'idle'; cancelAnimationFrame(raf); } setTimeout(size, 30); });
+  window.addEventListener('resize', size);
+  reset(); setTimeout(size, 0);
+})();
 
 // ================= MENU =================
 const TITLES = {hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge'};
@@ -913,10 +1013,6 @@ document.getElementById('menuBg').addEventListener('click', () => setMenu(false)
 document.getElementById('menu').addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 window.addEventListener('scroll', () => document.getElementById('top').classList.toggle('scrolled', window.scrollY > 4), { passive: true });
-document.querySelector('.quick').addEventListener('click', e => {
-  const a = e.target.closest('[data-focus]'); if (!a) return;
-  setTimeout(() => { const el = document.getElementById(a.dataset.focus); if (el) { el.scrollIntoView({block:'center'}); el.focus(); } }, 250);
-});
 
 // ---------- routing ----------
 const VIEWS = ['hjem','idag','uge','indkob','lon','penge'];
