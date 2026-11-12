@@ -202,6 +202,88 @@
     .btn:hover{border-color:#3A3F4A}
     .game canvas{height:300px}
   }
+  /* sjove funktioner */
+  .mg{grid-column:1/-1;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:8px 6px 2px}
+  #menu{max-height:calc(100vh - 110px);overflow:auto}
+  .tip{margin-top:16px;line-height:1.5;font-size:15px}
+  .tip .tk{font-size:12px;font-weight:800;color:var(--orange);margin-bottom:6px;letter-spacing:.04em}
+  .quickrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .qb{border:1px solid var(--line);background:var(--card);color:var(--text);font:700 14px Inter,sans-serif;padding:14px 10px;border-radius:14px;cursor:pointer;transition:transform .12s}
+  .qb:active{transform:scale(.96)}
+  .qb.done{background:rgba(90,180,255,.12);border-color:rgba(90,180,255,.4);color:var(--blue)}
+  .funs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .fun{display:flex;flex-direction:column;padding:16px;border-radius:18px;text-decoration:none;color:var(--text);border:1px solid var(--line);position:relative;overflow:hidden}
+  .fun .fi{font-size:26px}
+  .fun b{font-size:24px;font-weight:800;margin-top:8px;letter-spacing:-.01em}
+  .fun small{color:var(--muted);font-size:12px;margin-top:2px}
+  .f-streak{background:linear-gradient(140deg,rgba(255,122,69,.22),var(--card) 70%)}
+  .f-water{background:linear-gradient(140deg,rgba(90,180,255,.22),var(--card) 70%)}
+  .f-save{background:linear-gradient(140deg,rgba(124,224,195,.18),var(--card) 70%)}
+  .f-badge{background:linear-gradient(140deg,rgba(255,209,102,.2),var(--card) 70%)}
+  .bigc{text-align:center;margin-top:16px;padding:24px 18px}
+  .bignum{font-size:56px;font-weight:800;letter-spacing:-.03em;line-height:1.05}
+  .flame{font-size:56px;line-height:1;transition:font-size .3s;animation:flick 1.6s ease-in-out infinite}
+  @keyframes flick{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.06) rotate(2deg)}}
+  .btn.big{font-size:16px;padding:15px;margin-top:16px}
+  .btn.doneb{background:rgba(90,180,255,.12);color:var(--blue);border-color:rgba(90,180,255,.4)}
+  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center}
+  .ch{font-size:11px;color:var(--muted);font-weight:700;padding-bottom:4px}
+  .cd{aspect-ratio:1;border:1px solid var(--line);background:var(--card2);color:var(--muted);border-radius:10px;font:600 13px Inter,sans-serif;cursor:pointer}
+  .cd.on{background:var(--orange);color:#0E0F12;border-color:var(--orange);font-weight:800}
+  .cd.today{outline:2px solid var(--blue);outline-offset:1px}
+  .cd.fut{opacity:.35;cursor:default}
+  .glass{width:130px;height:180px;margin:0 auto 14px;border:4px solid #3A3F4A;border-top:0;border-radius:0 0 26px 26px;position:relative;overflow:hidden;cursor:pointer;display:grid;place-items:center}
+  .glass span{position:relative;z-index:2;font-size:44px;font-weight:800}
+  .water{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(180deg,#7CC4FF,#3A8FE0);transition:height .5s cubic-bezier(.3,1.4,.5,1)}
+  .wave{position:absolute;top:-8px;left:-50%;width:200%;height:16px;background:radial-gradient(circle at 10px -4px,transparent 12px,#7CC4FF 13px) 0 0/20px 16px repeat-x;animation:wv 2s linear infinite}
+  @keyframes wv{to{transform:translateX(20px)}}
+  .wbtns{display:flex;gap:10px;justify-content:center}
+  .wbtns .btn{width:auto;flex:1}
+  .wbtns .btn:first-child{flex:0 0 64px}
+  .bars7{display:flex;gap:8px;align-items:flex-end;height:150px}
+  .b7{flex:1;display:flex;flex-direction:column;align-items:center;height:100%}
+  .b7v{font-size:12px;font-weight:700;height:18px}
+  .b7b{flex:1;width:100%;background:var(--card2);border-radius:8px;display:flex;align-items:flex-end;overflow:hidden}
+  .b7b i{display:block;width:100%;border-radius:8px}
+  .b7d{font-size:11px;color:var(--muted);margin-top:6px;font-weight:700}
+  .kchart{width:100%;height:auto;display:block}
+  .kchart .gl{stroke:#262A32;stroke-width:1}
+  .kchart .gt{fill:#8B8F98;font:600 12px Inter,sans-serif}
+  .kchart .goal{stroke:#FF7A45;stroke-width:2;stroke-dasharray:6 6}
+  .kchart .ka{fill:rgba(90,180,255,.12)}
+  .kchart .kl{fill:none;stroke:#5AB4FF;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+  .kchart .kd{fill:#0E0F12;stroke:#5AB4FF;stroke-width:3}
+  .eq{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+  .eqi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 8px;text-align:center;display:flex;flex-direction:column;gap:2px}
+  .eqi span{font-size:26px}.eqi b{font-size:22px}.eqi small{font-size:11px;color:var(--muted)}
+  .badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:16px}
+  .badge{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 12px;text-align:center;opacity:.55}
+  .badge.got{opacity:1;border-color:rgba(255,209,102,.45);background:linear-gradient(160deg,rgba(255,209,102,.12),var(--card) 60%)}
+  .badge .bi{font-size:34px}
+  .badge .bn{font-weight:800;margin-top:6px}
+  .badge .bd{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.35}
+  .badge .bdt{font-size:11px;color:#FFD166;margin-top:6px;font-weight:700}
+  .wheelbox{position:relative;margin:16px auto 0;max-width:420px}
+  .wheelbox canvas{width:100%;height:auto;display:block;border-radius:50%;box-shadow:0 0 0 6px var(--card),0 0 0 7px var(--line)}
+  .pin{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:30px;color:#ECEDEF;z-index:2;text-shadow:0 2px 6px #000}
+  .ring{width:210px;height:210px;transform:rotate(-90deg);display:block;margin:0 auto}
+  .ring .rb{fill:none;stroke:var(--card2);stroke-width:10}
+  .ring .rf{fill:none;stroke:var(--blue);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .25s linear}
+  .tbig{font-size:52px;font-weight:800;margin-top:-140px;margin-bottom:76px;font-variant-numeric:tabular-nums}
+  .presets{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .pre{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 6px;color:var(--text);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;font-family:Inter,sans-serif}
+  .pre span{font-size:26px}.pre b{font-size:14px}.pre small{font-size:11px;color:var(--muted)}
+  .pre:active{transform:scale(.96)}
+  #fx{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:50}
+  #toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 70px);transform:translate(-50%,-20px);opacity:0;pointer-events:none;z-index:60;
+    background:var(--card2);border:1px solid #3A3F4A;border-radius:16px;padding:12px 16px;display:flex;gap:12px;align-items:center;font-size:14px;box-shadow:0 16px 40px rgba(0,0,0,.5);transition:all .3s;max-width:90vw}
+  #toast.on{opacity:1;transform:translate(-50%,0)}
+  @media (min-width: 900px){
+    .funs{grid-template-columns:repeat(4,1fr)}
+    .quickrow{max-width:520px}
+    .tip{max-width:none;font-size:17px}
+    #menu{grid-template-columns:repeat(5,1fr)}
+  }
   /* forside */
   .logo{display:flex;align-items:center;gap:14px;margin:16px 0 4px}
   .logo .lt{font-size:30px;font-weight:800;letter-spacing:.04em;line-height:1}
@@ -239,12 +321,23 @@
   <div class="curv" id="curV"></div>
 </div>
   <div id="menu">
-    <a href="#hjem" data-v="hjem"><span class="e">🏠</span><span>Forside<small>Overblik</small></span></a>
+    <div class="mg">Mad</div>
+    <a href="#hjem" data-v="hjem"><span class="e">🏠</span><span>Forside<small>Motivation</small></span></a>
     <a href="#idag" data-v="idag"><span class="e">☀️</span><span>I dag<small>Dagens mad</small></span></a>
     <a href="#uge" data-v="uge"><span class="e">📅</span><span>Ugen<small>Madplan</small></span></a>
     <a href="#indkob" data-v="indkob"><span class="e">🛒</span><span>Indkøb<small>Lister</small></span></a>
+    <a href="#timer" data-v="timer"><span class="e">⏲️</span><span>Timer<small>Madlavning</small></span></a>
+    <a href="#hjul" data-v="hjul"><span class="e">🎡</span><span>Smagshjul<small>Ny smag</small></span></a>
+    <div class="mg">Krop</div>
+    <a href="#streak" data-v="streak"><span class="e">🔥</span><span>Streak<small>Hold planen</small></span></a>
+    <a href="#vand" data-v="vand"><span class="e">💧</span><span>Vand<small>Glas i dag</small></span></a>
+    <a href="#vaegt" data-v="vaegt"><span class="e">⚖️</span><span>Vægt<small>Graf</small></span></a>
+    <div class="mg">Penge</div>
     <a href="#lon" data-v="lon"><span class="e">⏱️</span><span>Løn<small>Vagter</small></span></a>
     <a href="#penge" data-v="penge"><span class="e">💰</span><span>Penge<small>Budget</small></span></a>
+    <a href="#sparet" data-v="sparet"><span class="e">💸</span><span>Sparet<small>Mealprep</small></span></a>
+    <div class="mg">Sjov</div>
+    <a href="#badges" data-v="badges"><span class="e">🏆</span><span>Badges<small>Samling</small></span></a>
     <a href="#spil" data-v="spil"><span class="e">🎮</span><span>Spil<small>Risskålen</small></span></a>
   </div>
 </header>
@@ -262,13 +355,9 @@
     <div><div class="lt">MEAL<span>prep</span></div><div class="ls" id="hDate"></div></div>
   </div>
 
-  <h2 id="hHi">Dagens mad</h2>
-  <div id="hCook"></div>
-  <div class="meals meals3" id="hMeals"></div>
-  <div class="stats" style="margin-top:10px">
-    <div class="card stat"><div class="v" id="hKcal"></div><div class="k">kcal i dag</div></div>
-    <div class="card stat"><div class="v" id="hProt"></div><div class="k">protein i dag</div></div>
-  </div>
+  <div class="card tip"><div class="tk">💡 Dagens tip</div><div id="hTip"></div></div>
+  <div class="quickrow" id="hQuick"></div>
+  <div class="funs" id="hFun"></div>
 </section>
 
 <!-- SPIL -->
@@ -280,6 +369,121 @@
     <div class="gbar"><span id="gScore">0</span><span class="sub">Rekord <b id="gBest">0</b></span></div>
   </div>
 </section>
+<!-- STREAK -->
+<section class="view" id="v-streak">
+  <h1>Streak 🔥</h1>
+  <div class="sub">Tryk hver dag, du har holdt dig til madplanen.</div>
+  <div class="cols"><div>
+  <div class="card bigc">
+    <div class="flame" id="stFlame">🔥</div>
+    <div class="bignum" id="stCur">0</div>
+    <div class="sub" id="stCurK">dage i træk</div>
+    <button class="btn primary big" id="stBtn">✓ Jeg holdt planen i dag</button>
+    <div class="sub" style="margin-top:10px">Bedste streak: <b id="stBest">0</b> dage · I alt: <b id="stTotal">0</b> dage</div>
+  </div>
+  </div><div>
+  <div class="mnav"><button data-cal="-1">‹</button><div class="mt" id="calM"></div><button data-cal="1">›</button></div>
+  <div class="card"><div class="cal" id="cal"></div></div>
+  <div class="sub" style="margin-top:8px">Tryk på en dag i kalenderen for at rette den.</div>
+  </div></div>
+</section>
+
+<!-- VAND -->
+<section class="view" id="v-vand">
+  <h1>Vand 💧</h1>
+  <div class="sub">Tryk på glasset, hver gang du har drukket et glas (2,5 dl).</div>
+  <div class="cols"><div>
+  <div class="card bigc">
+    <div class="glass" id="glass"><div class="water" id="water"><div class="wave"></div></div><span id="wCount">0</span></div>
+    <div class="sub" id="wTxt"></div>
+    <div class="wbtns"><button class="btn" id="wMinus">−</button><button class="btn primary big" id="wPlus">＋ Et glas</button></div>
+    <div class="row" style="margin-top:8px"><label>Mål pr. dag</label><span class="unit"><input id="wGoal" inputmode="numeric"><em>glas</em></span></div>
+  </div>
+  </div><div>
+  <h2>Sidste 7 dage</h2>
+  <div class="card"><div class="bars7" id="wWeek"></div></div>
+  </div></div>
+</section>
+
+<!-- VÆGT -->
+<section class="view" id="v-vaegt">
+  <h1>Vægt ⚖️</h1>
+  <div class="sub">Vej dig fx én gang om ugen, samme dag og tidspunkt.</div>
+  <div class="cols"><div>
+  <div class="card">
+    <div class="frm"><label>Dato<input type="date" id="kDate"></label><label>Vægt (kg)<input id="kKg" inputmode="decimal" placeholder="88,0"></label></div>
+    <button class="btn primary" id="kAdd">Gem vejning</button>
+    <div class="row" style="margin-top:6px"><label>Mit mål</label><span class="unit"><input id="kGoal" inputmode="decimal"><em>kg</em></span></div>
+  </div>
+  <div class="stats" style="margin-top:10px">
+    <div class="card stat"><div class="v" id="kNow">–</div><div class="k">seneste</div></div>
+    <div class="card stat"><div class="v" id="kDiff">–</div><div class="k" id="kDiffK">siden start</div></div>
+  </div>
+  </div><div>
+  <div class="card" style="margin-top:16px"><div id="kChart"></div></div>
+  <div id="kList" style="margin-top:10px"></div>
+  </div></div>
+</section>
+
+<!-- SPARET -->
+<section class="view" id="v-sparet">
+  <h1>Sparet 💸</h1>
+  <div class="sub">Hvad du sparer ved at spise mealprep i stedet for at købe mad ude. Tæller hver dag med ✓ i Streak.</div>
+  <div class="cols"><div>
+  <div class="card bigc">
+    <div class="sub">Sparet i <span id="svM"></span></div>
+    <div class="bignum ok" id="svMonth">0 kr.</div>
+    <div class="sub">I alt: <b id="svAll">0 kr.</b></div>
+  </div>
+  <h2>Det svarer til</h2>
+  <div class="eq" id="svEq"></div>
+  </div><div>
+  <h2>Regnestykket</h2>
+  <div class="card">
+    <div class="row"><label>Mad ude pr. dag (frokost + aften)</label><span class="unit"><input id="svOut" inputmode="numeric"><em>kr.</em></span></div>
+    <div class="row"><label>Mealprep pr. dag (2 bokse)</label><span class="unit"><input id="svIn" inputmode="numeric"><em>kr.</em></span></div>
+    <div class="sync">Du sparer <b id="svPer"></b> pr. dag, du holder planen.</div>
+  </div>
+  </div></div>
+</section>
+
+<!-- BADGES -->
+<section class="view" id="v-badges">
+  <h1>Badges 🏆</h1>
+  <div class="sub" id="bgSub"></div>
+  <div class="badges" id="bgList"></div>
+</section>
+
+<!-- SMAGSHJUL -->
+<section class="view" id="v-hjul">
+  <h1>Smagshjulet 🎡</h1>
+  <div class="sub">Kan du ikke bestemme dig? Drej hjulet og find næste smag til din mealprep.</div>
+  <div class="cols"><div>
+  <div class="wheelbox"><div class="pin">▼</div><canvas id="wheel" width="600" height="600"></canvas></div>
+  <button class="btn primary big" id="spinBtn">🎡 Drej hjulet</button>
+  </div><div>
+  <div class="card" id="spinRes" style="margin-top:16px"><div class="sub">Resultatet kommer her…</div></div>
+  </div></div>
+</section>
+
+<!-- TIMER -->
+<section class="view" id="v-timer">
+  <h1>Timer ⏲️</h1>
+  <div class="sub">Til madlavning søndag og onsdag. Tryk på en, og den går i gang.</div>
+  <div class="cols"><div>
+  <div class="card bigc">
+    <svg viewBox="0 0 120 120" class="ring"><circle cx="60" cy="60" r="52" class="rb"/><circle cx="60" cy="60" r="52" class="rf" id="tRing"/></svg>
+    <div class="tbig" id="tLeft">00:00</div>
+    <div class="sub" id="tName">Vælg en timer</div>
+    <div class="wbtns"><button class="btn" id="tPause">Pause</button><button class="btn" id="tStop">Stop</button></div>
+  </div>
+  </div><div>
+  <h2>Hurtige timere</h2>
+  <div class="presets" id="tPresets"></div>
+  <div class="card" style="margin-top:10px"><div class="frm"><label>Egen tid (min)<input id="tCustom" inputmode="numeric" placeholder="12"></label><label>&nbsp;<button class="btn primary" id="tGo" style="margin:0">Start</button></label></div></div>
+  </div></div>
+</section>
+
 
 
 <!-- I DAG -->
@@ -938,17 +1142,6 @@ document.getElementById('importFile').addEventListener('change', async e => {
 function renderHome(){
   const n = new Date(), d = ((n.getDay()+6)%7)+1, h = n.getHours();
   document.getElementById('hDate').textContent = `${h < 10 ? 'Godmorgen' : h < 17 ? 'God dag' : 'God aften'} · ${DAYS[d-1]} d. ${n.toLocaleDateString('da-DK',{day:'numeric',month:'long'})}`;
-  const meals = [MEAL.morgen, lunchFor(d), MEAL.pasta];
-  document.getElementById('hMeals').innerHTML = meals.map(m => `
-    <div class="meal" style="--c:${m.c}"><div class="ic">${m.ic}</div>
-      <div><div class="lbl">${m.lbl}</div><div class="name">${m.name}</div><div class="nums">${fmt(m.kcal)} kcal · ${m.prot} g protein</div></div></div>`).join('');
-  const cook = d === 3 || d === 7;
-  let note = cook ? `<div class="banner b-cook">🍳 Du skal lave mad i aften – ${d === 3 ? 'kylling og pasta' : 'oksekød og pasta'}</div>` : '';
-  if (d === 5 || d === 6) note += `<div class="banner b-ice">🧊 Tag morgendagens kyllingeboks op af fryseren i aften</div>`;
-  document.getElementById('hCook').innerHTML = note;
-  const kc = meals.reduce((a,m)=>a+m.kcal,0), pr = meals.reduce((a,m)=>a+m.prot,0);
-  const k = document.getElementById('hKcal'); k.textContent = fmt(kc); k.className = 'v ' + (kc <= GOAL.kcal ? 'ok' : 'bad');
-  const p = document.getElementById('hProt'); p.textContent = pr + ' g'; p.className = 'v ' + (pr >= GOAL.prot ? 'ok' : 'bad');
 }
 
 // ================= MINISPIL: Risskålen hopper over chilier =================
@@ -961,6 +1154,7 @@ function renderHome(){
   document.getElementById('gBest').textContent = best;
   function size(){
     dpr = window.devicePixelRatio || 1; W = cv.clientWidth || 360; H = W > 700 ? 300 : 200; GROUND = H - 34; cv.style.height = H + 'px';
+    if (bowl && state !== 'run') bowl.y = GROUND; if (bowl && bowl.y > GROUND) bowl.y = GROUND;
     cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0); draw();
   }
   function reset(){
@@ -1001,6 +1195,7 @@ function renderHome(){
     if (obs.some(hit)) {
       state = 'over';
       if (Math.floor(score) > best) { best = Math.floor(score); store.set('mp_best', best); document.getElementById('gBest').textContent = best; }
+      if (score >= 500) unlock('g500'); if (score >= 2000) unlock('g2000');
       draw(); return;
     }
     draw(); raf = requestAnimationFrame(loop);
@@ -1050,8 +1245,335 @@ function renderHome(){
   reset(); setTimeout(size, 0);
 })();
 
+
+// ================= SJOVE FUNKTIONER =================
+const todayISO = () => iso(new Date());
+const addDays = (s, n) => { const d = parseISO(s); d.setDate(d.getDate() + n); return iso(d); };
+let streak = store.get('mp_streak', {});          // {'2026-11-12': true}
+let water = store.get('mp_water', {});            // {'2026-11-12': 5}
+let wGoal = store.get('mp_wgoal', 8);
+let weights = store.get('mp_weights', []);        // [{date, kg}]
+let kGoal = store.get('mp_kgoal', 80);
+let saveCfg = Object.assign({ out: 120, inn: 35 }, store.get('mp_save', {}));
+let badges = store.get('mp_badges', {});          // {id: dato}
+let flags = store.get('mp_flags', {});            // diverse tællere til badges
+const saveFun = () => { store.set('mp_streak', streak); store.set('mp_water', water); store.set('mp_wgoal', wGoal);
+  store.set('mp_weights', weights); store.set('mp_kgoal', kGoal); store.set('mp_save', saveCfg); store.set('mp_badges', badges); store.set('mp_flags', flags); };
+
+// ---------- konfetti + toast ----------
+const fx = document.createElement('canvas'); fx.id = 'fx'; document.body.appendChild(fx);
+const toastEl = document.createElement('div'); toastEl.id = 'toast'; document.body.appendChild(toastEl);
+let parts = [], fxRaf = 0;
+function confetti(n = 120){
+  const W = fx.width = innerWidth * devicePixelRatio, H = fx.height = innerHeight * devicePixelRatio;
+  const cols = ['#5AB4FF','#FF7A45','#FFD166','#C4A7E7','#ECEDEF'];
+  for (let i = 0; i < n; i++) parts.push({ x: W/2 + (Math.random()-.5)*W*.3, y: H*.35, vx: (Math.random()-.5)*16*devicePixelRatio,
+    vy: (-Math.random()*16 - 6)*devicePixelRatio, r: (3 + Math.random()*4)*devicePixelRatio, c: cols[i % cols.length], a: Math.random()*6, life: 1 });
+  if (!fxRaf) fxRaf = requestAnimationFrame(fxLoop);
+}
+function fxLoop(){
+  const c = fx.getContext('2d'); c.clearRect(0, 0, fx.width, fx.height);
+  parts.forEach(p => { p.vy += .45*devicePixelRatio; p.x += p.vx; p.y += p.vy; p.vx *= .99; p.a += .2; p.life -= .008;
+    c.save(); c.globalAlpha = Math.max(0, p.life); c.translate(p.x, p.y); c.rotate(p.a); c.fillStyle = p.c; c.fillRect(-p.r, -p.r/2, p.r*2, p.r); c.restore(); });
+  parts = parts.filter(p => p.life > 0 && p.y < fx.height + 40);
+  fxRaf = parts.length ? requestAnimationFrame(fxLoop) : 0; if (!fxRaf) c.clearRect(0, 0, fx.width, fx.height);
+}
+let toastT = 0;
+function toast(html){ toastEl.innerHTML = html; toastEl.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('on'), 3200); }
+
+// ---------- badges ----------
+const BADGES = [
+  ['first',   '🌱', 'Første skridt',   'Hold planen én dag'],
+  ['s3',      '🔥', 'På sporet',       '3 dage i træk'],
+  ['s7',      '📅', 'En hel uge',      '7 dage i træk'],
+  ['s30',     '🤖', 'Maskine',         '30 dage i træk'],
+  ['w1',      '💧', 'Vandhane',        'Nå dit vandmål én dag'],
+  ['w5',      '🐪', 'Kamel',           'Nå dit vandmål 5 dage'],
+  ['k1',      '⚖️', 'På vægten',       'Gem din første vejning'],
+  ['k2',      '📉', 'Minus 2',         'Tab 2 kg fra din første vejning'],
+  ['k5',      '🏅', 'Minus 5',         'Tab 5 kg fra din første vejning'],
+  ['sv500',   '🐷', 'Sparegris',       'Spar 500 kr. på mealprep'],
+  ['sv2000',  '💰', 'Pengemaskine',    'Spar 2.000 kr. på mealprep'],
+  ['shop',    '🛒', 'Indkøbsmester',   'Sæt flueben ved en hel indkøbsliste'],
+  ['shift',   '⏱️', 'På arbejde',      'Tilføj din første vagt'],
+  ['g500',    '🌶️', 'Chili-hopper',    'Få 500 point i Risskålen'],
+  ['g2000',   '🔥', 'Stærk mave',      'Få 2.000 point i Risskålen'],
+  ['spin',    '🎡', 'Eventyrer',       'Drej smagshjulet'],
+  ['timer',   '⏲️', 'Kokken',          'Lad en timer køre færdig'],
+  ['backup',  '💾', 'Sikker',          'Gem en backup']
+];
+function unlock(id){
+  if (badges[id]) return; const b = BADGES.find(x => x[0] === id); if (!b) return;
+  badges[id] = todayISO(); saveFun(); confetti(150);
+  toast(`<span style="font-size:28px">${b[1]}</span><div><b>Badge låst op!</b><br>${b[2]} – ${b[3].toLowerCase()}</div>`);
+  renderBadges(); renderHome2();
+}
+function renderBadges(){
+  const n = BADGES.filter(b => badges[b[0]]).length;
+  document.getElementById('bgSub').textContent = `${n} af ${BADGES.length} låst op. Hvor mange kan du samle?`;
+  document.getElementById('bgList').innerHTML = BADGES.map(([id, ic, name, desc]) => {
+    const got = badges[id];
+    return `<div class="badge ${got ? 'got' : ''}"><div class="bi">${got ? ic : '🔒'}</div><div class="bn">${name}</div><div class="bd">${desc}</div>${got ? `<div class="bdt">${parseISO(got).toLocaleDateString('da-DK',{day:'numeric',month:'short'})}</div>` : ''}</div>`;
+  }).join('');
+}
+
+// ---------- streak ----------
+function streakNums(){
+  let cur = 0, d = todayISO(); if (!streak[d]) d = addDays(d, -1);
+  while (streak[d]) { cur++; d = addDays(d, -1); }
+  const days = Object.keys(streak).filter(k => streak[k]).sort(); let best = 0, run = 0, prev = null;
+  days.forEach(k => { run = (prev && addDays(prev, 1) === k) ? run + 1 : 1; best = Math.max(best, run); prev = k; });
+  return { cur, best, total: days.length };
+}
+let calY = new Date().getFullYear(), calM = new Date().getMonth();
+function renderStreak(){
+  const s = streakNums(), done = !!streak[todayISO()];
+  document.getElementById('stCur').textContent = s.cur;
+  document.getElementById('stCurK').textContent = s.cur === 1 ? 'dag i træk' : 'dage i træk';
+  document.getElementById('stBest').textContent = s.best; document.getElementById('stTotal').textContent = s.total;
+  document.getElementById('stFlame').style.filter = s.cur ? 'none' : 'grayscale(1)';
+  document.getElementById('stFlame').style.fontSize = Math.min(90, 46 + s.cur * 3) + 'px';
+  const b = document.getElementById('stBtn'); b.textContent = done ? '✓ Klaret i dag – godt gået!' : '✓ Jeg holdt planen i dag'; b.classList.toggle('doneb', done);
+  document.getElementById('calM').textContent = `${cap(MONTHS[calM])} ${calY}`;
+  const first = new Date(calY, calM, 1), off = (first.getDay() + 6) % 7, dim = new Date(calY, calM + 1, 0).getDate(), t = todayISO();
+  let h = ['M','T','O','T','F','L','S'].map(x => `<div class="ch">${x}</div>`).join('') + '<div></div>'.repeat(off);
+  for (let i = 1; i <= dim; i++) { const k = iso(new Date(calY, calM, i));
+    h += `<button class="cd ${streak[k] ? 'on' : ''} ${k === t ? 'today' : ''} ${k > t ? 'fut' : ''}" data-d="${k}">${i}</button>`; }
+  document.getElementById('cal').innerHTML = h;
+}
+function toggleDay(k){
+  if (k > todayISO()) return;
+  streak[k] = !streak[k]; if (!streak[k]) delete streak[k]; saveFun();
+  if (streak[k]) { const s = streakNums(); if (k === todayISO()) confetti(80);
+    unlock('first'); if (s.cur >= 3) unlock('s3'); if (s.cur >= 7) unlock('s7'); if (s.cur >= 30) unlock('s30'); checkSaved(); }
+  renderStreak(); renderSaved(); renderHome2();
+}
+document.getElementById('stBtn').addEventListener('click', () => { if (!streak[todayISO()]) toggleDay(todayISO()); });
+document.getElementById('cal').addEventListener('click', e => { const b = e.target.closest('.cd'); if (b) toggleDay(b.dataset.d); });
+document.addEventListener('click', e => { const b = e.target.closest('[data-cal]'); if (!b) return;
+  calM += +b.dataset.cal; if (calM < 0) { calM = 11; calY--; } if (calM > 11) { calM = 0; calY++; } renderStreak(); });
+
+// ---------- vand ----------
+function renderWater(){
+  const n = water[todayISO()] || 0, pct = Math.min(100, n / wGoal * 100);
+  document.getElementById('wCount').textContent = n;
+  document.getElementById('water').style.height = pct + '%';
+  document.getElementById('wTxt').innerHTML = n >= wGoal ? `<b style="color:var(--blue)">Mål nået! 🎉</b> ${(n*0.25).toLocaleString('da-DK')} liter i dag` : `${n} af ${wGoal} glas · ${(n*0.25).toLocaleString('da-DK')} liter`;
+  const gi = document.getElementById('wGoal'); if (document.activeElement !== gi) gi.value = wGoal;
+  const days = [...Array(7)].map((_, i) => addDays(todayISO(), i - 6));
+  const DN = ['S','M','T','O','T','F','L'];
+  document.getElementById('wWeek').innerHTML = days.map(d => { const v = water[d] || 0;
+    return `<div class="b7"><div class="b7v">${v || ''}</div><div class="b7b"><i style="height:${Math.min(100, v/wGoal*100)}%;background:${v >= wGoal ? 'var(--blue)' : '#3A5878'}"></i></div><div class="b7d">${DN[parseISO(d).getDay()]}</div></div>`; }).join('');
+}
+function addWater(n){
+  const k = todayISO(), before = water[k] || 0; water[k] = Math.max(0, before + n); saveFun();
+  if (n > 0 && water[k] >= wGoal && before < wGoal) { confetti(90); unlock('w1');
+    if (Object.keys(water).filter(d => water[d] >= wGoal).length >= 5) unlock('w5'); }
+  renderWater(); renderHome2();
+}
+document.getElementById('wPlus').addEventListener('click', () => addWater(1));
+document.getElementById('wMinus').addEventListener('click', () => addWater(-1));
+document.getElementById('glass').addEventListener('click', () => addWater(1));
+document.getElementById('wGoal').addEventListener('input', e => { wGoal = Math.max(1, num(e.target.value) || 8); saveFun(); renderWater(); renderHome2(); });
+
+// ---------- vægt ----------
+document.getElementById('kDate').value = todayISO();
+function renderWeight(){
+  const list = weights.slice().sort((a,b) => a.date.localeCompare(b.date));
+  const gi = document.getElementById('kGoal'); if (document.activeElement !== gi) gi.value = String(kGoal).replace('.', ',');
+  const f1 = n => n.toLocaleString('da-DK',{minimumFractionDigits:1,maximumFractionDigits:1});
+  if (!list.length) { document.getElementById('kNow').textContent = '–'; document.getElementById('kDiff').textContent = '–';
+    document.getElementById('kChart').innerHTML = `<div class="sub" style="padding:30px 0;text-align:center">Gem din første vejning for at se kurven 📈</div>`;
+    document.getElementById('kList').innerHTML = ''; return; }
+  const first = list[0].kg, last = list[list.length-1].kg, diff = last - first;
+  document.getElementById('kNow').textContent = f1(last) + ' kg';
+  const kd = document.getElementById('kDiff'); kd.textContent = (diff > 0 ? '+' : diff < 0 ? '−' : '') + f1(Math.abs(diff)) + ' kg';
+  kd.className = 'v ' + (diff <= 0 ? 'ok' : 'bad');
+  document.getElementById('kDiffK').textContent = `siden start · ${f1(Math.max(0, last - kGoal))} kg til mål`;
+  // graf
+  const pts = list.slice(-16), W = 600, H = 240, P = 34;
+  const vals = pts.map(p => p.kg).concat([kGoal]); let lo = Math.floor(Math.min(...vals) - 1), hi = Math.ceil(Math.max(...vals) + 1);
+  const x = i => P + (pts.length === 1 ? (W - 2*P)/2 : i * (W - 2*P) / (pts.length - 1)), y = v => H - P + 10 - (v - lo) / (hi - lo) * (H - 2*P);
+  const line = pts.map((p,i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.kg).toFixed(1)}`).join(' ');
+  const area = line + ` L${x(pts.length-1).toFixed(1)},${H-P+10} L${x(0).toFixed(1)},${H-P+10} Z`;
+  let grid = ''; for (let v = lo; v <= hi; v += Math.max(1, Math.round((hi-lo)/4))) grid += `<line x1="${P}" x2="${W-10}" y1="${y(v)}" y2="${y(v)}" class="gl"/><text x="4" y="${y(v)+4}" class="gt">${v}</text>`;
+  document.getElementById('kChart').innerHTML = `<svg viewBox="0 0 ${W} ${H}" class="kchart">${grid}
+    <line x1="${P}" x2="${W-10}" y1="${y(kGoal)}" y2="${y(kGoal)}" class="goal"/><text x="${W-12}" y="${y(kGoal)-6}" text-anchor="end" class="gt" fill="#FF7A45">mål ${String(kGoal).replace('.',',')}</text>
+    <path d="${area}" class="ka"/><path d="${line}" class="kl"/>
+    ${pts.map((p,i) => `<circle cx="${x(i)}" cy="${y(p.kg)}" r="5" class="kd"/>`).join('')}</svg>`;
+  document.getElementById('kList').innerHTML = list.slice().reverse().slice(0, 8).map(w =>
+    `<div class="exp"><div class="en">${parseISO(w.date).toLocaleDateString('da-DK',{weekday:'short',day:'numeric',month:'short'})}</div><div class="ea">${f1(w.kg)} kg</div><button class="x" data-del-w="${w.date}">×</button></div>`).join('');
+}
+document.getElementById('kAdd').addEventListener('click', () => {
+  const kg = numDot(document.getElementById('kKg').value), date = document.getElementById('kDate').value;
+  if (!kg || kg < 30 || kg > 250 || !date) { document.getElementById('kKg').focus(); return; }
+  weights = weights.filter(w => w.date !== date).concat([{ date, kg }]); saveFun();
+  document.getElementById('kKg').value = ''; unlock('k1');
+  const l = weights.slice().sort((a,b) => a.date.localeCompare(b.date)), loss = l[0].kg - l[l.length-1].kg;
+  if (loss >= 2) unlock('k2'); if (loss >= 5) unlock('k5');
+  renderWeight();
+});
+document.getElementById('kGoal').addEventListener('input', e => { const v = numDot(e.target.value); if (v > 30) { kGoal = v; saveFun(); renderWeight(); } });
+document.getElementById('kList').addEventListener('click', e => { const b = e.target.closest('[data-del-w]'); if (!b) return;
+  if (!b.dataset.armed) { b.dataset.armed = 1; b.textContent = 'Slet?'; b.classList.add('armed'); return; }
+  weights = weights.filter(w => w.date !== b.dataset.delW); saveFun(); renderWeight(); });
+
+// ---------- sparet ----------
+const perDay = () => Math.max(0, saveCfg.out - saveCfg.inn);
+function savedTotals(){
+  const days = Object.keys(streak).filter(k => streak[k]), m = mKey(new Date().getFullYear(), new Date().getMonth());
+  return { all: days.length * perDay(), month: days.filter(d => d.startsWith(m)).length * perDay() };
+}
+function checkSaved(){ const s = savedTotals(); if (s.all >= 500) unlock('sv500'); if (s.all >= 2000) unlock('sv2000'); }
+function renderSaved(){
+  const s = savedTotals();
+  document.getElementById('svM').textContent = MONTHS[new Date().getMonth()];
+  document.getElementById('svMonth').textContent = kr0(s.month); document.getElementById('svAll').textContent = kr0(s.all);
+  document.getElementById('svPer').textContent = kr0(perDay());
+  ['svOut','svIn'].forEach(id => { const i = document.getElementById(id); if (document.activeElement !== i) i.value = id === 'svOut' ? saveCfg.out : saveCfg.inn; });
+  const EQ = [['🍔','McMenuer',79],['🎬','biografbilletter',130],['🎮','måneder Game Pass',99],['☕','kaffe to go',40],['👟','par nye sko',800]];
+  document.getElementById('svEq').innerHTML = EQ.map(([ic, n, p]) => `<div class="eqi"><span>${ic}</span><b>${Math.floor(s.all / p)}</b><small>${n}</small></div>`).join('');
+}
+['svOut','svIn'].forEach(id => document.getElementById(id).addEventListener('input', e => {
+  saveCfg[id === 'svOut' ? 'out' : 'inn'] = num(e.target.value); saveFun(); renderSaved(); renderHome2(); }));
+
+// ---------- smagshjul ----------
+const FLAVORS = [
+  ['Soja & ingefær', '#5AB4FF', '3 spsk soja, 1 spsk revet ingefær, 1 spsk sweet chili. Top med forårsløg.'],
+  ['Taco', '#FF7A45', '1 pose taco-krydderi og en dåse majs. Server med salsa eller skyr-dressing.'],
+  ['Chili con carne', '#FF6B6B', 'En dåse kidneybønner, en dåse hakkede tomater og 1 tsk spidskommen + chili.'],
+  ['Karry & kokos', '#FFD166', '2 spsk karry og en dåse kokosmælk light. Lidt citron til sidst.'],
+  ['Teriyaki', '#C4A7E7', '4 spsk teriyakisauce og sesamfrø. Godt til kylling.'],
+  ['BBQ', '#E0B07C', '4 spsk BBQ-sauce og røget paprika. Server med majs.'],
+  ['Hvidløg & citron', '#7CE0C3', '3 fed hvidløg, saft af 1 citron, oregano. Frisk og let.'],
+  ['Pesto', '#9FB4FF', '3 spsk grøn pesto vendt i lige før servering. Godt til pastaen.']
+];
+let wAng = 0, spinning = false;
+function drawWheel(){
+  const c = document.getElementById('wheel'), x = c.getContext('2d'), R = 290, n = FLAVORS.length;
+  x.clearRect(0,0,600,600); x.save(); x.translate(300,300); x.rotate(wAng);
+  FLAVORS.forEach(([name, col], i) => { const a0 = i * 2*Math.PI/n, a1 = a0 + 2*Math.PI/n;
+    x.beginPath(); x.moveTo(0,0); x.arc(0,0,R,a0,a1); x.closePath(); x.fillStyle = col; x.globalAlpha = i % 2 ? .85 : 1; x.fill(); x.globalAlpha = 1;
+    x.save(); x.rotate(a0 + Math.PI/n); x.fillStyle = '#0E0F12'; x.font = '800 26px Inter,sans-serif'; x.textAlign = 'right'; x.fillText(name, R - 22, 9); x.restore(); });
+  x.beginPath(); x.arc(0,0,44,0,7); x.fillStyle = '#0E0F12'; x.fill(); x.font = '34px serif'; x.textAlign = 'center'; x.fillText('🍚', 0, 12);
+  x.restore();
+}
+document.getElementById('spinBtn').addEventListener('click', () => {
+  if (spinning) return; spinning = true;
+  const n = FLAVORS.length, pick = Math.floor(Math.random() * n), seg = 2*Math.PI/n;
+  // pilen står øverst (−90°). Find vinkel så midten af pick lander der.
+  const target = -Math.PI/2 - (pick * seg + seg/2) - (Math.random()-.5) * seg * .6;
+  const base = wAng % (2*Math.PI), end = wAng - base + target + 2*Math.PI * (6 + Math.floor(Math.random()*3));
+  const start = wAng, t0 = performance.now(), dur = 3800;
+  (function step(now){ const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 4);
+    wAng = start + (end - start) * e; drawWheel();
+    if (p < 1) return requestAnimationFrame(step);
+    spinning = false; const [name, col, tip] = FLAVORS[pick];
+    document.getElementById('spinRes').innerHTML = `<div class="sub">Næste mealprep bliver…</div><div class="bignum" style="color:${col};font-size:32px;margin:6px 0">${name}</div><div style="line-height:1.5">${tip}</div>`;
+    confetti(60); unlock('spin');
+  })(t0);
+});
+
+// ---------- timer ----------
+const PRESETS = [['🍚','Ris',15],['🍝','Pasta',10],['🫘','Linser',18],['🥩','Kød',8],['🍗','Kylling',12],['🥚','Æg',8]];
+let tm = { name: '', total: 0, end: 0, left: 0, paused: false, id: 0 };
+let actx = null;
+document.getElementById('tPresets').innerHTML = PRESETS.map(([ic, n, m]) => `<button class="pre" data-m="${m}" data-n="${n}"><span>${ic}</span><b>${n}</b><small>${m} min</small></button>`).join('');
+function beep(){
+  try { actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    [0, .35, .7].forEach(d => { const o = actx.createOscillator(), g = actx.createGain(); o.frequency.value = 880; o.connect(g); g.connect(actx.destination);
+      g.gain.setValueAtTime(.0001, actx.currentTime + d); g.gain.exponentialRampToValueAtTime(.3, actx.currentTime + d + .02);
+      g.gain.exponentialRampToValueAtTime(.0001, actx.currentTime + d + .3); o.start(actx.currentTime + d); o.stop(actx.currentTime + d + .32); }); } catch (e) {}
+  try { navigator.vibrate && navigator.vibrate([300,150,300,150,300]); } catch (e) {}
+}
+function startTimer(name, min){
+  if (!min) return; try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); actx.resume(); } catch (e) {}
+  tm = { name, total: min*60, end: Date.now() + min*60000, left: min*60, paused: false, id: tm.id + 1 };
+  tickTimer();
+}
+function fmtT(s){ s = Math.max(0, Math.ceil(s)); return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`; }
+function tickTimer(){
+  if (!tm.total) { renderTimer(); return; }
+  if (!tm.paused) tm.left = (tm.end - Date.now()) / 1000;
+  renderTimer();
+  if (tm.left <= 0 && !tm.paused) { const n = tm.name; tm.total = 0; renderTimer(); beep(); confetti(100);
+    toast(`<span style="font-size:28px">⏲️</span><div><b>${n} er færdig!</b><br>Tid til at tjekke gryden</div>`); unlock('timer'); return; }
+  const id = tm.id; setTimeout(() => { if (tm.id === id) tickTimer(); }, 250);
+}
+function renderTimer(){
+  const C = 2 * Math.PI * 52, frac = tm.total ? Math.max(0, tm.left) / tm.total : 0;
+  document.getElementById('tRing').style.strokeDasharray = C; document.getElementById('tRing').style.strokeDashoffset = C * (1 - frac);
+  document.getElementById('tLeft').textContent = fmtT(tm.total ? tm.left : 0);
+  document.getElementById('tName').textContent = tm.total ? `${tm.name}${tm.paused ? ' · pause' : ''}` : 'Vælg en timer';
+  document.getElementById('tPause').textContent = tm.paused ? 'Fortsæt' : 'Pause';
+  const ct = document.getElementById('curV'); if (ct && tm.total && !location.hash.includes('timer')) ct.textContent = `⏲️ ${fmtT(tm.left)}`;
+}
+document.getElementById('tPresets').addEventListener('click', e => { const b = e.target.closest('.pre'); if (b) startTimer(b.dataset.n, +b.dataset.m); });
+document.getElementById('tGo').addEventListener('click', () => startTimer('Timer', num(document.getElementById('tCustom').value)));
+document.getElementById('tPause').addEventListener('click', () => { if (!tm.total) return;
+  if (tm.paused) { tm.end = Date.now() + tm.left*1000; tm.paused = false; tm.id++; tickTimer(); } else { tm.paused = true; renderTimer(); } });
+document.getElementById('tStop').addEventListener('click', () => { tm = { name:'', total:0, end:0, left:0, paused:false, id: tm.id + 1 }; renderTimer(); route(); });
+
+// ---------- dagens tip ----------
+const TIPS = [
+  'Drik et glas vand før hvert måltid – det mætter, og du får lettere drukket nok.',
+  'Krydr kødet forskelligt hver gang – smagshjulet kan hjælpe dig.',
+  'Lad boksene køle af uden låg, før de kommer i køleskabet. Så holder de længere.',
+  'Protein mætter mest. Spis proteinet først, så bliver du hurtigere mæt.',
+  'Frosne grøntsager er lige så sunde som friske – og bliver aldrig dårlige.',
+  'Kog ris og pasta mens kødet steger. Så tager mealprep under 45 minutter.',
+  'Vej dig samme dag og tid hver uge – vægten svinger helt naturligt fra dag til dag.',
+  'Søvn påvirker sulten. 8 timers søvn gør det lettere at holde planen.',
+  'Er du sulten om aftenen? Et glas vand og et stykke frugt hjælper ofte.',
+  'Køb kød på tilbud og frys det ned – det kan spare dig 100 kr. om ugen.',
+  'Skyr er en af de billigste proteinkilder i supermarkedet.',
+  'Hav altid en ekstra boks i fryseren til travle dage.',
+  'Tyggegummi efter maden kan stoppe trangen til noget sødt.',
+  'Det er okay at spise ude en gang imellem – det vigtige er gennemsnittet over ugen.',
+  'Gå en tur efter aftensmaden – 15 minutter hjælper fordøjelsen.',
+  'Skriv alle udgifter ind i appen – så ved du præcis, hvor pengene bliver af.',
+  'Chili og stærke krydderier gør maden mere mættende for mange.',
+  'Lav dressingen dagen før – smagen bliver bedre, når den har trukket.',
+  'Linser er fyldt med protein og fibre – og koster næsten ingenting.',
+  'En streak handler ikke om at være perfekt. Kom bare tilbage dagen efter.'
+];
+function dayTip(){ const d = new Date(), doy = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5); return TIPS[doy % TIPS.length]; }
+
+// ---------- forside (motivation) ----------
+function renderHome2(){
+  const el = document.getElementById('hFun'); if (!el) return;
+  const s = streakNums(), done = !!streak[todayISO()], w = water[todayISO()] || 0, sv = savedTotals();
+  const nb = BADGES.filter(b => badges[b[0]]).length;
+  el.innerHTML = `
+    <a class="fun f-streak" href="#streak"><span class="fi">🔥</span><b>${s.cur}</b><small>${s.cur === 1 ? 'dag' : 'dage'} i træk</small></a>
+    <a class="fun f-water" href="#vand"><span class="fi">💧</span><b>${w}/${wGoal}</b><small>glas vand</small></a>
+    <a class="fun f-save" href="#sparet"><span class="fi">💸</span><b>${kr0(sv.month)}</b><small>sparet i ${MONTHS[new Date().getMonth()]}</small></a>
+    <a class="fun f-badge" href="#badges"><span class="fi">🏆</span><b>${nb}/${BADGES.length}</b><small>badges</small></a>`;
+  document.getElementById('hQuick').innerHTML = `
+    <button class="qb ${done ? 'done' : ''}" id="qStreak">${done ? '✓ Planen holdt i dag' : '🔥 Jeg holdt planen i dag'}</button>
+    <button class="qb" id="qWater">💧 ＋1 glas vand</button>`;
+  document.getElementById('hTip').textContent = dayTip();
+}
+document.getElementById('v-hjem').addEventListener('click', e => {
+  if (e.target.id === 'qStreak' && !streak[todayISO()]) toggleDay(todayISO());
+  if (e.target.id === 'qWater') addWater(1);
+});
+
+// badge-tjek fra andre dele af appen
+function checkMisc(){
+  if (shifts.length) unlock('shift');
+  ['son','ons','skab'].forEach(k => { const it = SHOP[k].items; if (it.every(([n]) => checks[k+':'+n])) unlock('shop'); });
+  const best = store.get('mp_best', 0); if (best >= 500) unlock('g500'); if (best >= 2000) unlock('g2000');
+}
+document.addEventListener('click', e => {
+  if (e.target.closest('#list .item') || e.target.id === 'sAdd') setTimeout(checkMisc, 50);
+  if (e.target.id === 'exportBtn') setTimeout(() => unlock('backup'), 400);
+});
+
+function renderFun(){ renderStreak(); renderWater(); renderWeight(); renderSaved(); renderBadges(); drawWheel(); renderTimer(); renderHome2(); }
+
 // ================= MENU =================
-const TITLES = {hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge', spil:'Spil'};
+const TITLES = {hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge', spil:'Spil', streak:'Streak', vand:'Vand', vaegt:'Vægt', sparet:'Sparet', badges:'Badges', hjul:'Smagshjul', timer:'Timer'};
 const setMenu = open => document.body.classList.toggle('menu-open', open);
 document.getElementById('mealBtn').addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
 document.getElementById('menuBg').addEventListener('click', () => setMenu(false));
@@ -1060,21 +1582,24 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(fals
 window.addEventListener('scroll', () => document.getElementById('top').classList.toggle('scrolled', window.scrollY > 4), { passive: true });
 
 // ---------- routing ----------
-const VIEWS = ['hjem','idag','uge','indkob','lon','penge','spil'];
+const VIEWS = ['hjem','idag','uge','indkob','lon','penge','spil','streak','vand','vaegt','sparet','badges','hjul','timer'];
 function route(){
   const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'hjem';
   VIEWS.forEach(x => document.getElementById('v-'+x).classList.toggle('on', x === v));
   document.querySelectorAll('#menu a').forEach(a => a.classList.toggle('on', a.dataset.v === v));
   document.getElementById('curV').textContent = TITLES[v] || '';
-  if (v === 'hjem') renderHome();
+  if (v === 'hjem') { renderHome(); renderHome2(); }
+  if (v === 'hjul') drawWheel();
+  if (v === 'badges') renderBadges();
+  if (typeof tm !== 'undefined' && tm.total && v !== 'timer') document.getElementById('curV').textContent = `⏲️ ${fmtT(tm.left)}`;
   setMenu(false);
   window.scrollTo(0,0);
 }
 window.addEventListener('hashchange', route);
 
-renderToday(); renderCook(); renderShop(); renderLon(); renderPenge(); renderHome(); route();
+renderToday(); renderCook(); renderShop(); renderLon(); renderPenge(); renderHome(); renderFun(); route(); setTimeout(checkMisc, 500);
 // opdater "I dag" når appen åbnes igen fra hjemmeskærmen
-document.addEventListener('visibilitychange', () => { if (!document.hidden) { renderToday(); renderHome(); } });
+document.addEventListener('visibilitychange', () => { if (!document.hidden) { renderToday(); renderHome(); renderFun(); if (tm.total) tickTimer(); } });
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 </script>
 </body>
