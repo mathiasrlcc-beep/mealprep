@@ -473,6 +473,41 @@
   .lesson.now{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset}
   .lesson.past{opacity:.5}
   .lesson .lmain{flex:1;min-width:0}
+  .hw,.lpd,.sopi{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 13px;margin-bottom:7px}
+  .hw b,.lpd b{display:block;font-size:15px}.hw .ls2,.lpd .ls2{color:var(--muted);font-size:12.5px}
+  .hw.done,.lpd.done,.sopi.done{opacity:.5}.hw.done b{text-decoration:line-through}
+  .hw.late{border-color:var(--orange)}
+  .hwh{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px;font-weight:700}.hwh span{opacity:.6}
+  .hwdone{margin-top:18px}.hwdone summary{cursor:pointer;color:var(--muted);font-size:13px;margin-bottom:8px}
+  .ovday{margin-top:18px}.ovday h3{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;font-weight:700}
+  .ovday.today h3{color:var(--blue)}.ovday.past{opacity:.55}
+  .ovr{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 13px;margin-bottom:6px}
+  .ovr>span{font-size:18px;width:24px;text-align:center}.ovr b{display:block;font-size:14.5px}.ovr small{color:var(--muted);font-size:12px}
+  .ovr.hot{border-color:var(--orange)}.ovr.dim{opacity:.7}
+  .ovwarn{background:rgba(255,122,69,.12);border:1px solid var(--orange);border-radius:12px;padding:9px 12px;font-size:13.5px;margin-bottom:6px}
+  .lpc{margin-top:14px}.lphead{display:flex;justify-content:space-between;align-items:center;gap:10px}.lphead b{display:block;font-size:17px}.lphead small{color:var(--muted);font-size:12.5px}
+  .lpbar{height:6px;background:var(--card2);border-radius:6px;overflow:hidden;margin:10px 0 4px}.lpbar i{display:block;height:100%;background:var(--blue)}
+  .lpd{margin-top:8px}.lpd.today{border-color:var(--blue)}.lpn{display:block;font-size:13.5px;color:var(--blue);text-decoration:none;margin-top:3px}
+  .fzring{--p:0;width:230px;height:230px;margin:22px auto 6px;border-radius:50%;background:conic-gradient(var(--blue) calc(var(--p)*1%),var(--card2) 0);display:grid;place-items:center}
+  .fzring>div{width:200px;height:200px;border-radius:50%;background:var(--bg,#0E0F12);display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .fzring b{font-size:52px;font-variant-numeric:tabular-nums;font-weight:700}.fzring small{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:11px}
+  .fzbar{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:14px}.fzbar span{width:110px;flex:none}.fzbar div{flex:1;height:8px;background:var(--card2);border-radius:8px;overflow:hidden}.fzbar i{display:block;height:100%;background:var(--blue)}.fzbar b{width:56px;text-align:right;font-size:13px}
+  .kaf{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-bottom:8px}.kah{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+  .kaavg{font-size:20px;font-weight:700}.kaavg.low,.red{color:var(--orange)}
+  .kar{display:flex;align-items:center;gap:10px;font-size:13.5px;padding:4px 0}.kk{font-weight:700;min-width:28px}
+  .sophead .sopt{width:100%;box-sizing:border-box;background:none;border:0;color:var(--text);font:700 22px Inter,sans-serif;padding:0}
+  .sophead .sops{width:100%;box-sizing:border-box;background:none;border:0;color:var(--muted);font:14px Inter,sans-serif;padding:4px 0 0}
+  .smd{width:118px;flex:none;background:var(--card2);border:1px solid var(--line);border-radius:10px;color:var(--text);font-size:12px;padding:6px;min-height:0!important}
+  .sopl{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}.sopl summary{cursor:pointer;font-weight:700;font-size:15px}.sopl summary span{color:var(--muted);font-weight:500;font-size:13px;margin-left:6px}
+  .sopi{padding:8px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;margin:0;background:none}.sopi a,.sopi span{font-size:14px;color:var(--text);word-break:break-word}.sopi a{color:var(--blue)}.sopi small{display:block;color:var(--muted);font-size:12px}
+  .sopadd{display:flex;gap:8px;margin-top:10px}.sopadd input{flex:1;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--text);font:inherit;font-size:14px}.sopadd button{width:44px;border:0;border-radius:10px;background:var(--blue);color:#0E0F12;font-size:20px;cursor:pointer}
+  .sopnotes{width:100%;box-sizing:border-box;min-height:160px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;color:var(--text);font:inherit;font-size:15px;line-height:1.5}
+  body.minimal .hw,body.minimal .lpd,body.minimal .ovr,body.minimal .kaf,body.minimal .sopl{background:#fff;border-color:#E5E5E5;border-radius:0}
+  body.minimal .ovwarn{background:#fff;border-color:#000;border-radius:0}
+  body.minimal .fzring,body.minimal .fzring>div{border-radius:50%!important}
+  body.minimal .fzring{background:conic-gradient(#000 calc(var(--p)*1%),#EEE 0)}body.minimal .fzring>div{background:#fff}
+  body.minimal .lpbar i,body.minimal .fzbar i{background:#000}
+  body.minimal .sopadd button{background:#000;color:#fff;border-radius:0}body.minimal .sopadd input,body.minimal .sopnotes,body.minimal .smd{background:#fff;border-color:#000;border-radius:0}
   .lnbtn{background:none;border:1px solid var(--line);border-radius:10px;padding:7px 9px;font:600 12px Inter,sans-serif;color:var(--text);cursor:pointer;white-space:nowrap}
   .lnbtn.has{border-color:var(--blue);color:var(--blue)}
   .lnote{margin:-3px 0 9px 58px;font-size:14px}
@@ -691,7 +726,13 @@
     <div class="mtabs" id="mTabs"></div>
     <div class="mg">Skole</div>
     <a href="#skole" data-v="skole"><span class="e">🎒</span><span>Skole<small>Alle fag og noter</small></span></a>
-    <a href="#skema" data-v="skema"><span class="e">🗓️</span><span>Skema<small>I dag og afleveringer</small></span></a>
+    <a href="#overblik" data-v="overblik"><span class="e">🧭</span><span>Overblik<small>Skole, vagter og mad i ugen</small></span></a>
+    <a href="#skema" data-v="skema"><span class="e">🗓️</span><span>Skema<small>Timer, timenoter og afleveringer</small></span></a>
+    <a href="#lektier" data-v="lektier"><span class="e">✅</span><span>Lektier<small>Til i dag og i morgen</small></span></a>
+    <a href="#laeseplan" data-v="laeseplan"><span class="e">📖</span><span>Læseplan<small>Op til eksamen</small></span></a>
+    <a href="#fokus" data-v="fokus"><span class="e">🎯</span><span>Fokus<small>25/5-timer pr. fag</small></span></a>
+    <a href="#karakterer" data-v="karakterer"><span class="e">🎓</span><span>Karakterer<small>Snit og fravær</small></span></a>
+    <a href="#sop" data-v="sop"><span class="e">📚</span><span>SOP-projekt<small>Milepæle og kilder</small></span></a>
     <a href="#kort" data-v="kort"><span class="e">🃏</span><span>Flashcards<small>Øv dig til eksamen</small></span></a>
     <a href="#skole/sog" data-v="skolesog" class="sklink"><span class="e">🔎</span><span>Søg i noter<small>Find et begreb</small></span></a>
     <div class="mg">Mad</div>
@@ -922,6 +963,53 @@
   <p class="sub" id="scSub"></p>
   <div class="seg" id="scSeg" style="margin-top:12px"><button data-w="0" class="on">Denne uge</button><button data-w="1">Næste uge</button><button data-w="a">Afleveringer</button></div>
   <div id="scBody"></div>
+  <div class="card" style="margin-top:22px"><b>📅 Læg i Apple Kalender</b><p class="sub" style="margin:4px 0 0">Afleveringer med påmindelse dagen før og 3 timer før. Åbn filen og tryk "Tilføj alle".</p><button class="btn" id="icsDl">Kun afleveringer og eksamener</button><button class="btn" id="icsAll">Afleveringer + alle lektioner</button></div>
+</section>
+
+<section class="view" id="v-overblik">
+  <h1>Overblik</h1>
+  <p class="sub" id="ovSub"></p>
+  <div class="seg" id="ovSeg" style="margin-top:12px"><button data-w="0" class="on">Denne uge</button><button data-w="1">Næste uge</button></div>
+  <div id="ovBody"></div>
+</section>
+
+<section class="view" id="v-lektier">
+  <h1>Lektier</h1>
+  <p class="sub">Skriv <b>Lektier: …</b> i en timenote, så kommer de her selv – eller tilføj dem herunder.</p>
+  <div class="card" style="margin-top:12px"><div class="frm"><label>Lektie<input id="hwTxt" placeholder="fx Læs s. 40–52"></label><label>Fag<select id="hwFag"></select></label><label>Til (tom = næste time i faget)<input type="date" id="hwDue"></label></div><button class="btn primary" id="hwAdd">Tilføj lektie</button></div>
+  <div id="hwBody"></div>
+</section>
+
+<section class="view" id="v-laeseplan">
+  <h1>Læseplan</h1>
+  <p class="sub">Vælg fag og eksamensdato – så fordeler appen dine noter ud på dagene, med repetition og flashcards de sidste dage.</p>
+  <div class="card" style="margin-top:12px"><div class="frm"><label>Fag<select id="lpFag"></select></label><label>Eksamensdato<input type="date" id="lpExam"></label></div><button class="btn primary" id="lpAdd">Lav læseplan</button></div>
+  <div id="lpBody"></div>
+</section>
+
+<section class="view" id="v-fokus">
+  <h1>Fokus</h1>
+  <p class="sub">25 minutters fokus og 5 minutters pause. Hver fjerde pause er lang.</p>
+  <div class="frm" style="margin-top:12px"><label>Fag<select id="fzFag"></select></label></div>
+  <div class="fzring" id="fzRing"><div><small id="fzMode">Fokus</small><b id="fzTime">25:00</b></div></div>
+  <div class="fbtns"><button class="f2" id="fzGo">Start</button><button id="fzReset">Nulstil</button></div>
+  <div id="fzStats"></div>
+</section>
+
+<section class="view" id="v-karakterer">
+  <h1>Karakterer</h1>
+  <p class="sub">Dit snit pr. fag og dit fravær. Gemmes kun på denne enhed.</p>
+  <div id="kaBody" style="margin-top:12px"></div>
+  <h2>Tilføj karakter</h2>
+  <div class="card"><div class="frm"><label>Fag<select id="kaFag"></select></label><label>Karakter<select id="kaK"><option value="">Vælg</option><option>12</option><option>10</option><option>7</option><option>4</option><option>02</option><option>00</option><option>-3</option></select></label><label>Hvad<input id="kaType" placeholder="fx Standpunkt, terminsprøve, SRP"></label><label>Dato<input type="date" id="kaDate"></label></div><button class="btn primary" id="kaAdd">Gem karakter</button></div>
+  <h2>Fravær</h2>
+  <div class="card"><div class="frm"><label>Samlet fravær i % (fra Ludus)<input id="kaAbs" inputmode="decimal" placeholder="fx 4,5"></label></div></div>
+</section>
+
+<section class="view" id="v-sop">
+  <h1>SOP-projekt</h1>
+  <p class="sub">Milepæle, kilder, bilag og feedback samlet ét sted.</p>
+  <div id="sopBody" style="margin-top:12px"></div>
 </section>
 
 <section class="view" id="v-kort">
@@ -975,7 +1063,7 @@
     <div class="sync" id="payNext"></div>
   </div>
   <h2>ℹ️ Om appen</h2>
-  <div class="card"><div class="sub" style="line-height:1.6">Daily · version 18<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
+  <div class="card"><div class="sub" style="line-height:1.6">Daily · version 19<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
   </div></div>
 </section>
 <!-- KAT -->
@@ -1811,9 +1899,11 @@ document.addEventListener('click', e => {
 });
 
 // backup / import
+document.addEventListener('click', e => { if (e.target.closest('#hBk')) { e.preventDefault(); document.getElementById('exportBtn').click(); } });
 document.getElementById('exportBtn').addEventListener('click', async () => {
   const all = {}; try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith('mp_')) all[k] = localStorage.getItem(k); } } catch (e) {}
-  const data = JSON.stringify({ app: 'mealprep', version: 2, saved: new Date().toISOString(), rates, shifts, extra, cats, exps, manualIncome, all }, null, 1);
+  let mine = null; try { mine = await mineForBackup(); } catch (e) {}
+  const data = JSON.stringify({ app: 'mealprep', version: 3, saved: new Date().toISOString(), rates, shifts, extra, cats, exps, manualIncome, all, mine: mine && mine.items }, null, 1);
   const name = `mealprep-backup-${iso(new Date())}.json`;
   const msg = document.getElementById('dataMsg');
   try {
@@ -1827,7 +1917,7 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
 });
 document.getElementById('importFile').addEventListener('change', async e => {
   const fsAll = [...(e.target.files || [])]; const msg = document.getElementById('dataMsg'); if (!fsAll.length) return;
-  if (fsAll.length > 1 || /skole|skema/i.test(fsAll[0].name)) { await skImportFiles(fsAll, msg); e.target.value = ''; return; }
+  if (fsAll.length > 1 || /skole|skema|sop/i.test(fsAll[0].name)) { await skImportFiles(fsAll, msg); e.target.value = ''; return; }
   const f = fsAll[0];
   try {
     const d = JSON.parse((await f.text()).replace(/^\uFEFF/, ''));
@@ -1835,6 +1925,7 @@ document.getElementById('importFile').addEventListener('change', async e => {
     if (await skImport(d, msg) || await skMineImport(d, msg)) { FCDECK = null; e.target.value = ''; return; }
     if (d.app !== 'mealprep') throw new Error('forkert fil');
     if (d.all && typeof d.all === 'object') { Object.entries(d.all).forEach(([k, v]) => { if (k.startsWith('mp_')) try { localStorage.setItem(k, v); } catch (e) {} });
+      if (Array.isArray(d.mine)) { msg.textContent = 'Gendanner dine egne noter og filer…'; for (const y of d.mine) { const x = Object.assign({}, y); if (x.data) { x.blob = await (await fetch(x.data)).blob(); delete x.data; } await skMinePut(x); } }
       msg.className = 'sync live'; msg.textContent = '✓ Hele backuppen er gendannet. Appen genindlæses…'; setTimeout(() => location.reload(), 900); return; }
     if (d.rates) rates = Object.assign({}, DEFAULT_RATES, d.rates);
     if (Array.isArray(d.cats) && d.cats.length) cats = d.cats;
@@ -2522,7 +2613,7 @@ function renderHome3(){
   const el = document.getElementById('hAlerts'); if (!el) return; let h = '';
   const bkDays = cfg.lastBackup ? daysBetween(cfg.lastBackup, todayISO()) : null;
   if (hasData() && (bkDays === null || bkDays >= cfg.bkEvery))
-    h += `<a class="alert a-bk" href="#indstillinger"><span>💾</span><div><b>${bkDays === null ? 'Tag din første backup' : `Det er ${bkDays} dage siden din sidste backup`}</b><small>Tryk for at gå til Indstillinger</small></div><em>›</em></a>`;
+    h += `<a class="alert a-bk" href="javascript:void 0" id="hBk"><span>💾</span><div><b>${bkDays === null ? 'Tag din første backup' : `Det er ${bkDays} dage siden din sidste backup`}</b><small>Tryk her for at tage den nu – inkl. timenoter og lektier</small></div><em>›</em></a>`;
   const p = nextPayday();
   h += `<a class="alert a-pay" href="#lon"><span>💰</span><div><b>${p.days === 0 ? 'Løn i dag! 🎉' : `Løn om ${p.days} ${p.days === 1 ? 'dag' : 'dage'}`}</b><small>${p.date.toLocaleDateString('da-DK',{weekday:'long',day:'numeric',month:'short'})}${p.amount ? ` · ca. ${kr0(p.amount)}` : ''}</small></div><em>›</em></a>`;
   const wd = new Date().getDay();
@@ -3061,7 +3152,7 @@ const _rq9 = renderQuiz; renderQuiz = function(){ _rq9(); const a = (kv('mp_quiz
   if (el) el.innerHTML = `<a class="fun f-qz" href="#quiz"><span class="fi">🃏</span><b>${a ? (a.ok ? 'Rigtigt ✓' : 'Forkert ✗') : 'Nyt!'}</b><small>dagens quiz</small></a>`; };
 
 // ================= MENU =================
-const TITLES = {skema:'Skema', kort:'Flashcards', skole:'Skole', hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge', spil:'Spil', streak:'Streak', vand:'Vand', vaegt:'Vægt', sparet:'Sparet', badges:'Badges', hjul:'Smagshjul', timer:'Timer', rapport:'Rapport', opskrifter:'Opskrifter', indstillinger:'Indstillinger', kat:'Kat', udfordring:'Udfordring', quiz:'Quiz', rejse:'Madrejse', wrapped:'Dit år', traening:'Træning', billeder:'Før & efter', faste:'Faste', fryser:'Fryser', nedtaelling:'Nedtællinger'};
+const TITLES = {overblik:'Overblik', lektier:'Lektier', laeseplan:'Læseplan', fokus:'Fokus', karakterer:'Karakterer', sop:'SOP', skema:'Skema', kort:'Flashcards', skole:'Skole', hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge', spil:'Spil', streak:'Streak', vand:'Vand', vaegt:'Vægt', sparet:'Sparet', badges:'Badges', hjul:'Smagshjul', timer:'Timer', rapport:'Rapport', opskrifter:'Opskrifter', indstillinger:'Indstillinger', kat:'Kat', udfordring:'Udfordring', quiz:'Quiz', rejse:'Madrejse', wrapped:'Dit år', traening:'Træning', billeder:'Før & efter', faste:'Faste', fryser:'Fryser', nedtaelling:'Nedtællinger'};
 const setMenu = open => {
   document.body.classList.toggle('menu-open', open);
   if (!open) { const q = document.getElementById('mSearch'); if (q && q.value) { q.value = ''; filterMenu(''); } }
@@ -3408,7 +3499,10 @@ function renderHomeSkema(){
   const n = new Date(); let d = new Date(n); d.setHours(0,0,0,0); let ls = lessonsOn(iso(d)); let label = 'I dag';
   const t = nowHM(); if (!ls.length || ls[ls.length - 1].to <= t) { for (let i = 1; i < 8; i++) { const x = new Date(d); x.setDate(x.getDate() + i); const l2 = lessonsOn(iso(x)); if (l2.length) { ls = l2; label = i === 1 ? 'I morgen' : cap(WD[x.getDay()]); break; } } }
   const dls = upcomingDeadlines(false).filter(x => !dlDone[x.url || x.titel]).slice(0, 2);
-  el.innerHTML = `<div class="hsk"><a class="card" href="#skema" style="display:block;text-decoration:none;color:inherit"><div class="tk">🎒 ${label}</div>${ls.length ? ls.map(l => { const nt = lesNote(l); return `<div class="row2"><span>${l.from}</span><span>${skEsc(scFag(l.fag))}${l.emne ? ' – ' + skEsc(l.emne) : ''}${nt ? ' 📝' : ''}</span></div>${nt && nt.text ? `<div class="sub" style="margin:-2px 0 6px 52px;font-size:13px">${skEsc(nt.text.replace(/[#*_>-]/g, '').trim().slice(0, 90))}${nt.text.length > 90 ? '…' : ''}</div>` : ''}`; }).join('') : '<div class="sub">Ingen lektioner</div>'}${dls.length ? `<div class="tk" style="margin-top:12px">📌 Næste afleveringer</div>` + dls.map(x => { const days = Math.ceil((new Date(x.due) - n) / 864e5); return `<div class="row2"><span>${days <= 0 ? 'i dag' : days + ' d'}</span><span>${skEsc(x.titel)} <span class="sub">· ${skEsc(x.fag)}</span></span></div>`; }).join('') : ''}</a></div>`;
+  const tISO = todayISO(), hws = hwItems().filter(h => !h.done && h.due <= addDays(tISO, 1)), lpt = lpToday(tISO);
+  const extraH = (hws.length ? `<div class="tk" style="margin-top:12px">✅ Lektier</div>` + hws.slice(0, 4).map(h => `<div class="row2"><span>${h.due < tISO ? 'bagud' : h.due === tISO ? 'i dag' : 'i morgen'}</span><span>${skEsc(h.txt)} <span class="sub">· ${skEsc(h.fag)}</span></span></div>`).join('') : '') +
+    (lpt && !lpt.day.done ? `<div class="tk" style="margin-top:12px">📖 Læseplan i dag</div><div class="row2"><span>${skEsc(lpt.plan.fag)}</span><span>${lpt.day.rep ? 'Repetition og flashcards' : lpt.day.items.length + (lpt.day.items.length === 1 ? ' note' : ' noter') + ' + flashcards'}</span></div>` : '');
+  el.innerHTML = `<div class="hsk"><a class="card" href="#skema" style="display:block;text-decoration:none;color:inherit"><div class="tk">🎒 ${label}</div>${ls.length ? ls.map(l => { const nt = lesNote(l); return `<div class="row2"><span>${l.from}</span><span>${skEsc(scFag(l.fag))}${l.emne ? ' – ' + skEsc(l.emne) : ''}${nt ? ' 📝' : ''}</span></div>${nt && nt.text ? `<div class="sub" style="margin:-2px 0 6px 52px;font-size:13px">${skEsc(nt.text.replace(/[#*_>-]/g, '').trim().slice(0, 90))}${nt.text.length > 90 ? '…' : ''}</div>` : ''}`; }).join('') : '<div class="sub">Ingen lektioner</div>'}${dls.length ? `<div class="tk" style="margin-top:12px">📌 Næste afleveringer</div>` + dls.map(x => { const days = Math.ceil((new Date(x.due) - n) / 864e5); return `<div class="row2"><span>${days <= 0 ? 'i dag' : days + ' d'}</span><span>${skEsc(x.titel)} <span class="sub">· ${skEsc(x.fag)}</span></span></div>`; }).join('') : ''}${extraH}</a></div>`;
 }
 
 // ================= FLASHCARDS (bygges ud fra skolenoterne) =================
@@ -3484,13 +3578,14 @@ async function skImportFiles(fs, m){
     try { const d = JSON.parse((await f.text()).replace(/^﻿/, ''));
       const before = MINE.length, dummy = { set className(v){}, set textContent(v){} };
       if (scImport(d, dummy)) { okN++; renderSkema(); renderHomeSkema(); }
+      else if (sopImport(d, dummy)) { okN++; }
       else if (await skImport(d, dummy)) { okN++; notes++; FCDECK = null; }
       else if (await skMineImport(d, dummy)) { okN++; files += MINE.length - before || (d.items || []).length; }
       else bad.push(f.name);
     } catch (err) { bad.push(f.name + ' (' + (err && err.message || 'fejl') + ')'); }
   }
   m.className = bad.length ? 'sync warn' : 'sync live';
-  m.textContent = (okN ? `✓ Importeret: ${SKEMA ? 'skema, ' : ''}${notes ? SKIDX.length + ' sider' : ''}${notes && files ? ' og ' : ''}${files ? files + ' filer' : ''}. ` : '') + (bad.length ? 'Kunne ikke læse: ' + bad.join(', ') : '');
+  m.textContent = (okN ? `✓ Importeret: ${sop && sop.lists && sop.lists[0].items.length ? 'SOP, ' : ''}${SKEMA ? 'skema, ' : ''}${notes ? SKIDX.length + ' sider' : ''}${notes && files ? ' og ' : ''}${files ? files + ' filer' : ''}. ` : '') + (bad.length ? 'Kunne ikke læse: ' + bad.join(', ') : '');
   return okN > 0;
 }
 function skPathForKey(key){ const x = SKIDX.find(x => 'n:' + x.crumbs.concat(x.t).join(' › ') === key); return x ? '#skole/' + x.path.join('/') : '#skole'; }
@@ -3502,7 +3597,272 @@ async function skImport(d, msg){
 }
 
 // ---------- routing ----------
-const VIEWS = ['skema','kort','skole','hjem','idag','uge','indkob','lon','penge','spil','streak','vand','vaegt','sparet','badges','hjul','timer','rapport','opskrifter','indstillinger','kat','udfordring','quiz','rejse','wrapped','traening','billeder','faste','fryser','nedtaelling'];
+
+// ================= VERSION 19: OVERBLIK, LEKTIER, LÆSEPLAN, FOKUS, KARAKTERER, SOP, KALENDER =================
+const h2m = s => { const [h, m] = String(s).split(':').map(Number); return h * 60 + (m || 0); };
+const m2h = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(Math.round(m % 60)).padStart(2, '0');
+const dShort = k => { const d = new Date(k + 'T12:00'); return WD[d.getDay()].slice(0, 3) + ' ' + d.getDate() + '/' + (d.getMonth() + 1); };
+const monday = off => { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() - ((d.getDay() + 6) % 7) + off * 7); return d; };
+function shiftSpan(s){ const p = parseShift(s.txt); if (!p) return null; let a = Math.round(p.start * 60), b = Math.round(p.end * 60); if (b <= a) b += 1440; return { from: a, to: b }; }
+const lesFagName = f => LES_MAP[scFag(f)] || scFag(f);
+
+// ---------- LEKTIER ----------
+let hwMan = kv('mp_hw', []), hwDone = kv('mp_hwdone', {});
+const HW_RE = /^\s*(?:[-*]\s*)?(?:\[ \]\s*)?(?:lektier?|hjemmeopgaver?|til næste gang|husk)\s*:\s*(.+)$/i;
+function nextLessonAfter(fag, date, from){ if (!SKEMA) return null; return SKEMA.lessons.filter(l => l.fag === fag && (l.date > date || (l.date === date && l.from > from))).sort((a, b) => (a.date + a.from).localeCompare(b.date + b.from))[0] || null; }
+function hwItems(){
+  const out = [];
+  MINE.filter(x => x.lesson && x.text).forEach(x => {
+    const [date, from, fag] = x.lesson.slice(4).split('|');
+    String(x.text).split('\n').forEach(line => {
+      const m = line.match(HW_RE) || line.match(/^\s*-\s*\[ \]\s*(.+)$/); if (!m) return;
+      const txt = m[1].replace(/\*\*/g, '').trim(); if (!txt) return;
+      const nx = nextLessonAfter(fag, date, from), id = x.lesson + '|' + txt;
+      out.push({ id, txt, fag: lesFagName(fag), due: nx ? nx.date : addDays(date, 1), dueFrom: nx ? nx.from : '', done: !!hwDone[id], src: x });
+    });
+  });
+  hwMan.forEach(h => out.push(Object.assign({ man: true }, h)));
+  return out.sort((a, b) => (a.due + (a.dueFrom || '')).localeCompare(b.due + (b.dueFrom || '')));
+}
+function hwRow(h){
+  const t = todayISO(), late = !h.done && h.due < t;
+  return `<div class="hw ${h.done ? 'done' : ''} ${late ? 'late' : ''}"><button class="chk" data-hw="${skEsc(h.id)}">${h.done ? '↺' : '✓'}</button><div style="flex:1;min-width:0"><b>${skEsc(h.txt)}</b><div class="ls2">${skEsc(h.fag)} · til ${h.due === t ? 'i dag' : h.due === addDays(t, 1) ? 'i morgen' : dShort(h.due)}${h.dueFrom ? ' kl. ' + h.dueFrom : ''}${h.man ? '' : ' · fra timenote'}</div></div>${h.man ? `<button class="x" data-hwdel="${h.id}">×</button>` : ''}</div>`;
+}
+function renderLektier(){
+  const body = document.getElementById('hwBody'); if (!body) return;
+  const sel = document.getElementById('hwFag'); if (!sel.options.length) { const f = SKEMA ? [...new Set(SKEMA.lessons.map(l => lesFagName(l.fag)))] : []; sel.innerHTML = ['', ...new Set(f.concat(SK ? SK.subjects.map(s => s.t) : []))].map(x => `<option value="${skEsc(x)}">${x ? skEsc(x) : 'Vælg fag'}</option>`).join(''); }
+  const all = hwItems(), t = todayISO(), open = all.filter(h => !h.done), done = all.filter(h => h.done);
+  const grp = [['Forsinket', open.filter(h => h.due < t)], ['I dag', open.filter(h => h.due === t)], ['I morgen', open.filter(h => h.due === addDays(t, 1))], ['Senere', open.filter(h => h.due > addDays(t, 1))]];
+  let h = grp.filter(g => g[1].length).map(g => `<h3 class="hwh">${g[0]} <span>${g[1].length}</span></h3>` + g[1].map(hwRow).join('')).join('');
+  if (!open.length) h += `<div class="card skempty" style="margin-top:14px"><div class="big">✅</div><h3>Ingen lektier</h3><p class="sub">Skriv fx <b>Lektier: læs s. 40–52</b> i en timenote i Skema – så kommer den her automatisk, med frist til næste gang du har faget.</p></div>`;
+  if (done.length) h += `<details class="hwdone"><summary>Færdige (${done.length})</summary>${done.slice(-30).reverse().map(hwRow).join('')}</details>`;
+  body.innerHTML = h;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-hw]');
+  if (b) { const id = b.dataset.hw, m = hwMan.find(x => x.id === id); if (m) { m.done = !m.done; store.set('mp_hw', hwMan); } else { if (hwDone[id]) delete hwDone[id]; else hwDone[id] = 1; store.set('mp_hwdone', hwDone); } if (!b.closest('#hwBody')) { renderHomeSkema(); } renderLektier(); renderHomeSkema(); return; }
+  const d = e.target.closest('[data-hwdel]'); if (d) { hwMan = hwMan.filter(x => x.id !== d.dataset.hwdel); store.set('mp_hw', hwMan); renderLektier(); renderHomeSkema(); }
+});
+document.getElementById('hwAdd').addEventListener('click', () => {
+  const txt = document.getElementById('hwTxt').value.trim(), fag = document.getElementById('hwFag').value; let due = document.getElementById('hwDue').value;
+  if (!txt) return toast('Skriv lektien først');
+  if (!due) { const nx = SKEMA && fag ? SKEMA.lessons.filter(l => lesFagName(l.fag) === fag && l.date > todayISO()).sort((a, b) => a.date.localeCompare(b.date))[0] : null; due = nx ? nx.date : addDays(todayISO(), 1); }
+  hwMan.push({ id: uid(), txt, fag: fag || 'Andet', due, done: false }); store.set('mp_hw', hwMan);
+  document.getElementById('hwTxt').value = ''; document.getElementById('hwDue').value = ''; toast('✓ Lektie tilføjet'); renderLektier(); renderHomeSkema();
+});
+
+// ---------- UGEOVERBLIK ----------
+let ovW = 0;
+function dayInfo(k){
+  const ls = lessonsOn(k), sh = shifts.filter(s => s.date === k).map(s => Object.assign({ s }, shiftSpan(s) || {})).filter(x => x.from != null);
+  const dls = SKEMA ? SKEMA.deadlines.filter(x => iso(new Date(x.due)) === k && !dlDone[x.url || x.titel]) : [];
+  const hw = hwItems().filter(h => !h.done && h.due === k);
+  const cd = (typeof cds !== 'undefined' ? cds : []).filter(c => c.date === k);
+  const lp = lpToday(k);
+  const warn = [];
+  sh.forEach(x => {
+    ls.forEach(l => { if (x.from < h2m(l.to) && x.to > h2m(l.from)) warn.push(`Vagten ${m2h(x.from)}–${m2h(x.to % 1440)} overlapper ${scFag(l.fag)} kl. ${l.from}`); });
+    if (ls.length) { const end = Math.max(...ls.map(l => h2m(l.to))); if (x.from >= end && x.from - end < 45) warn.push(`Kun ${x.from - end} min fra skole til vagt`); }
+    const nextDl = SKEMA ? SKEMA.deadlines.filter(d => !dlDone[d.url || d.titel]).find(d => { const t = new Date(d.due), st = new Date(k + 'T00:00'); st.setMinutes(x.from); return t > st && t - st < 36 * 36e5; }) : null;
+    if (nextDl) warn.push(`Vagt lige før afleveringen “${nextDl.titel}”`);
+    if (x.to > 1380 && lessonsOn(addDays(k, 1)).some(l => h2m(l.from) < 600)) warn.push('Sen vagt og tidlig skole dagen efter');
+  });
+  const schoolMin = ls.reduce((a, l) => a + h2m(l.to) - h2m(l.from), 0), workMin = sh.reduce((a, x) => a + x.to - x.from, 0);
+  if (schoolMin + workMin >= 600) warn.push(`Lang dag: ${Math.round((schoolMin + workMin) / 6) / 10} timer skole og arbejde`);
+  return { ls, sh, dls, hw, cd, lp, warn: [...new Set(warn)] };
+}
+function renderOverblik(){
+  const body = document.getElementById('ovBody'); if (!body) return;
+  document.querySelectorAll('#ovSeg button').forEach(b => b.classList.toggle('on', +b.dataset.w === ovW));
+  const m = monday(ovW), t = todayISO(); let h = '', nWarn = 0;
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(m); d.setDate(d.getDate() + i); const k = iso(d), x = dayInfo(k), wd = ((d.getDay() + 6) % 7) + 1;
+    nWarn += x.warn.length; const rows = [];
+    if (x.ls.length) rows.push(`<div class="ovr"><span>🎒</span><div><b>Skole ${x.ls[0].from}–${x.ls[x.ls.length - 1].to}</b><small>${x.ls.map(l => scFag(l.fag)).filter((v, j, a) => a.indexOf(v) === j).map(skEsc).join(', ')}</small></div></div>`);
+    x.sh.forEach(s => rows.push(`<div class="ovr"><span>💼</span><div><b>Vagt ${m2h(s.from)}–${m2h(s.to % 1440)}</b><small>${skEsc(s.s.type || '')}</small></div></div>`));
+    x.dls.forEach(dl => rows.push(`<div class="ovr hot"><span>📌</span><div><b>${skEsc(dl.titel)}</b><small>Aflevering · ${skEsc(dl.fag)} · kl. ${new Date(dl.due).toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit' })}</small></div></div>`));
+    x.hw.forEach(hw => rows.push(`<div class="ovr"><span>📚</span><div><b>${skEsc(hw.txt)}</b><small>Lektie · ${skEsc(hw.fag)}</small></div></div>`));
+    if (x.lp) rows.push(`<div class="ovr"><span>📖</span><div><b>Læseplan: ${skEsc(x.lp.plan.fag)}</b><small>${x.lp.day.rep ? 'Repetition' : x.lp.day.items.length + (x.lp.day.items.length === 1 ? ' note' : ' noter')}${x.lp.day.cards ? ' + flashcards' : ''}</small></div></div>`);
+    x.cd.forEach(c => rows.push(`<div class="ovr hot"><span>📅</span><div><b>${skEsc(c.name)}</b><small>Nedtælling</small></div></div>`));
+    if (typeof lunchFor === 'function') { const ml = lunchFor(wd); rows.push(`<div class="ovr dim"><span>${wd === 3 || wd === 7 ? '🍳' : ml.ic}</span><div><b>${wd === 3 || wd === 7 ? 'Madlavning i aften' : skEsc(ml.name)}</b><small>${wd === 3 || wd === 7 ? 'Mealprep' : 'Frokost'}</small></div></div>`); }
+    h += `<div class="ovday ${k === t ? 'today' : ''} ${k < t ? 'past' : ''}"><h3>${cap(WD[d.getDay()])} ${d.getDate()}/${d.getMonth() + 1}${k === t ? ' · i dag' : ''}</h3>${x.warn.map(w => `<div class="ovwarn">⚠️ ${skEsc(w)}</div>`).join('')}${rows.join('') || '<p class="sub" style="margin:0">Fri 🎉</p>'}</div>`;
+  }
+  document.getElementById('ovSub').textContent = nWarn ? `${nWarn === 1 ? '1 advarsel' : nWarn + ' advarsler'} denne uge – se de orange felter` : 'Skole, vagter, afleveringer, lektier og mad samlet ét sted';
+  body.innerHTML = h;
+}
+document.getElementById('ovSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; ovW = +b.dataset.w; renderOverblik(); });
+
+// ---------- LÆSEPLAN TIL EKSAMEN ----------
+let lps = kv('mp_lp', []);
+function lpBuild(fag, exam, start){
+  const nodes = SKIDX.filter(i => (i.crumbs[0] === fag) && i.md && i.md.length > 200 && !i.crumbs.includes('Dokumenter fra Mac')).map(i => i.path.join('/'));
+  const days = []; let d = start; const last = addDays(exam, -1);
+  while (d < last) { days.push(d); d = addDays(d, 1); }
+  if (!days.length) days.push(start);
+  const studyDays = days.length > 3 ? days.slice(0, -2) : days, per = Math.ceil(nodes.length / studyDays.length) || 0;
+  return days.map((k, i) => ({ date: k, items: i < studyDays.length ? nodes.slice(i * per, (i + 1) * per) : [], cards: true, rep: i >= studyDays.length }));
+}
+function lpToday(k){ for (const p of lps) { const day = p.days.find(d => d.date === k); if (day && (day.items.length || day.cards) && k < p.exam) return { plan: p, day }; } return null; }
+function renderLaeseplan(){
+  const body = document.getElementById('lpBody'); if (!body) return;
+  const sel = document.getElementById('lpFag'); if (SK && sel.options.length !== SK.subjects.length) sel.innerHTML = SK.subjects.map(s => `<option>${skEsc(s.t)}</option>`).join('');
+  if (!SK) { body.innerHTML = '<p class="sub">Importér dine skolenoter først – læseplanen bygges ud fra dem.</p>'; return; }
+  const t = todayISO();
+  body.innerHTML = lps.length ? lps.map(p => {
+    const left = daysBetween(t, p.exam), doneN = p.days.filter(d => d.done).length, cur = p.days.find(d => d.date === t);
+    const list = p.days.filter(d => d.date >= addDays(t, -1)).slice(0, 14).map(d => `<div class="lpd ${d.date === t ? 'today' : ''} ${d.done ? 'done' : ''}"><button class="chk" data-lpd="${p.id}|${d.date}">${d.done ? '↺' : '✓'}</button><div style="flex:1;min-width:0"><b>${d.date === t ? 'I dag' : dShort(d.date)} · ${d.rep ? 'Repetition og flashcards' : d.items.length === 1 ? '1 note' : d.items.length + ' noter'}</b>${d.items.map(path => { const n = SKIDX.find(i => i.path.join('/') === path); return n ? `<a class="lpn" href="#skole/${path}">${skEsc(n.t)}</a>` : ''; }).join('')}${d.cards ? `<a class="lpn" href="#kort" data-lpfc="${skEsc(p.fag)}">🃏 Flashcards i ${skEsc(p.fag)}</a>` : ''}</div></div>`).join('');
+    return `<div class="card lpc"><div class="lphead"><div><b>${skEsc(p.fag)}</b><small>Eksamen ${parseISO(p.exam).toLocaleDateString('da-DK', { weekday: 'short', day: 'numeric', month: 'long' })} · ${left > 0 ? left + ' dage tilbage' : 'overstået'}</small></div><button class="x" data-lpdel="${p.id}">×</button></div><div class="lpbar"><i style="width:${Math.round(doneN / p.days.length * 100)}%"></i></div><small class="sub">${doneN} af ${p.days.length} dage klaret</small>${list || '<p class="sub">Planen er færdig.</p>'}</div>`;
+  }).join('') : '<p class="sub" style="margin-top:14px">Ingen læseplaner endnu. Vælg et fag og din eksamensdato ovenfor.</p>';
+}
+document.getElementById('lpAdd').addEventListener('click', () => {
+  const fag = document.getElementById('lpFag').value, exam = document.getElementById('lpExam').value; if (!fag || !exam) return toast('Vælg fag og eksamensdato');
+  if (exam <= todayISO()) return toast('Eksamensdatoen skal ligge i fremtiden');
+  const days = lpBuild(fag, exam, todayISO()); lps.push({ id: uid(), fag, exam, days }); store.set('mp_lp', lps);
+  if (typeof cds !== 'undefined' && !cds.some(c => c.date === exam && c.name.includes(fag))) { cds.push({ id: uid(), name: '🎤 Eksamen i ' + fag, date: exam }); store.set('mp_cd', cds); }
+  toast(`📖 Læseplan lavet: ${days.reduce((a, d) => a + d.items.length, 0)} noter fordelt på ${days.length} dage`); renderLaeseplan();
+});
+document.getElementById('lpBody').addEventListener('click', e => {
+  const c = e.target.closest('[data-lpd]'); if (c) { const [id, k] = c.dataset.lpd.split('|'), p = lps.find(x => x.id === id), d = p && p.days.find(x => x.date === k); if (d) { d.done = !d.done; store.set('mp_lp', lps); renderLaeseplan(); renderHomeSkema(); } return; }
+  const x = e.target.closest('[data-lpdel]'); if (x) { if (x.dataset.sure !== '1') { x.dataset.sure = '1'; x.textContent = '?'; return; } lps = lps.filter(p => p.id !== x.dataset.lpdel); store.set('mp_lp', lps); renderLaeseplan(); }
+  const f = e.target.closest('[data-lpfc]'); if (f) { store.set('fcsubj', f.dataset.lpfc); const s = document.getElementById('fcSubj'); if (s) s.innerHTML = ''; }
+});
+
+// ---------- FOKUS-TIMER ----------
+let fz = { mode: 'work', left: 25 * 60, run: false, end: 0, fag: kv('mp_fzfag', '') }, fzLog = kv('mp_focus', []), fzInt = null;
+const FZ_LEN = { work: 25 * 60, pause: 5 * 60, lang: 15 * 60 };
+function fzBeep(){ try { const a = new (window.AudioContext || window.webkitAudioContext)(); [0, .25, .5].forEach(t => { const o = a.createOscillator(), g = a.createGain(); o.frequency.value = 880; o.connect(g); g.connect(a.destination); g.gain.setValueAtTime(.2, a.currentTime + t); o.start(a.currentTime + t); o.stop(a.currentTime + t + .18); }); } catch (e) {} if (navigator.vibrate) navigator.vibrate([200, 100, 200]); }
+function fzTick(){
+  if (fz.run) { fz.left = Math.max(0, Math.round((fz.end - Date.now()) / 1000));
+    if (fz.left === 0) { fz.run = false; clearInterval(fzInt); fzBeep();
+      if (fz.mode === 'work') { fzLog.push({ date: todayISO(), fag: fz.fag || 'Andet', min: 25 }); store.set('mp_focus', fzLog); const n = fzLog.filter(x => x.date === todayISO()).length; fz.mode = n % 4 === 0 ? 'lang' : 'pause'; toast('🎉 25 minutter klaret – hold pause'); }
+      else { fz.mode = 'work'; toast('⏱️ Pausen er slut – klar til næste runde'); }
+      fz.left = FZ_LEN[fz.mode]; } }
+  renderFokus(true);
+}
+function renderFokus(only){
+  const el = document.getElementById('fzTime'); if (!el) return;
+  el.textContent = String(Math.floor(fz.left / 60)).padStart(2, '0') + ':' + String(fz.left % 60).padStart(2, '0');
+  document.getElementById('fzMode').textContent = fz.mode === 'work' ? 'Fokus' : fz.mode === 'pause' ? 'Kort pause' : 'Lang pause';
+  document.getElementById('fzGo').textContent = fz.run ? 'Pause' : (fz.left < FZ_LEN[fz.mode] ? 'Fortsæt' : 'Start');
+  document.getElementById('fzRing').style.setProperty('--p', (1 - fz.left / FZ_LEN[fz.mode]) * 100);
+  if (fz.run && location.hash !== '#fokus') document.getElementById('curV').textContent = `🎯 ${el.textContent}`;
+  if (only) return;
+  const sel = document.getElementById('fzFag'); if (sel.options.length < 2) { const f = SK ? SK.subjects.map(s => s.t) : []; sel.innerHTML = ['', ...f].map(x => `<option value="${skEsc(x)}">${x ? skEsc(x) : 'Vælg fag'}</option>`).join(''); sel.value = fz.fag; }
+  const m = iso(monday(0)), wk = fzLog.filter(x => x.date >= m), per = {};
+  wk.forEach(x => per[x.fag] = (per[x.fag] || 0) + x.min);
+  const max = Math.max(1, ...Object.values(per)), tod = fzLog.filter(x => x.date === todayISO()).length;
+  document.getElementById('fzStats').innerHTML = `<div class="fstats"><div><b>${tod}</b>runder i dag</div><div><b>${Math.round(wk.reduce((a, x) => a + x.min, 0) / 6) / 10}</b>timer i ugen</div><div><b>${fzLog.length}</b>runder i alt</div></div>` +
+    (Object.keys(per).length ? '<h2>Denne uge pr. fag</h2>' + Object.entries(per).sort((a, b) => b[1] - a[1]).map(([f, mn]) => `<div class="fzbar"><span>${skEsc(f)}</span><div><i style="width:${mn / max * 100}%"></i></div><b>${mn >= 60 ? (Math.round(mn / 6) / 10) + ' t' : mn + ' min'}</b></div>`).join('') : '');
+}
+document.getElementById('fzGo').addEventListener('click', () => { if (fz.run) { fz.run = false; clearInterval(fzInt); } else { fz.run = true; fz.end = Date.now() + fz.left * 1000; clearInterval(fzInt); fzInt = setInterval(fzTick, 500); } renderFokus(); });
+document.getElementById('fzReset').addEventListener('click', () => { fz.run = false; clearInterval(fzInt); fz.mode = 'work'; fz.left = FZ_LEN.work; renderFokus(); });
+document.getElementById('fzFag').addEventListener('change', e => { fz.fag = e.target.value; store.set('mp_fzfag', fz.fag); });
+document.addEventListener('visibilitychange', () => { if (!document.hidden && fz.run) fzTick(); });
+
+// ---------- KARAKTERER OG FRAVÆR ----------
+let grades = kv('mp_grades', []), absence = kv('mp_absence', { total: '', fag: {} });
+const G7 = [12, 10, 7, 4, 2, 0, -3];
+function renderKarakterer(){
+  const body = document.getElementById('kaBody'); if (!body) return;
+  const sel = document.getElementById('kaFag'); if (sel.options.length < 2) { const f = SKEMA ? [...new Set(SKEMA.lessons.map(l => lesFagName(l.fag)))] : []; const all = [...new Set(f.concat(SK ? SK.subjects.map(s => s.t) : []))]; sel.innerHTML = all.map(x => `<option>${skEsc(x)}</option>`).join('') + '<option>Andet</option>'; }
+  const per = {}; grades.forEach(g => (per[g.fag] = per[g.fag] || []).push(g));
+  const avg = a => a.reduce((s, g) => s + +g.k, 0) / a.length, all = grades.length ? avg(grades) : null;
+  let h = `<div class="fstats"><div><b>${all == null ? '–' : all.toFixed(1).replace('.', ',')}</b>gennemsnit</div><div><b>${grades.length}</b>karakterer</div><div><b class="${+absence.total >= 10 ? 'red' : ''}">${absence.total === '' ? '–' : String(absence.total).replace('.', ',') + '%'}</b>fravær</div></div>`;
+  if (+absence.total >= 10) h += `<div class="ovwarn" style="margin-top:12px">⚠️ Dit samlede fravær er ${absence.total}%. Tjek fraværsreglerne i Ludus – høj fravær kan betyde, at du skal til eksamen i alle fag.</div>`;
+  h += Object.keys(per).length ? '<h2>Pr. fag</h2>' + Object.entries(per).sort((a, b) => avg(a[1]) - avg(b[1])).map(([f, a]) => {
+    const ab = absence.fag[f]; return `<div class="kaf"><div class="kah"><b>${skEsc(f)}</b><span class="kaavg ${avg(a) < 4 ? 'low' : ''}">${avg(a).toFixed(1).replace('.', ',')}</span></div>${a.sort((x, y) => (y.date || '').localeCompare(x.date || '')).map(g => `<div class="kar"><span class="kk">${g.k}</span><span style="flex:1">${skEsc(g.type || 'Karakter')}${g.date ? ' · ' + parseISO(g.date).toLocaleDateString('da-DK', { day: 'numeric', month: 'short', year: 'numeric' }) : ''}</span><button class="x" data-kadel="${g.id}">×</button></div>`).join('')}${ab ? `<small class="sub">Fravær i faget: ${ab}%</small>` : ''}</div>`; }).join('') + '<p class="sub" style="margin-top:8px">Fagene med lavest snit står øverst – det er dem, der giver mest at bruge tid på.</p>'
+    : '<p class="sub" style="margin-top:14px">Ingen karakterer endnu. Tilføj dem nedenfor – fx standpunkt, terminsprøver og afleveringer.</p>';
+  body.innerHTML = h;
+  document.getElementById('kaAbs').value = absence.total;
+}
+document.getElementById('kaAdd').addEventListener('click', () => {
+  const k = document.getElementById('kaK').value, fag = document.getElementById('kaFag').value; if (k === '' || !fag) return;
+  grades.push({ id: uid(), fag, k: +k, type: document.getElementById('kaType').value.trim(), date: document.getElementById('kaDate').value || todayISO() }); store.set('mp_grades', grades);
+  document.getElementById('kaType').value = ''; toast('✓ Karakter gemt'); renderKarakterer();
+});
+document.getElementById('kaBody').addEventListener('click', e => { const b = e.target.closest('[data-kadel]'); if (!b) return; if (b.dataset.sure !== '1') { b.dataset.sure = '1'; b.textContent = '?'; return; } grades = grades.filter(g => g.id !== b.dataset.kadel); store.set('mp_grades', grades); renderKarakterer(); });
+document.getElementById('kaAbs').addEventListener('change', e => { absence.total = e.target.value === '' ? '' : +String(e.target.value).replace(',', '.'); store.set('mp_absence', absence); renderKarakterer(); });
+
+// ---------- SOP-PROJEKT ----------
+const SOP_DEF = () => ({ title: 'Mit SOP', sub: '', deadline: '', milestones: ['Emne, fag og vejleder på plads', 'Problemformulering godkendt', 'Teori og metode skrevet', 'Analyse i fag 1', 'Analyse i fag 2', 'Diskussion og vurdering', 'Konklusion, indledning og resumé', 'Korrektur, kildeliste og bilag', 'Aflevering'].map(t => ({ id: uid(), txt: t, date: '', done: false })),
+  lists: [{ name: 'Kilder', items: [] }, { name: 'Bilag', items: [] }, { name: 'Modeller og begreber', items: [] }, { name: 'Huskeliste og feedback', items: [] }], notes: '' });
+let sop = kv('mp_sop', null);
+function sopSave(){ store.set('mp_sop', sop); }
+function sopImport(d, msg){ if (!d || d.type !== 'mp-sop') return false; sop = Object.assign(SOP_DEF(), d.project || {}); sopSave(); msg.className = 'sync live'; msg.textContent = '✓ SOP-projektet er importeret.'; return true; }
+function sopAutoDates(){ if (!sop.deadline) return; const n = sop.milestones.length, t = todayISO(), total = Math.max(n, daysBetween(t, sop.deadline));
+  sop.milestones.forEach((m, i) => { if (!m.done && !m.fixed) m.date = i === n - 1 ? sop.deadline : addDays(t, Math.round(total * (i + 1) / n)); }); }
+function renderSop(){
+  const body = document.getElementById('sopBody'); if (!body) return; if (!sop) { sop = SOP_DEF(); sopSave(); }
+  const t = todayISO(), left = sop.deadline ? daysBetween(t, sop.deadline) : null, dn = sop.milestones.filter(m => m.done).length;
+  const next = sop.milestones.find(m => !m.done);
+  let h = `<div class="card sophead"><input id="sopTitle" class="sopt" value="${skEsc(sop.title)}"><input id="sopSub" class="sops" placeholder="Fag, case og vinkel" value="${skEsc(sop.sub)}">
+    <div class="frm" style="margin-top:8px"><label>Afleveringsfrist<input type="date" id="sopDl" value="${sop.deadline}"></label></div>
+    <div class="fstats" style="margin-top:6px"><div><b>${left == null ? '–' : left}</b>dage tilbage</div><div><b>${dn}/${sop.milestones.length}</b>milepæle</div><div><b>${sop.lists[0].items.length}</b>kilder</div></div>
+    <div class="lpbar"><i style="width:${Math.round(dn / sop.milestones.length * 100)}%"></i></div>${next ? `<p class="sub" style="margin:8px 0 0">Næste: <b>${skEsc(next.txt)}</b>${next.date ? ' · ' + dShort(next.date) : ''}${next.date && next.date < t ? ' – <span class="red">bagud</span>' : ''}</p>` : '<p class="sub" style="margin:8px 0 0">Alle milepæle er klaret 🎉</p>'}</div>`;
+  h += `<h2>Milepæle</h2>` + sop.milestones.map((m, i) => `<div class="hw ${m.done ? 'done' : ''} ${!m.done && m.date && m.date < t ? 'late' : ''}"><button class="chk" data-sm="${i}">${m.done ? '↺' : '✓'}</button><div style="flex:1;min-width:0"><b>${skEsc(m.txt)}</b><div class="ls2">${m.date ? dShort(m.date) : 'Ingen dato'}</div></div><input type="date" class="smd" data-smd="${i}" value="${m.date}"></div>`).join('') +
+    (sop.deadline ? `<button class="btn" id="sopAuto">Fordel milepælene jævnt frem til fristen</button>` : '');
+  sop.lists.forEach((l, li) => {
+    const open = l.items.filter(x => !x.done).length;
+    h += `<details class="sopl" ${li === 3 ? 'open' : ''}><summary>${skEsc(l.name)} <span>${l.items.length ? (li === 0 ? l.items.length : open + ' mangler') : ''}</span></summary>${l.items.map((x, xi) => `<div class="sopi ${x.done ? 'done' : ''}"><button class="chk" data-si="${li}|${xi}">${x.done ? '↺' : '✓'}</button><div style="flex:1;min-width:0">${x.url ? `<a href="${skEsc(x.url)}" target="_blank" rel="noopener">${skEsc(x.txt)}</a>` : `<span>${skEsc(x.txt)}</span>`}${x.sub ? `<small>${skEsc(x.sub)}</small>` : ''}</div><button class="x" data-sid="${li}|${xi}">×</button></div>`).join('')}
+      <div class="sopadd"><input placeholder="${li === 0 ? 'Titel eller link til kilde' : 'Tilføj…'}" data-sa="${li}"><button data-sab="${li}">+</button></div></details>`;
+  });
+  h += `<h2>Noter</h2><textarea id="sopNotes" class="sopnotes" placeholder="Problemformulering, idéer, spørgsmål til vejleder…">${skEsc(sop.notes || '')}</textarea>`;
+  body.innerHTML = h;
+}
+document.getElementById('sopBody').addEventListener('click', e => {
+  const m = e.target.closest('[data-sm]'); if (m) { const x = sop.milestones[+m.dataset.sm]; x.done = !x.done; sopSave(); renderSop(); return; }
+  const s = e.target.closest('[data-si]'); if (s) { const [a, b] = s.dataset.si.split('|').map(Number); const x = sop.lists[a].items[b]; x.done = !x.done; sopSave(); renderSop(); return; }
+  const d = e.target.closest('[data-sid]'); if (d) { if (d.dataset.sure !== '1') { d.dataset.sure = '1'; d.textContent = '?'; return; } const [a, b] = d.dataset.sid.split('|').map(Number); sop.lists[a].items.splice(b, 1); sopSave(); renderSop(); return; }
+  const ad = e.target.closest('[data-sab]'); if (ad) { const li = +ad.dataset.sab, inp = document.querySelector(`[data-sa="${li}"]`), v = inp.value.trim(); if (!v) return; const url = /^https?:\/\//.test(v) ? v : ''; sop.lists[li].items.push({ id: uid(), txt: url ? v.replace(/^https?:\/\/(www\.)?/, '').split('/')[0] : v, url, sub: url ? 'Tilføjet ' + dShort(todayISO()) : '', done: false }); sopSave(); renderSop(); document.querySelectorAll('.sopl')[li].open = true; return; }
+  if (e.target.id === 'sopAuto') { sop.milestones.forEach(x => delete x.fixed); sopAutoDates(); sopSave(); renderSop(); toast('📅 Milepælene er fordelt'); }
+});
+document.getElementById('sopBody').addEventListener('change', e => {
+  const t = e.target;
+  if (t.id === 'sopTitle') sop.title = t.value; else if (t.id === 'sopSub') sop.sub = t.value; else if (t.id === 'sopNotes') sop.notes = t.value;
+  else if (t.id === 'sopDl') { sop.deadline = t.value; if (sop.milestones.every(m => !m.date)) sopAutoDates(); if (sop.deadline && typeof cds !== 'undefined' && !cds.some(c => c.name.includes('SOP') && c.date === sop.deadline)) { cds.push({ id: uid(), name: '📚 SOP-aflevering', date: sop.deadline }); store.set('mp_cd', cds); } }
+  else if (t.dataset.smd != null) { const x = sop.milestones[+t.dataset.smd]; x.date = t.value; x.fixed = true; }
+  else return; sopSave(); if (t.id !== 'sopNotes' && t.id !== 'sopTitle' && t.id !== 'sopSub') renderSop();
+});
+document.getElementById('sopBody').addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.dataset.sa != null) { e.preventDefault(); document.querySelector(`[data-sab="${e.target.dataset.sa}"]`).click(); } });
+
+// ---------- KALENDER (.ics) TIL SKOLE ----------
+function icsSchool(withLessons){
+  const pad = n => String(n).padStart(2, '0'), stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+  const loc = (k, hm) => k.replace(/-/g, '') + 'T' + hm.replace(':', '') + '00';
+  const esc2 = s => String(s || '').replace(/[\\,;]/g, m => '\\' + m).replace(/\n/g, '\\n');
+  const utc = d => d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z';
+  const ev = [];
+  (SKEMA ? SKEMA.deadlines : []).forEach((d, i) => { const t = new Date(d.due), s = new Date(t - 30 * 6e4);
+    ev.push(['BEGIN:VEVENT', `UID:dl-${i}-${t.getTime()}@daily`, `DTSTAMP:${stamp}`, `DTSTART:${utc(s)}`, `DTEND:${utc(t)}`, `SUMMARY:📌 Aflevering: ${esc2(d.titel)}`, `DESCRIPTION:${esc2(d.fag)}${d.url ? '\\n' + esc2(d.url) : ''}`, d.url ? `URL:${d.url}` : '',
+      'BEGIN:VALARM', 'ACTION:DISPLAY', `DESCRIPTION:Aflevering i morgen: ${esc2(d.titel)}`, 'TRIGGER:-PT1440M', 'END:VALARM',
+      'BEGIN:VALARM', 'ACTION:DISPLAY', `DESCRIPTION:Aflevering om 3 timer: ${esc2(d.titel)}`, 'TRIGGER:-PT150M', 'END:VALARM', 'END:VEVENT'].filter(Boolean).join('\r\n')); });
+  if (sop && sop.deadline) ev.push(['BEGIN:VEVENT', `UID:sop-${sop.deadline}@daily`, `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${sop.deadline.replace(/-/g, '')}`, `SUMMARY:📚 ${esc2(sop.title)} – aflevering`, 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:SOP om en uge', 'TRIGGER:-P7D', 'END:VALARM', 'END:VEVENT'].join('\r\n'));
+  lps.forEach(p => ev.push(['BEGIN:VEVENT', `UID:exam-${p.id}@daily`, `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${p.exam.replace(/-/g, '')}`, `SUMMARY:🎤 Eksamen i ${esc2(p.fag)}`, 'END:VEVENT'].join('\r\n')));
+  if (withLessons && SKEMA) SKEMA.lessons.forEach(l => { const r = scRoom(l.lokale);
+    ev.push(['BEGIN:VEVENT', `UID:les-${l.date}-${l.from.replace(':', '')}-${esc2(l.fag).replace(/\W/g, '')}@daily`, `DTSTAMP:${stamp}`, `DTSTART;TZID=Europe/Copenhagen:${loc(l.date, l.from)}`, `DTEND;TZID=Europe/Copenhagen:${loc(l.date, l.to)}`, `SUMMARY:${esc2(scFag(l.fag))}${l.emne ? ' – ' + esc2(l.emne) : ''}`, `LOCATION:${esc2(r.room)}`, 'END:VEVENT'].join('\r\n')); });
+  return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Daily//DA', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:Skole (Daily)',
+    'BEGIN:VTIMEZONE', 'TZID:Europe/Copenhagen', 'BEGIN:STANDARD', 'DTSTART:19701025T030000', 'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU', 'TZOFFSETFROM:+0200', 'TZOFFSETTO:+0100', 'END:STANDARD',
+    'BEGIN:DAYLIGHT', 'DTSTART:19700329T020000', 'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU', 'TZOFFSETFROM:+0100', 'TZOFFSETTO:+0200', 'END:DAYLIGHT', 'END:VTIMEZONE', ...ev, 'END:VCALENDAR'].join('\r\n');
+}
+async function icsSchoolShare(withLessons){
+  if (!SKEMA) return toast('Importér skemaet først');
+  const data = icsSchool(withLessons), name = withLessons ? 'skole-skema-og-afleveringer.ics' : 'skole-afleveringer.ics';
+  try { const f = new File([data], name, { type: 'text/calendar' }); if (navigator.canShare && navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], title: 'Skole i kalenderen' }); return; } } catch (err) { if (err && err.name === 'AbortError') return; }
+  const a = document.createElement('a'); a.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(data); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  toast('✓ Åbn filen og tryk "Tilføj alle"');
+}
+document.getElementById('icsDl').addEventListener('click', () => icsSchoolShare(false));
+document.getElementById('icsAll').addEventListener('click', () => icsSchoolShare(true));
+
+// ---------- BACKUP MED EGNE NOTER ----------
+async function mineForBackup(){
+  const toData = b => new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = () => res(null); r.readAsDataURL(b); });
+  const total = MINE.reduce((a, x) => a + (x.size || 0), 0), withFiles = total < 30 * 1048576, items = [];
+  for (const x of MINE) { if (x.blob && !withFiles) continue; const y = Object.assign({}, x); if (x.blob) { y.data = await toData(x.blob); delete y.blob; } items.push(y); }
+  return { items, skipped: withFiles ? 0 : MINE.filter(x => x.blob).length };
+}
+
+const VIEWS = ['overblik','lektier','laeseplan','fokus','karakterer','sop','skema','kort','skole','hjem','idag','uge','indkob','lon','penge','spil','streak','vand','vaegt','sparet','badges','hjul','timer','rapport','opskrifter','indstillinger','kat','udfordring','quiz','rejse','wrapped','traening','billeder','faste','fryser','nedtaelling'];
 function route(){
   const hv = location.hash.slice(1).split('/')[0], v = VIEWS.includes(hv) ? hv : 'hjem';
   VIEWS.forEach(x => document.getElementById('v-'+x).classList.toggle('on', x === v));
@@ -3512,6 +3872,7 @@ function route(){
   if (v === 'hjem') { renderHome(); renderHome2(); renderHome3(); }
   if (v === 'skole') renderSkole();
   if (v === 'skema') renderSkema();
+  if (v === 'overblik') renderOverblik(); if (v === 'lektier') renderLektier(); if (v === 'laeseplan') renderLaeseplan(); if (v === 'fokus') renderFokus(); if (v === 'karakterer') renderKarakterer(); if (v === 'sop') renderSop();
   if (v === 'kort') renderKort();
   if (v === 'rapport') renderReport();
   if (v === 'opskrifter') renderRecipes();
@@ -3523,6 +3884,7 @@ function route(){
   if (v === 'hjem' || v === 'badges') renderLevel();
   if (v === 'hjul') drawWheel();
   if (v === 'badges') renderBadges();
+  if (fz.run && v !== 'fokus') renderFokus(true);
   if (typeof tm !== 'undefined' && tm.total && v !== 'timer') document.getElementById('curV').textContent = `⏲️ ${fmtT(tm.left)}`;
   setMenu(false);
   window.scrollTo(0,0);
