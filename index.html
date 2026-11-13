@@ -472,6 +472,16 @@
   .lesson .ls2{color:var(--muted);font-size:12.5px}
   .lesson.now{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset}
   .lesson.past{opacity:.5}
+  .lesson .lmain{flex:1;min-width:0}
+  .lnbtn{background:none;border:1px solid var(--line);border-radius:10px;padding:7px 9px;font:600 12px Inter,sans-serif;color:var(--text);cursor:pointer;white-space:nowrap}
+  .lnbtn.has{border-color:var(--blue);color:var(--blue)}
+  .lnote{margin:-3px 0 9px 58px;font-size:14px}
+  .lnote .md{margin:0}.lnote .md p{margin:0 0 4px}
+  .lnote.edit textarea{width:100%;box-sizing:border-box;min-height:120px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;font-size:15px;color:var(--text);line-height:1.5;resize:vertical}
+  .lnote .minebar{margin-top:6px}
+  body.minimal .lnbtn{border-radius:0;border-color:#000;text-transform:uppercase;letter-spacing:.08em;font-size:10px}
+  body.minimal .lnbtn.has{background:#000;color:#fff}
+  body.minimal .lnote.edit textarea{background:#fff;border:1px solid #000;border-radius:0}
   .dl{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px;margin-bottom:7px;text-decoration:none;color:var(--text)}
   .dl .dd{min-width:54px;text-align:center;font-weight:800;font-size:18px;line-height:1}
   .dl .dd small{display:block;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;margin-top:3px}
@@ -965,7 +975,7 @@
     <div class="sync" id="payNext"></div>
   </div>
   <h2>ℹ️ Om appen</h2>
-  <div class="card"><div class="sub" style="line-height:1.6">Daily · version 17<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
+  <div class="card"><div class="sub" style="line-height:1.6">Daily · version 18<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
   </div></div>
 </section>
 <!-- KAT -->
@@ -3301,7 +3311,7 @@ document.getElementById('skQ').addEventListener('input', () => { const q = docum
   if (!/^#skole\/?(sog)?$/.test(location.hash) && q.length >= 2) { history.replaceState(null, '', '#skole/sog'); renderSkole(); return; }
   if (/^#skole\/?(sog)?$/.test(location.hash) || location.hash === '#skole') { if (q.length >= 2 || location.hash === '#skole/sog') skSearch(); else renderSkole(); } });
 if (store.get('skbig', false)) document.body.classList.add('sk-big');
-Promise.all([skLoad(), skMineLoad()]).then(([d]) => { if (d && d.subjects) { SK = d; skIndex(); } skIndexMine(); if (location.hash.startsWith('#skole')) renderSkole(); if (location.hash === '#kort') renderKort(); });
+Promise.all([skLoad(), skMineLoad()]).then(([d]) => { if (d && d.subjects) { SK = d; skIndex(); } skIndexMine(); if (location.hash === '#skema') renderSkema(); renderHomeSkema(); if (location.hash.startsWith('#skole')) renderSkole(); if (location.hash === '#kort') renderKort(); });
 
 
 // ================= SKEMA & AFLEVERINGER (importeres privat fra Ludus og Mit Niels Brock) =================
@@ -3318,10 +3328,46 @@ function scImport(d, msg){
 }
 function lessonsOn(isoDate){ return SKEMA ? SKEMA.lessons.filter(l => l.date === isoDate).sort((a,b) => a.from.localeCompare(b.from)) : []; }
 const nowHM = () => { const n = new Date(); return String(n.getHours()).padStart(2,'0') + ':' + String(n.getMinutes()).padStart(2,'0'); };
+const lesId = l => 'les:' + l.date + '|' + l.from + '|' + l.fag;
+const lesNote = l => MINE.find(x => x.lesson === lesId(l));
+let lesOpen = null;
 function lessonHtml(l, today){
   const r = scRoom(l.lokale), t = nowHM(); const cls = today ? (t >= l.from && t < l.to ? 'now' : (t >= l.to ? 'past' : '')) : '';
-  return `<div class="lesson ${cls}"><div class="tm">${l.from}<small>${l.to}</small></div><div><b>${skEsc(scFag(l.fag))}</b><div class="ls2">${[l.emne, r.room, r.teacher].filter(Boolean).map(skEsc).join(' · ')}</div></div></div>`;
+  const id = lesId(l), nt = lesNote(l), open = lesOpen === id;
+  let h = `<div class="lesson ${cls}"><div class="tm">${l.from}<small>${l.to}</small></div><div class="lmain"><b>${skEsc(scFag(l.fag))}</b><div class="ls2">${[l.emne, r.room, r.teacher].filter(Boolean).map(skEsc).join(' · ')}</div></div><button class="lnbtn ${nt ? 'has' : ''}" data-les="${skEsc(id)}">${nt ? '📝 Note' : '+ Note'}</button></div>`;
+  if (open) h += `<div class="lnote edit"><textarea id="lesText" placeholder="Hvad skal du i timen, lektier, hvad I gennemgik… Du kan bruge **fed** og - punkter">${skEsc(nt ? nt.text || '' : '')}</textarea><div class="minebar"><button class="pri" id="lesSave">Gem</button><button id="lesCancel">Luk</button>${nt ? '<button id="lesDel">Slet</button>' : ''}</div></div>`;
+  else if (nt && nt.text) h += `<div class="lnote"><div class="md">${skMd(nt.text)}</div></div>`;
+  return h;
 }
+// Timenoter gemmes som egne noter under faget › Timenoter i Skole
+const LES_MAP = { 'International Økonomi': 'IØ', 'Afsætning': 'Afsætning', 'VØ': 'VØ', 'Dansk': 'Dansk', 'Engelsk': 'Engelsk', 'Historie': 'Historie', 'Finansiering': 'Finansiering', 'SOP': 'SOP', 'Tysk': 'Tysk', 'Matematik': 'Matematik' };
+async function lesTarget(l){
+  const want = LES_MAP[scFag(l.fag)] || 'Andet';
+  let i = SK ? SK.subjects.findIndex(x => x.t === want) : -1;
+  if (i < 0 && SK) { i = SK.subjects.findIndex(x => x.t === 'Andet'); }
+  const subj = i >= 0 ? SK.subjects[i].t : want, key = 'n:' + subj, href = i >= 0 ? skHref([i]) : '#skole';
+  let pg = MINE.find(x => x.type === 'page' && x.key === key && x.title === 'Timenoter');
+  if (!pg) { pg = { id: uid(), type: 'page', key, href, title: 'Timenoter', created: Date.now() }; await skMinePut(pg); }
+  return pg;
+}
+function lesTitle(l){ const d = new Date(l.date + 'T12:00'); return cap(WD[d.getDay()]) + ' ' + d.getDate() + '/' + (d.getMonth() + 1) + ' kl. ' + l.from + ' · ' + scFag(l.fag) + (l.emne ? ' – ' + l.emne : ''); }
+function lesBind(){
+  const ta = document.getElementById('lesText'); if (!ta) return; ta.focus();
+  const l = SKEMA.lessons.find(x => lesId(x) === lesOpen); if (!l) return;
+  document.getElementById('lesCancel').onclick = () => { lesOpen = null; renderSkema(); };
+  document.getElementById('lesSave').onclick = async () => {
+    const text = ta.value, nt = lesNote(l);
+    if (!text.trim()) { if (nt) { await skMineDel(nt.id); toast('Note slettet'); } lesOpen = null; skIndexMine(); renderSkema(); renderHomeSkema(); return; }
+    const pg = nt ? null : await lesTarget(l);
+    await skMinePut(Object.assign({}, nt || { id: uid(), type: 'text', key: 'u:' + pg.id, href: '#skole/u/' + pg.id, created: Date.now(), lesson: lesId(l) }, { title: lesTitle(l), text, updated: Date.now() }));
+    toast('✓ Note gemt – også under ' + (LES_MAP[scFag(l.fag)] || 'Andet') + ' › Timenoter'); lesOpen = null; skIndexMine(); renderSkema(); renderHomeSkema();
+  };
+  const del = document.getElementById('lesDel'); if (del) del.onclick = async () => {
+    if (del.dataset.sure !== '1') { del.dataset.sure = '1'; del.textContent = 'Sikker?'; del.classList.add('warnb'); return; }
+    await skMineDel(lesNote(l).id); toast('Slettet'); lesOpen = null; skIndexMine(); renderSkema(); renderHomeSkema(); };
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-les]'); if (!b) return; e.preventDefault(); lesOpen = lesOpen === b.dataset.les ? null : b.dataset.les;
+  if (location.hash !== '#skema') { location.hash = '#skema'; return; } renderSkema(); });
 function upcomingDeadlines(all){
   if (!SKEMA) return []; const n = Date.now() - 36e5;
   return SKEMA.deadlines.filter(d => all || new Date(d.due).getTime() >= n).sort((a,b) => a.due.localeCompare(b.due));
@@ -3337,6 +3383,8 @@ function renderSkema(){
   document.querySelectorAll('#scSeg button').forEach(b => b.classList.toggle('on', b.dataset.w === scW));
   if (!SKEMA) { sub.textContent = ''; body.innerHTML = `<div class="card skempty"><div class="big">🗓️</div><h3>Intet skema endnu</h3><p class="sub">Importér <b>mathias-skema.json</b> under Indstillinger → Importér. Skemaet og afleveringerne gemmes kun på denne enhed.</p></div>`; return; }
   sub.textContent = `Fra Ludus og Mit Niels Brock · opdateret ${SKEMA.made}`;
+  if (lesOpen && scW === 'a') scW = '0';
+  if (lesOpen) { const ld = lesOpen.slice(4, 14), m0 = new Date(); m0.setHours(0,0,0,0); m0.setDate(m0.getDate() - ((m0.getDay() + 6) % 7)); const wk = Math.floor((new Date(ld + 'T12:00') - m0) / (7 * 864e5)); if (wk === 0 || wk === 1) scW = String(wk); document.querySelectorAll('#scSeg button').forEach(b => b.classList.toggle('on', b.dataset.w === scW)); }
   if (scW === 'a') {
     const list = upcomingDeadlines(false);
     body.innerHTML = list.length ? '<div style="margin-top:14px">' + list.map(dlHtml).join('') + '</div>' : '<p class="sub" style="margin-top:14px">Ingen kommende afleveringer 🎉</p>';
@@ -3349,7 +3397,7 @@ function renderSkema(){
       h += `<div class="scday ${k === today ? 'today' : ''}"><h3>${label}${k === today ? ' · i dag' : ''}</h3>${ls.length ? ls.map(l => lessonHtml(l, k === today)).join('') : '<p class="sub" style="margin:0 0 6px">Ingen lektioner</p>'}${dls.map(dlHtml).join('')}</div>`; }
     const last = SKEMA.lessons.length ? SKEMA.lessons[SKEMA.lessons.length - 1].date : '';
     if (last && iso(d0) > last) h += `<p class="sub" style="margin-top:14px">Skemaet er kun importeret til ${last}. Bed Claude om at hente et nyt.</p>`;
-    body.innerHTML = h;
+    body.innerHTML = h; lesBind();
   }
 }
 document.getElementById('scSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; scW = b.dataset.w; renderSkema(); });
@@ -3360,7 +3408,7 @@ function renderHomeSkema(){
   const n = new Date(); let d = new Date(n); d.setHours(0,0,0,0); let ls = lessonsOn(iso(d)); let label = 'I dag';
   const t = nowHM(); if (!ls.length || ls[ls.length - 1].to <= t) { for (let i = 1; i < 8; i++) { const x = new Date(d); x.setDate(x.getDate() + i); const l2 = lessonsOn(iso(x)); if (l2.length) { ls = l2; label = i === 1 ? 'I morgen' : cap(WD[x.getDay()]); break; } } }
   const dls = upcomingDeadlines(false).filter(x => !dlDone[x.url || x.titel]).slice(0, 2);
-  el.innerHTML = `<div class="hsk"><a class="card" href="#skema" style="display:block;text-decoration:none;color:inherit"><div class="tk">🎒 ${label}</div>${ls.length ? ls.map(l => `<div class="row2"><span>${l.from}</span><span>${skEsc(scFag(l.fag))}${l.emne ? ' – ' + skEsc(l.emne) : ''}</span></div>`).join('') : '<div class="sub">Ingen lektioner</div>'}${dls.length ? `<div class="tk" style="margin-top:12px">📌 Næste afleveringer</div>` + dls.map(x => { const days = Math.ceil((new Date(x.due) - n) / 864e5); return `<div class="row2"><span>${days <= 0 ? 'i dag' : days + ' d'}</span><span>${skEsc(x.titel)} <span class="sub">· ${skEsc(x.fag)}</span></span></div>`; }).join('') : ''}</a></div>`;
+  el.innerHTML = `<div class="hsk"><a class="card" href="#skema" style="display:block;text-decoration:none;color:inherit"><div class="tk">🎒 ${label}</div>${ls.length ? ls.map(l => { const nt = lesNote(l); return `<div class="row2"><span>${l.from}</span><span>${skEsc(scFag(l.fag))}${l.emne ? ' – ' + skEsc(l.emne) : ''}${nt ? ' 📝' : ''}</span></div>${nt && nt.text ? `<div class="sub" style="margin:-2px 0 6px 52px;font-size:13px">${skEsc(nt.text.replace(/[#*_>-]/g, '').trim().slice(0, 90))}${nt.text.length > 90 ? '…' : ''}</div>` : ''}`; }).join('') : '<div class="sub">Ingen lektioner</div>'}${dls.length ? `<div class="tk" style="margin-top:12px">📌 Næste afleveringer</div>` + dls.map(x => { const days = Math.ceil((new Date(x.due) - n) / 864e5); return `<div class="row2"><span>${days <= 0 ? 'i dag' : days + ' d'}</span><span>${skEsc(x.titel)} <span class="sub">· ${skEsc(x.fag)}</span></span></div>`; }).join('') : ''}</a></div>`;
 }
 
 // ================= FLASHCARDS (bygges ud fra skolenoterne) =================
