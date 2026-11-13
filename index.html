@@ -435,6 +435,31 @@
   body.minimal .md blockquote{background:#F5F5F5;border-left-color:#000}
   body.minimal .md mark,body.minimal .skres mark{background:#000;color:#fff}
   body.minimal .md a{color:#000}
+
+  .mineadd{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .mineadd button,.mineadd label{flex:1;min-width:96px;text-align:center;background:var(--card);border:1px dashed var(--line);color:var(--text);border-radius:14px;padding:12px 10px;font:600 13px Inter,sans-serif;cursor:pointer}
+  .minelist{display:flex;flex-direction:column;gap:10px}
+  .mine{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+  .mine .md{margin-top:0;font-size:15px}
+  .mine .mt2{display:block;font-size:16px;margin-bottom:4px}
+  .mine.edit input,.mine.edit textarea{width:100%;box-sizing:border-box;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;font:inherit;font-size:15px;color:var(--text);margin-bottom:8px}
+  .mine.edit textarea{min-height:160px;resize:vertical;line-height:1.5}
+  .minebar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+  .minebar small{flex:1;color:var(--muted);font-size:12px}
+  .minebar button,.minebar .mbtn{background:var(--card2);border:1px solid var(--line);color:var(--text);border-radius:99px;padding:7px 13px;font:600 12px Inter,sans-serif;cursor:pointer;text-decoration:none}
+  .minebar button.pri{background:var(--blue);color:#0E0F12;border-color:var(--blue)}
+  .minebar button.warnb{background:var(--red);color:#fff;border-color:var(--red)}
+  .minefile{display:flex;gap:12px;align-items:center}
+  .minefile .fi{font-size:28px}
+  .minefile b{display:block;font-size:14.5px;word-break:break-word}
+  .minefile small{color:var(--muted);font-size:12px}
+  .mineimg{width:100%;max-height:320px;object-fit:contain;border-radius:10px;margin-bottom:10px;background:var(--card2)}
+  .skrow.own span::before{content:'📁 '}
+  body.minimal .mineadd button,body.minimal .mineadd label{background:#fff;border:1px solid #000;font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:11px}
+  body.minimal .mine{background:#fff;border-color:#E5E5E5}
+  body.minimal .minebar button,body.minimal .minebar .mbtn{background:#fff;border-color:#000;font-weight:500;text-transform:uppercase;letter-spacing:.08em;font-size:10.5px}
+  body.minimal .minebar button.pri{background:#000;color:#fff}
+  body.minimal .mine.edit input,body.minimal .mine.edit textarea{background:#fff;border:1px solid #000}
   /* ===== MINIMAL (inspireret af minimalistiske modebutikker) ===== */
   .wm,.srchbtn,.msearch,.mtabs,.mbm{display:none}
   html:has(body.minimal){background:#fff}
@@ -853,7 +878,7 @@
     <div class="sub" style="line-height:1.5">Alt i appen gemmes kun på denne enhed. Tag en backup en gang om ugen og gem filen i Filer eller iCloud – så mister du aldrig noget.</div>
     <div class="sync" id="bkLast"></div>
     <button class="btn primary" id="exportBtn">💾 Gem backup nu</button>
-    <label class="btn filebtn">📥 Importér backup, datafil eller skolenoter<input type="file" id="importFile" accept=".json,application/json"></label>
+    <label class="btn filebtn">📥 Importér backup, datafil eller skolenoter<input type="file" id="importFile"></label>
     <div class="sync" id="dataMsg"></div>
     <div class="row"><label>Påmind mig hver</label><span class="unit"><input id="bkEvery" inputmode="numeric"><em>dage</em></span></div>
   </div>
@@ -881,7 +906,7 @@
     <div class="sync" id="payNext"></div>
   </div>
   <h2>ℹ️ Om appen</h2>
-  <div class="card"><div class="sub" style="line-height:1.6">Mealprep · version 11<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
+  <div class="card"><div class="sub" style="line-height:1.6">Mealprep · version 13<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
   </div></div>
 </section>
 <!-- KAT -->
@@ -1678,8 +1703,8 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
 document.getElementById('importFile').addEventListener('change', async e => {
   const f = e.target.files && e.target.files[0]; const msg = document.getElementById('dataMsg'); if (!f) return;
   try {
-    const d = JSON.parse(await f.text());
-    if (await skImport(d, msg)) { e.target.value = ''; return; }
+    const d = JSON.parse((await f.text()).replace(/^\uFEFF/, ''));
+    if (await skImport(d, msg) || await skMineImport(d, msg)) { e.target.value = ''; return; }
     if (d.app !== 'mealprep') throw new Error('forkert fil');
     if (d.all && typeof d.all === 'object') { Object.entries(d.all).forEach(([k, v]) => { if (k.startsWith('mp_')) try { localStorage.setItem(k, v); } catch (e) {} });
       msg.className = 'sync live'; msg.textContent = '✓ Hele backuppen er gendannet. Appen genindlæses…'; setTimeout(() => location.reload(), 900); return; }
@@ -2936,10 +2961,90 @@ window.addEventListener('scroll', () => document.getElementById('top').classList
 
 
 // ================= SKOLE (noter importeres privat og gemmes kun på enheden) =================
-const SKDB = () => new Promise((res, rej) => { const r = indexedDB.open('mealprep-skole', 1); r.onupgradeneeded = () => r.result.createObjectStore('d'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+const SKDB = () => new Promise((res, rej) => { const r = indexedDB.open('mealprep-skole', 2); r.onupgradeneeded = () => { const db = r.result; if (!db.objectStoreNames.contains('d')) db.createObjectStore('d'); if (!db.objectStoreNames.contains('m')) db.createObjectStore('m', { keyPath: 'id' }); }; r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
 async function skSave(data){ const db = await SKDB(); await new Promise((res, rej) => { const t = db.transaction('d', 'readwrite'); t.objectStore('d').put(data, 'notes'); t.oncomplete = res; t.onerror = () => rej(t.error); }); }
 async function skLoad(){ try { const db = await SKDB(); return await new Promise(res => { const q = db.transaction('d').objectStore('d').get('notes'); q.onsuccess = () => res(q.result || null); q.onerror = () => res(null); }); } catch (e) { return null; } }
 let SK = null, SKIDX = [];
+
+// ---------- Mine tilføjelser (tekst, dokumenter og egne underemner) ----------
+let MINE = [];
+async function skMineLoad(){ try { const db = await SKDB(); MINE = await new Promise(res => { const q = db.transaction('m').objectStore('m').getAll(); q.onsuccess = () => res(q.result || []); q.onerror = () => res([]); }); } catch (e) { MINE = []; } }
+async function skMinePut(e){ const db = await SKDB(); await new Promise((res, rej) => { const t = db.transaction('m', 'readwrite'); t.objectStore('m').put(e); t.oncomplete = res; t.onerror = () => rej(t.error); }); const i = MINE.findIndex(x => x.id === e.id); if (i >= 0) MINE[i] = e; else MINE.push(e); }
+async function skMineDel(id){ const kids = MINE.filter(x => x.key === 'u:' + id); for (const k of kids) await skMineDel(k.id);
+  const db = await SKDB(); await new Promise(res => { const t = db.transaction('m', 'readwrite'); t.objectStore('m').delete(id); t.oncomplete = res; t.onerror = res; }); MINE = MINE.filter(x => x.id !== id); }
+const skKey = chain => 'n:' + chain.map(c => c.t).join(' › ');
+const skMineFor = key => MINE.filter(x => x.key === key).sort((a, b) => a.created - b.created);
+const skSize = b => b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB';
+const skFileIcon = m => /pdf/.test(m) ? '📕' : /image/.test(m) ? '🖼️' : /word|document/.test(m) ? '📘' : /sheet|excel/.test(m) ? '📗' : /presentation|powerpoint/.test(m) ? '📙' : /audio/.test(m) ? '🎧' : /video/.test(m) ? '🎬' : '📄';
+let skUrls = [];
+function skMineHtml(key){
+  skUrls.forEach(u => URL.revokeObjectURL(u)); skUrls = [];
+  const items = skMineFor(key), pages = items.filter(x => x.type === 'page'), rest = items.filter(x => x.type !== 'page');
+  let h = '<h2>Mine tilføjelser</h2><div class="mineadd"><button data-a="text">✏️ Tekst</button><label>📎 Dokument<input type="file" id="mineFile" multiple style="display:none"></label><button data-a="page">📁 Nyt underemne</button></div><div id="mineEd"></div>';
+  if (pages.length) h += '<div class="sklist" style="margin-bottom:10px">' + pages.map(p => `<a class="skrow own" href="#skole/u/${p.id}"><span>${skEsc(p.title)}</span><small>${skMineFor('u:' + p.id).length} ting</small></a>`).join('') + '</div>';
+  if (!rest.length && !pages.length) h += '<p class="sub">Her kan du skrive dine egne noter eller gemme dokumenter, billeder og PDF\u2019er til emnet.</p>';
+  h += '<div class="minelist">' + rest.map(x => {
+    const when = new Date(x.updated || x.created).toLocaleDateString('da-DK', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (x.type === 'text') return `<div class="mine" data-id="${x.id}">${x.title ? `<b class="mt2">${skEsc(x.title)}</b>` : ''}<div class="md">${skMd(x.text || '')}</div><div class="minebar"><small>✏️ ${when}</small><button data-e="${x.id}">Rediger</button><button data-d="${x.id}">Slet</button></div></div>`;
+    const url = URL.createObjectURL(x.blob); skUrls.push(url);
+    const img = /^image\//.test(x.mime) ? `<a href="${url}" target="_blank" rel="noopener"><img class="mineimg" src="${url}" alt=""></a>` : '';
+    return `<div class="mine file" data-id="${x.id}">${img}<div class="minefile"><span class="fi">${skFileIcon(x.mime)}</span><div><b>${skEsc(x.name)}</b><small>${skSize(x.size)} · ${when}</small></div></div><div class="minebar"><a class="mbtn" href="${url}" target="_blank" rel="noopener">Åbn</a><a class="mbtn" href="${url}" download="${skEsc(x.name)}">Hent</a><button data-d="${x.id}">Slet</button></div></div>`;
+  }).join('') + '</div>';
+  return h;
+}
+function skMineBind(key, href){
+  const root = document.getElementById('skBody'), ed = document.getElementById('mineEd');
+  const editor = (x, isPage) => {
+    ed.innerHTML = `<div class="mine edit">${isPage ? '<input id="meTitle" placeholder="Navn på underemnet, fx Kapitel 12 – Opgaver">' : `<input id="meTitle" placeholder="Overskrift (valgfri)" value="${skEsc(x && x.title || '')}"><textarea id="meText" rows="8" placeholder="Skriv din note… Du kan bruge **fed**, - punkter og # overskrifter">${skEsc(x && x.text || '')}</textarea>`}<div class="minebar"><button class="pri" id="meSave">Gem</button><button id="meCancel">Annuller</button></div></div>`;
+    const t = document.getElementById(isPage ? 'meTitle' : 'meText'); t.focus();
+    document.getElementById('meCancel').onclick = () => ed.innerHTML = '';
+    document.getElementById('meSave').onclick = async () => {
+      const title = document.getElementById('meTitle').value.trim();
+      if (isPage) { if (!title) return toast('Giv underemnet et navn'); await skMinePut({ id: uid(), type: 'page', key, href, title, created: Date.now() }); toast('📁 Underemne oprettet'); }
+      else { const text = document.getElementById('meText').value; if (!text.trim() && !title) return toast('Skriv noget først');
+        await skMinePut(Object.assign({}, x || { id: uid(), type: 'text', key, href, created: Date.now() }, { title, text, updated: Date.now() })); toast('✓ Note gemt'); }
+      skIndexMine(); renderSkole();
+    };
+  };
+  root.querySelector('.mineadd [data-a="text"]').onclick = () => editor(null, false);
+  root.querySelector('.mineadd [data-a="page"]').onclick = () => editor(null, true);
+  document.getElementById('mineFile').onchange = async e => {
+    const fs = [...(e.target.files || [])]; let n = 0;
+    for (const f of fs) { try { await skMinePut({ id: uid(), type: 'file', key, href, name: f.name, mime: f.type || '', size: f.size, blob: f, created: Date.now() }); n++; } catch (err) { toast('Kunne ikke gemme ' + f.name + ' (for stor?)'); } }
+    if (n) toast(`📎 ${n} ${n === 1 ? 'dokument' : 'dokumenter'} gemt`); skIndexMine(); renderSkole();
+  };
+  root.querySelectorAll('.minelist [data-e]').forEach(b => b.onclick = () => { editor(MINE.find(x => x.id === b.dataset.e), false); ed.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+  root.querySelectorAll('.minelist [data-d]').forEach(b => b.onclick = async () => {
+    if (b.dataset.sure !== '1') { b.dataset.sure = '1'; b.textContent = 'Sikker?'; b.classList.add('warnb'); setTimeout(() => { b.dataset.sure = ''; b.textContent = 'Slet'; b.classList.remove('warnb'); }, 3000); return; }
+    await skMineDel(b.dataset.d); toast('Slettet'); skIndexMine(); renderSkole(); });
+}
+let SKMIDX = [];
+function skIndexMine(){ SKMIDX = MINE.filter(x => x.type !== 'file' || x.name).map(x => ({ x, low: ((x.title || '') + ' ' + (x.text || '') + ' ' + (x.name || '')).toLowerCase() })); }
+function renderOwnPage(id){
+  const body = document.getElementById('skBody'), tEl = document.getElementById('skTitle'), sub = document.getElementById('skSub'), cr = document.getElementById('skCrumb');
+  const p = MINE.find(x => x.id === id && x.type === 'page'); if (!p) { location.hash = '#skole'; return; }
+  const trail = []; let cur = p; while (cur) { trail.unshift(cur); cur = cur.key.startsWith('u:') ? MINE.find(x => x.id === cur.key.slice(2)) : null; }
+  const rootKey = trail[0].key.replace(/^n:/, '');
+  cr.innerHTML = `<a href="#skole">Skole</a><i>/</i><a href="${trail[0].href || '#skole'}">${skEsc(rootKey.split(' › ').pop())}</a>` + trail.slice(0, -1).map(t => `<i>/</i><a href="#skole/u/${t.id}">${skEsc(t.title)}</a>`).join('');
+  tEl.textContent = p.title; sub.textContent = 'Dit eget emne';
+  body.innerHTML = skMineHtml('u:' + id) + `<div class="minebar" style="margin-top:24px"><button id="ownRen">Omdøb emne</button><button id="ownDel">Slet emne</button></div>`;
+  skMineBind('u:' + id, '#skole/u/' + id);
+  document.getElementById('ownRen').onclick = async () => { const t = prompt('Nyt navn', p.title); if (t && t.trim()) { p.title = t.trim(); await skMinePut(p); renderSkole(); } };
+  document.getElementById('ownDel').onclick = async e => { const b = e.target; if (b.dataset.sure !== '1') { b.dataset.sure = '1'; b.textContent = 'Slet emnet og alt indhold?'; b.classList.add('warnb'); return; }
+    const back = trail.length > 1 ? '#skole/u/' + trail[trail.length - 2].id : (p.href || '#skole'); await skMineDel(id); skIndexMine(); location.hash = back; };
+}
+async function skMineExport(){
+  const toData = b => new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = () => res(null); r.readAsDataURL(b); });
+  const items = []; for (const x of MINE) { const y = Object.assign({}, x); if (x.blob) { y.data = await toData(x.blob); delete y.blob; } items.push(y); }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify({ type: 'mp-skole-mine', v: 1, items })], { type: 'application/json' }));
+  a.download = `mine-skolenoter-${new Date().toISOString().slice(0, 10)}.json`; document.body.appendChild(a); a.click(); a.remove();
+}
+async function skMineImport(d, msg){
+  if (!d || d.type !== 'mp-skole-mine' || !Array.isArray(d.items)) return false; let n = 0;
+  for (const y of d.items) { const x = Object.assign({}, y); if (x.data) { x.blob = await (await fetch(x.data)).blob(); delete x.data; } await skMinePut(x); n++; }
+  skIndexMine(); msg.className = 'sync live'; msg.textContent = `✓ ${n} egne tilføjelser gendannet.`; return true;
+}
+
 const skEsc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function skIndex(){
   SKIDX = [];
@@ -3009,11 +3114,16 @@ function renderSkole(){
   const parts = location.hash.replace(/^#skole\/?/, '').split('/').filter(Boolean);
   if (!SK) {
     tEl.textContent = 'Skole'; cr.innerHTML = ''; sub.textContent = ''; qIn.parentNode.style.display = 'none';
-    body.innerHTML = `<div class="card skempty"><div class="big">🎒</div><h3>Ingen noter endnu</h3><p class="sub">Dine skolenoter ligger i en privat fil (<b>mathias-skolenoter.json</b>), så de aldrig kommer på internettet. Importér den under Indstillinger – så gemmes de kun på denne enhed.</p><a class="btn primary" href="#indstillinger" style="display:block;text-decoration:none;margin-top:12px">Gå til Indstillinger</a></div>`;
+    body.innerHTML = `<div class="card skempty"><div class="big">🎒</div><h3>Ingen noter endnu</h3><p class="sub">Dine skolenoter ligger i en privat fil (<b>mathias-skolenoter.json</b>), så de aldrig kommer på internettet. Importér den under Indstillinger – så gemmes de kun på denne enhed.</p><label class="btn primary filebtn" style="display:block;margin-top:12px">📥 Vælg mathias-skolenoter.json<input type="file" id="skFile" style="display:none"></label><p class="sync" id="skMsg"></p></div>`;
+    document.getElementById('skFile').onchange = async e => { const f = e.target.files && e.target.files[0], m = document.getElementById('skMsg'); if (!f) return;
+      m.textContent = 'Læser filen…';
+      try { const d = JSON.parse((await f.text()).replace(/^\uFEFF/, '')); if (await skImport(d, m)) { setTimeout(renderSkole, 700); } else { m.className = 'sync warn'; m.textContent = 'Det er ikke skolenote-filen. Vælg mathias-skolenoter.json.'; } }
+      catch (err) { m.className = 'sync warn'; m.textContent = 'Kunne ikke læse filen (' + (err && err.message || 'ukendt fejl') + ').'; } };
     return;
   }
   qIn.parentNode.style.display = '';
   if (parts[0] === 'sog') { tEl.textContent = 'Søg i noter'; cr.innerHTML = `<a href="#skole">Skole</a>`; sub.textContent = `${SKIDX.length} sider i alt`; qIn.value = skLastQ; skSearch(); setTimeout(() => qIn.focus(), 50); return; }
+  if (parts[0] === 'u' && parts[1]) { qIn.value = ''; renderOwnPage(parts[1]); return; }
   const path = parts.map(Number).filter(n => !isNaN(n));
   if (!path.length) {
     tEl.textContent = 'Skole'; cr.innerHTML = ''; sub.textContent = `${SK.subjects.length} fag · ${SKIDX.length} sider`;
@@ -3021,7 +3131,9 @@ function renderSkole(){
     const rec = store.get('skrecent', []).map(k => ({ k, r: skNode(k.split('/').map(Number)) })).filter(x => x.r);
     body.innerHTML = '<div class="skgrid">' + SK.subjects.map((s, i) => `<a class="skcard" href="${skHref([i])}"><span class="si">${s.i || '📒'}</span><b>${skEsc(s.t)}</b><small>${skCount(s)} sider</small></a>`).join('') + '</div>'
       + (rec.length ? '<h2>Senest åbnet</h2><div class="sklist">' + rec.map(x => `<a class="skrow" href="#skole/${x.k}"><span>${skEsc(x.r.n.t)}</span><small>${skEsc(x.r.chain[0].t)}</small></a>`).join('') + '</div>' : '')
-      + `<p class="sub" style="margin-top:22px">Opdateret ${skEsc(SK.made || '')} · Noterne ligger kun på denne enhed.</p>`;
+      + `<p class="sub" style="margin-top:22px">Opdateret ${skEsc(SK.made || '')} · Noterne ligger kun på denne enhed.</p>`
+      + (MINE.length ? `<div class="minebar"><button id="mineExp">💾 Gem kopi af mine tilføjelser (${MINE.length})</button></div>` : '');
+    const me = document.getElementById('mineExp'); if (me) me.onclick = skMineExport;
     return;
   }
   const r = skNode(path); if (!r) { location.hash = '#skole'; return; }
@@ -3038,11 +3150,11 @@ function renderSkole(){
     h += `<div class="md" id="skMd">${html}</div>`;
   }
   if (kids.length) h += (n.md ? '<h2>Underemner</h2>' : '') + '<div class="sklist">' + kids.map((c, ci) => `<a class="skrow" href="${skHref(path.concat(ci))}"><span>${skEsc(c.t)}</span><small>${(c.k||[]).length ? (c.k.length + ' emner') : ''}</small></a>`).join('') + '</div>';
-  if (!n.md && !kids.length) h += '<p class="sub">Tom side.</p>';
+  const mkey = skKey(chain); h += skMineHtml(mkey);
   const par = path.length > 1 ? skNode(path.slice(0, -1)).n : { k: SK.subjects }, idx = path[path.length - 1];
   const prev = idx > 0 ? par.k[idx - 1] : null, next = par.k[idx + 1];
   if (prev || next) h += '<div class="sknav">' + (prev ? `<a href="${skHref(path.slice(0, -1).concat(idx - 1))}"><small>‹ Forrige</small>${skEsc(prev.t)}</a>` : '<span style="flex:1"></span>') + (next ? `<a class="nx" href="${skHref(path.slice(0, -1).concat(idx + 1))}"><small>Næste ›</small>${skEsc(next.t)}</a>` : '<span style="flex:1"></span>') + '</div>';
-  body.innerHTML = h;
+  body.innerHTML = h; skMineBind(mkey, location.hash);
   const big = document.getElementById('skBig'); if (big) big.onclick = () => { document.body.classList.toggle('sk-big'); store.set('skbig', document.body.classList.contains('sk-big')); };
   body.querySelectorAll('.sktoc a').forEach(a => a.onclick = () => { const t = document.getElementById('skh' + a.dataset.h); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 80, behavior: 'smooth' }); });
   const mdEl = document.getElementById('skMd');
@@ -3056,8 +3168,9 @@ function skSearch(){
     let cnt = 0, p = -1; while ((p = x.lmd.indexOf(ql, p + 1)) >= 0 && cnt < 99) cnt++;
     res.push({ x, score: (inT ? 100 : 0) + cnt, k }); }
   res.sort((a, b) => b.score - a.score);
+  const own = SKMIDX.filter(m => m.low.includes(ql)).map(m => m.x);
   const hl = t => skEsc(t).replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), m => `<mark>${m}</mark>`);
-  body.innerHTML = `<p class="sub">${res.length ? res.length + ' sider fundet' : 'Ingen resultater'}</p><div class="sklist">` + res.slice(0, 50).map(({ x, k }) => {
+  body.innerHTML = `<p class="sub">${res.length + own.length ? (res.length + own.length) + ' fundet' : 'Ingen resultater'}</p><div class="sklist">` + own.map(x => `<a class="skres own" href="${x.type === 'page' ? '#skole/u/' + x.id : (x.href || '#skole')}"><b>${hl(x.title || x.name || 'Din note')}</b><em>${x.type === 'file' ? '📎 Dit dokument' : x.type === 'page' ? '📁 Dit underemne' : '✏️ Din note'} · ${skEsc((x.key || '').replace(/^n:/, '').replace(/^u:.*/, 'eget emne'))}</em>${x.text ? '<p>' + hl(x.text.slice(0, 160)) + '</p>' : ''}</a>`).join('') + res.slice(0, 50).map(({ x, k }) => {
     let snip = ''; if (k >= 0) { const a = Math.max(0, k - 70); snip = (a ? '…' : '') + x.md.slice(a, k + q.length + 110).replace(/[#*|>`]/g, ' ').replace(/\s+/g, ' ') + '…'; }
     return `<a class="skres" href="${skHref(x.path)}" data-p="${x.path.join('/')}"><b>${hl(x.t)}</b><em>${skEsc(x.crumbs.join(' / '))}</em>${snip ? '<p>' + hl(snip) + '</p>' : ''}</a>`; }).join('') + '</div>';
   body.querySelectorAll('.skres').forEach(a => a.addEventListener('click', () => sessionStorage.setItem('skhl', a.dataset.p)));
@@ -3066,7 +3179,7 @@ document.getElementById('skQ').addEventListener('input', () => { const q = docum
   if (!/^#skole\/?(sog)?$/.test(location.hash) && q.length >= 2) { history.replaceState(null, '', '#skole/sog'); renderSkole(); return; }
   if (/^#skole\/?(sog)?$/.test(location.hash) || location.hash === '#skole') { if (q.length >= 2 || location.hash === '#skole/sog') skSearch(); else renderSkole(); } });
 if (store.get('skbig', false)) document.body.classList.add('sk-big');
-skLoad().then(d => { if (d && d.subjects) { SK = d; skIndex(); } if (location.hash.startsWith('#skole')) renderSkole(); });
+Promise.all([skLoad(), skMineLoad()]).then(([d]) => { if (d && d.subjects) { SK = d; skIndex(); } skIndexMine(); if (location.hash.startsWith('#skole')) renderSkole(); });
 async function skImport(d, msg){
   if (!d || d.type !== 'mp-skolenoter' || !Array.isArray(d.subjects)) return false;
   await skSave(d); SK = d; skIndex();
