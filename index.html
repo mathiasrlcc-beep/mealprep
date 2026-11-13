@@ -473,6 +473,20 @@
   .lesson.now{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset}
   .lesson.past{opacity:.5}
   .lesson .lmain{flex:1;min-width:0}
+  .hid{display:none!important}
+  .hidrow{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:14.5px;cursor:pointer}.hidrow input[type=checkbox]{width:20px;height:20px;accent-color:var(--blue);flex:none;margin:0}
+  .hidrow .bagf{flex:1;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:8px;color:var(--text);font:inherit;font-size:14px}
+  .bagrow{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:6px}.bagrow.done span{text-decoration:line-through;opacity:.5}
+  #lock{position:fixed;inset:0;z-index:999;background:var(--bg,#0E0F12);display:none;align-items:center;justify-content:center}#lock.on{display:flex}
+  .lockin{text-align:center;width:270px}.lockin .lt{font-size:34px;font-weight:800}#lockMsg{color:var(--muted);margin:10px 0 18px}
+  #lockDots{display:flex;gap:16px;justify-content:center;margin-bottom:26px}#lockDots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--text)}#lockDots i.on{background:var(--text)}
+  #lockPad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}#lockPad button{height:66px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);font:600 24px Inter,sans-serif;cursor:pointer}
+  .orbar{display:flex;align-items:center;gap:10px;margin-top:12px}.orbar b{font-size:34px;font-variant-numeric:tabular-nums;flex:1}.orbar select{background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--text);padding:10px;font:inherit}
+  .orshow{max-height:420px;overflow:auto}
+  .jb{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:8px;cursor:pointer}
+  .jb b{display:block;font-size:15.5px}.jb small{display:block;color:var(--muted);font-size:12.5px}.jbst{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--muted)}
+  .jb.st1{border-left-color:var(--blue)}.jb.st2{border-left-color:var(--orange)}.jb.st3{border-left-color:#3DDC97}.jb.st4{opacity:.5}
+  body.minimal #lock{background:#fff}body.minimal #lockPad button{border-radius:0;background:#fff;border-color:#000}body.minimal .bagrow,body.minimal .jb{background:#fff;border-color:#E5E5E5;border-radius:0}body.minimal .jb.st1,body.minimal .jb.st2,body.minimal .jb.st3{border-left-color:#000}
   .hw,.lpd,.sopi{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 13px;margin-bottom:7px}
   .hw b,.lpd b{display:block;font-size:15px}.hw .ls2,.lpd .ls2{color:var(--muted);font-size:12.5px}
   .hw.done,.lpd.done,.sopi.done{opacity:.5}.hw.done b{text-decoration:line-through}
@@ -726,11 +740,13 @@
     <div class="mtabs" id="mTabs"></div>
     <div class="mg">Skole</div>
     <a href="#skole" data-v="skole"><span class="e">🎒</span><span>Skole<small>Alle fag og noter</small></span></a>
+    <a href="#imorgen" data-v="imorgen"><span class="e">🌙</span><span>I morgen<small>Lektier, vagt og pak tasken</small></span></a>
     <a href="#overblik" data-v="overblik"><span class="e">🧭</span><span>Overblik<small>Skole, vagter og mad i ugen</small></span></a>
     <a href="#skema" data-v="skema"><span class="e">🗓️</span><span>Skema<small>Timer, timenoter og afleveringer</small></span></a>
     <a href="#lektier" data-v="lektier"><span class="e">✅</span><span>Lektier<small>Til i dag og i morgen</small></span></a>
     <a href="#laeseplan" data-v="laeseplan"><span class="e">📖</span><span>Læseplan<small>Op til eksamen</small></span></a>
     <a href="#fokus" data-v="fokus"><span class="e">🎯</span><span>Fokus<small>25/5-timer pr. fag</small></span></a>
+    <a href="#mundtlig" data-v="mundtlig"><span class="e">🎤</span><span>Mundtlig<small>Træn til eksamen og forsvar</small></span></a>
     <a href="#karakterer" data-v="karakterer"><span class="e">🎓</span><span>Karakterer<small>Snit og fravær</small></span></a>
     <a href="#sop" data-v="sop"><span class="e">📚</span><span>SOP-projekt<small>Milepæle og kilder</small></span></a>
     <a href="#kort" data-v="kort"><span class="e">🃏</span><span>Flashcards<small>Øv dig til eksamen</small></span></a>
@@ -765,11 +781,13 @@
     <a href="#spil" data-v="spil"><span class="e">🎮</span><span>Spil<small>2 minispil</small></span></a>
     <a href="#wrapped" data-v="wrapped"><span class="e">🎉</span><span>Dit år<small>Opsummering</small></span></a>
     <div class="mg">Andet</div>
+    <a href="#job" data-v="job"><span class="e">💼</span><span>Job<small>Ansøgninger og samtaler</small></span></a>
     <a href="#nedtaelling" data-v="nedtaelling"><span class="e">📅</span><span>Nedtællinger<small>Eksamen m.m.</small></span></a>
     <a href="#indstillinger" data-v="indstillinger"><span class="e">⚙️</span><span>Indstillinger<small>Backup og mere</small></span></a>
   </div>
 </header>
 <div id="menuBg"></div>
+<div id="lock"><div class="lockin"><div class="lt">Dai<span>ly</span></div><p id="lockMsg">Indtast din kode</p><div id="lockDots"></div><div id="lockPad"><button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><span></span><button data-k="0">0</button><button data-k="del">⌫</button></div></div></div>
 
 <!-- FORSIDE -->
 <section class="view" id="v-hjem">
@@ -784,6 +802,7 @@
   </div>
 
   <div id="hSkema"></div>
+  <div id="hTomorrow" class="alerts"></div>
   <div id="hAlerts" class="alerts"></div>
   <div id="hCd" class="alerts" style="margin-top:8px"></div>
   <div class="card" id="hLevel" style="margin-top:10px"></div>
@@ -966,6 +985,25 @@
   <div class="card" style="margin-top:22px"><b>📅 Læg i Apple Kalender</b><p class="sub" style="margin:4px 0 0">Afleveringer med påmindelse dagen før og 3 timer før. Åbn filen og tryk "Tilføj alle".</p><button class="btn" id="icsDl">Kun afleveringer og eksamener</button><button class="btn" id="icsAll">Afleveringer + alle lektioner</button></div>
 </section>
 
+<section class="view" id="v-imorgen">
+  <h1>I morgen</h1>
+  <p class="sub" id="tmSub"></p>
+  <div id="tmBody"></div>
+</section>
+
+<section class="view" id="v-mundtlig">
+  <h1>Mundtlig</h1>
+  <p class="sub">Træk et emne, sæt uret, og fortæl højt om det – som til eksamen eller et forsvar.</p>
+  <div class="frm" style="margin-top:12px"><label>Fag<select id="orFag"></select></label></div>
+  <div id="orBody"></div>
+</section>
+
+<section class="view" id="v-job">
+  <h1>Job</h1>
+  <p class="sub">Ansøgninger, samtaler og hvad du skal følge op på.</p>
+  <div id="jbBody" style="margin-top:12px"></div>
+</section>
+
 <section class="view" id="v-overblik">
   <h1>Overblik</h1>
   <p class="sub" id="ovSub"></p>
@@ -1039,6 +1077,17 @@
     <div class="sync" id="dataMsg"></div>
     <div class="row"><label>Påmind mig hver</label><span class="unit"><input id="bkEvery" inputmode="numeric"><em>dage</em></span></div>
   </div>
+  <h2>🔄 Synk mellem Mac og iPhone</h2>
+  <div class="card">
+    <div class="sub" style="line-height:1.5">Send alt fra denne enhed til den anden med AirDrop. Den anden enhed fletter det sammen med det, den allerede har – vagter, noter, lektier og karakterer fra begge enheder bliver bevaret.</div>
+    <button class="btn primary" id="syncSend">📤 Send til anden enhed</button>
+    <label class="btn" style="display:block;text-align:center;box-sizing:border-box">📥 Modtag synk<input type="file" id="syncGet" accept=".json,application/json" style="display:none"></label>
+    <div class="sync" id="syncMsg"></div>
+  </div>
+  <h2>🧩 Menu og forside</h2>
+  <div class="card"><div class="sub" style="margin-bottom:8px">Fjern fluebenet ved det, du ikke bruger – så forsvinder det fra menuen eller forsiden.</div><div id="hideList"></div></div>
+  <h2>🔒 Kodelås</h2>
+  <div class="card"><div class="sub" style="line-height:1.5;margin-bottom:6px">En 4-cifret kode, før appen åbner. Beskytter løn, budget og karakterer, hvis andre låner din telefon.</div><div id="pinBox"></div></div>
   <h2>🔔 Påmindelser</h2>
   <div class="card">
     <div class="sub" style="line-height:1.5">Læg faste påmindelser i din telefons kalender: handl ind og lav mad søndag og onsdag, og tag boks op af fryseren fredag og lørdag. Så får du en notifikation.</div>
@@ -1063,7 +1112,7 @@
     <div class="sync" id="payNext"></div>
   </div>
   <h2>ℹ️ Om appen</h2>
-  <div class="card"><div class="sub" style="line-height:1.6">Daily · version 19<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
+  <div class="card"><div class="sub" style="line-height:1.6">Daily · version 20<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
   </div></div>
 </section>
 <!-- KAT -->
@@ -1917,7 +1966,7 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
 });
 document.getElementById('importFile').addEventListener('change', async e => {
   const fsAll = [...(e.target.files || [])]; const msg = document.getElementById('dataMsg'); if (!fsAll.length) return;
-  if (fsAll.length > 1 || /skole|skema|sop/i.test(fsAll[0].name)) { await skImportFiles(fsAll, msg); e.target.value = ''; return; }
+  if (fsAll.length > 1 || /skole|skema|sop|job|synk/i.test(fsAll[0].name)) { await skImportFiles(fsAll, msg); e.target.value = ''; return; }
   const f = fsAll[0];
   try {
     const d = JSON.parse((await f.text()).replace(/^\uFEFF/, ''));
@@ -2404,6 +2453,7 @@ document.getElementById('themeSeg').addEventListener('click', e => { const b = e
 
 // ---------- indstillinger ----------
 function renderSettings(){
+  try { renderHideSettings(); renderPinSettings(); } catch (e) {}
   const el = document.getElementById('bkLast');
   if (cfg.lastBackup) { const d = daysBetween(cfg.lastBackup, todayISO());
     el.className = 'sync ' + (d >= cfg.bkEvery ? 'warn' : 'live');
@@ -2609,7 +2659,7 @@ document.getElementById('spinRes').addEventListener('click', e => {
 
 // ---------- forside: backup-påmindelse, løn, rapport ----------
 function renderHome3(){
-  try { renderHomeSkema(); } catch (e) {}
+  try { renderHomeSkema(); renderHomeTomorrow(); } catch (e) {}
   const el = document.getElementById('hAlerts'); if (!el) return; let h = '';
   const bkDays = cfg.lastBackup ? daysBetween(cfg.lastBackup, todayISO()) : null;
   if (hasData() && (bkDays === null || bkDays >= cfg.bkEvery))
@@ -3152,7 +3202,7 @@ const _rq9 = renderQuiz; renderQuiz = function(){ _rq9(); const a = (kv('mp_quiz
   if (el) el.innerHTML = `<a class="fun f-qz" href="#quiz"><span class="fi">🃏</span><b>${a ? (a.ok ? 'Rigtigt ✓' : 'Forkert ✗') : 'Nyt!'}</b><small>dagens quiz</small></a>`; };
 
 // ================= MENU =================
-const TITLES = {overblik:'Overblik', lektier:'Lektier', laeseplan:'Læseplan', fokus:'Fokus', karakterer:'Karakterer', sop:'SOP', skema:'Skema', kort:'Flashcards', skole:'Skole', hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge', spil:'Spil', streak:'Streak', vand:'Vand', vaegt:'Vægt', sparet:'Sparet', badges:'Badges', hjul:'Smagshjul', timer:'Timer', rapport:'Rapport', opskrifter:'Opskrifter', indstillinger:'Indstillinger', kat:'Kat', udfordring:'Udfordring', quiz:'Quiz', rejse:'Madrejse', wrapped:'Dit år', traening:'Træning', billeder:'Før & efter', faste:'Faste', fryser:'Fryser', nedtaelling:'Nedtællinger'};
+const TITLES = {imorgen:'I morgen', mundtlig:'Mundtlig', job:'Job', overblik:'Overblik', lektier:'Lektier', laeseplan:'Læseplan', fokus:'Fokus', karakterer:'Karakterer', sop:'SOP', skema:'Skema', kort:'Flashcards', skole:'Skole', hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge', spil:'Spil', streak:'Streak', vand:'Vand', vaegt:'Vægt', sparet:'Sparet', badges:'Badges', hjul:'Smagshjul', timer:'Timer', rapport:'Rapport', opskrifter:'Opskrifter', indstillinger:'Indstillinger', kat:'Kat', udfordring:'Udfordring', quiz:'Quiz', rejse:'Madrejse', wrapped:'Dit år', traening:'Træning', billeder:'Før & efter', faste:'Faste', fryser:'Fryser', nedtaelling:'Nedtællinger'};
 const setMenu = open => {
   document.body.classList.toggle('menu-open', open);
   if (!open) { const q = document.getElementById('mSearch'); if (q && q.value) { q.value = ''; filterMenu(''); } }
@@ -3578,7 +3628,8 @@ async function skImportFiles(fs, m){
     try { const d = JSON.parse((await f.text()).replace(/^﻿/, ''));
       const before = MINE.length, dummy = { set className(v){}, set textContent(v){} };
       if (scImport(d, dummy)) { okN++; renderSkema(); renderHomeSkema(); }
-      else if (sopImport(d, dummy)) { okN++; }
+      else if (sopImport(d, dummy) || jobImport(d, dummy)) { okN++; }
+      else if (d && d.type === 'mp-sync') { await syncMerge(d, m); return true; }
       else if (await skImport(d, dummy)) { okN++; notes++; FCDECK = null; }
       else if (await skMineImport(d, dummy)) { okN++; files += MINE.length - before || (d.items || []).length; }
       else bad.push(f.name);
@@ -3862,7 +3913,170 @@ async function mineForBackup(){
   return { items, skipped: withFiles ? 0 : MINE.filter(x => x.blob).length };
 }
 
-const VIEWS = ['overblik','lektier','laeseplan','fokus','karakterer','sop','skema','kort','skole','hjem','idag','uge','indkob','lon','penge','spil','streak','vand','vaegt','sparet','badges','hjul','timer','rapport','opskrifter','indstillinger','kat','udfordring','quiz','rejse','wrapped','traening','billeder','faste','fryser','nedtaelling'];
+// ================= VERSION 20: MENU, I MORGEN, MUNDTLIG, JOB, KODELÅS, SYNK =================
+// ---------- Tilpas menu og forside ----------
+let hidden = kv('mp_hidden', {});
+const HOME_CARDS = [['#hSkema', 'Skole i dag'], ['#hTomorrow', 'I morgen (om aftenen)'], ['#hAlerts', 'Backup og løn'], ['#hCd', 'Nedtællinger'], ['#hLevel', 'Level og XP'], ['#v-hjem .tip', 'Dagens tip'], ['#hQuick', 'Genveje'], ['#hFun', 'Sjove kort'], ['#v-hjem .funs2', 'Kat, udfordring, fryser og quiz']];
+function applyHidden(){
+  document.querySelectorAll('#menu a[data-v]').forEach(a => a.classList.toggle('hid', !!hidden['m:' + a.dataset.v]));
+  document.querySelectorAll('#menu .mg').forEach(g => { let n = g.nextElementSibling, any = false; while (n && !n.classList.contains('mg')) { if (n.tagName === 'A' && !n.classList.contains('hid')) any = true; n = n.nextElementSibling; } g.classList.toggle('hid', !any); });
+  document.querySelectorAll('#mTabs button').forEach(b => { const g = document.querySelector(`#menu .mg[data-grp="${b.dataset.tab}"]`); b.classList.toggle('hid', !!(g && g.classList.contains('hid'))); });
+  HOME_CARDS.forEach(([sel]) => { const el = document.querySelector(sel); if (el) el.classList.toggle('hid', !!hidden['h:' + sel]); });
+}
+function renderHideSettings(){
+  const el = document.getElementById('hideList'); if (!el) return;
+  let h = '<div class="tk" style="margin:4px 0 6px">Forside</div>' + HOME_CARDS.map(([sel, n]) => `<label class="hidrow"><input type="checkbox" data-hid="h:${sel}" ${hidden['h:' + sel] ? '' : 'checked'}><span>${n}</span></label>`).join('');
+  let g = '';
+  document.querySelectorAll('#menu > *').forEach(x => { if (x.classList.contains('mg')) g = x.textContent.trim(); else if (x.tagName === 'A' && x.dataset.v && x.dataset.v !== 'indstillinger' && x.dataset.v !== 'hjem') {
+    if (g && !h.includes(`>${g}<`)) h += `<div class="tk" style="margin:14px 0 6px">${g}</div>`;
+    h += `<label class="hidrow"><input type="checkbox" data-hid="m:${x.dataset.v}" ${hidden['m:' + x.dataset.v] ? '' : 'checked'}><span>${x.querySelector('.e') ? x.querySelector('.e').textContent : ''} ${skEsc(x.querySelector('span:not(.e)').firstChild.textContent)}</span></label>`; } });
+  el.innerHTML = h;
+}
+document.getElementById('hideList').addEventListener('change', e => { const k = e.target.dataset.hid; if (!k) return; if (e.target.checked) delete hidden[k]; else hidden[k] = 1; store.set('mp_hidden', hidden); applyHidden(); });
+
+// ---------- I morgen ----------
+let bag = kv('mp_bag', ['Computer', 'Oplader', 'Penalhus', 'Vandflaske', 'Madboks']), bagFag = kv('mp_bagfag', {}), bagChk = kv('mp_bagchk', {});
+function tomorrowKey(){ return addDays(todayISO(), 1); }
+function tomorrowData(k){
+  const ls = lessonsOn(k), wd = ((new Date(k + 'T12:00').getDay() + 6) % 7) + 1, fagL = [...new Set(ls.map(l => scFag(l.fag)))];
+  const sh = shifts.filter(s => s.date === k).map(s => Object.assign({ s }, shiftSpan(s) || {})).filter(x => x.from != null);
+  const hw = hwItems().filter(h => !h.done && h.due <= k), dls = SKEMA ? SKEMA.deadlines.filter(d => !dlDone[d.url || d.titel] && iso(new Date(d.due)) <= addDays(k, 1) && new Date(d.due) > new Date()) : [];
+  const items = bag.concat(fagL.filter(f => bagFag[f]).map(f => `${bagFag[f]} (${f})`));
+  return { ls, wd, fagL, sh, hw, dls, items, frz: wd === 6 || wd === 7, lp: lpToday(k) };
+}
+function renderTomorrow(){
+  const body = document.getElementById('tmBody'); if (!body) return; const k = tomorrowKey(), x = tomorrowData(k), ck = bagChk[k] || {};
+  document.getElementById('tmSub').textContent = cap(new Date(k + 'T12:00').toLocaleDateString('da-DK', { weekday: 'long', day: 'numeric', month: 'long' }));
+  let h = '';
+  h += `<h2>🎒 Skole</h2>` + (x.ls.length ? x.ls.map(l => `<div class="ovr"><span>${l.from}</span><div><b>${skEsc(scFag(l.fag))}</b><small>${[l.emne, scRoom(l.lokale).room].filter(Boolean).map(skEsc).join(' · ')}</small></div></div>`).join('') : '<p class="sub">Ingen skole i morgen 🎉</p>');
+  if (x.hw.length || x.dls.length) h += `<h2>✅ Skal være klar</h2>` + x.hw.map(hwRow).join('') + x.dls.map(dlHtml).join('');
+  if (x.sh.length) h += `<h2>💼 Arbejde</h2>` + x.sh.map(s => `<div class="ovr"><span>💼</span><div><b>Vagt ${m2h(s.from)}–${m2h(s.to % 1440)}</b><small>${x.ls.length ? 'Efter skole' : ''}</small></div></div>`).join('');
+  if (x.lp) h += `<h2>📖 Læseplan</h2><div class="ovr"><span>📖</span><div><b>${skEsc(x.lp.plan.fag)}</b><small>${x.lp.day.rep ? 'Repetition og flashcards' : x.lp.day.items.length + ' noter + flashcards'}</small></div></div>`;
+  if (typeof lunchFor === 'function') { const ml = lunchFor(x.wd); h += `<h2>🍱 Mad</h2><div class="ovr"><span>${ml.ic}</span><div><b>${skEsc(ml.name)}</b><small>Frokost i morgen</small></div></div>` + (x.frz ? `<div class="ovwarn">🧊 Husk at tage morgendagens boks op af fryseren i aften</div>` : ''); }
+  h += `<h2>👜 Pak tasken</h2>` + x.items.map(it => `<label class="hidrow bagrow ${ck[it] ? 'done' : ''}"><input type="checkbox" data-bag="${skEsc(it)}" ${ck[it] ? 'checked' : ''}><span>${skEsc(it)}</span></label>`).join('');
+  h += `<details class="sopl"><summary>Ret pakkelisten</summary><p class="sub">Én ting pr. linje:</p><textarea id="bagEdit" class="sopnotes" style="min-height:110px">${skEsc(bag.join('\n'))}</textarea>${x.fagL.length ? '<p class="sub" style="margin-top:10px">Bøger eller materialer pr. fag (kommer kun med, når du har faget):</p>' + [...new Set((SKEMA ? SKEMA.lessons : []).map(l => scFag(l.fag)))].map(f => `<label class="hidrow"><span style="width:120px;flex:none">${skEsc(f)}</span><input class="bagf" data-bf="${skEsc(f)}" value="${skEsc(bagFag[f] || '')}" placeholder="fx Grundbog"></label>`).join('') : ''}<button class="btn" id="bagSave">Gem pakkeliste</button></details>`;
+  h += `<button class="btn" id="tmIcs" style="margin-top:18px">🔔 Påmindelse hver aften kl. 21 i kalenderen</button>`;
+  body.innerHTML = h;
+}
+document.getElementById('tmBody').addEventListener('change', e => { const b = e.target.dataset.bag; if (b == null) return; const k = tomorrowKey(); bagChk = Object.fromEntries(Object.entries(bagChk).filter(([d]) => d >= todayISO())); (bagChk[k] = bagChk[k] || {}); if (e.target.checked) bagChk[k][b] = 1; else delete bagChk[k][b]; store.set('mp_bagchk', bagChk); e.target.closest('label').classList.toggle('done', e.target.checked); renderHomeTomorrow(); });
+document.getElementById('tmBody').addEventListener('click', e => {
+  if (e.target.id === 'bagSave') { bag = document.getElementById('bagEdit').value.split('\n').map(x => x.trim()).filter(Boolean); store.set('mp_bag', bag); document.querySelectorAll('[data-bf]').forEach(i => { if (i.value.trim()) bagFag[i.dataset.bf] = i.value.trim(); else delete bagFag[i.dataset.bf]; }); store.set('mp_bagfag', bagFag); toast('✓ Pakkelisten er gemt'); renderTomorrow(); }
+  if (e.target.id === 'tmIcs') { const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z', d = new Date(); d.setDate(d.getDate() + (d.getHours() >= 21 ? 1 : 0)); const ds = iso(d).replace(/-/g, '');
+    const data = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Daily//DA', 'BEGIN:VEVENT', 'UID:aftentjek@daily', `DTSTAMP:${stamp}`, `DTSTART;TZID=Europe/Copenhagen:${ds}T210000`, 'DURATION:PT10M', 'RRULE:FREQ=DAILY', 'SUMMARY:🌙 Klar til i morgen? Åbn Daily', 'DESCRIPTION:Tjek lektier\\, vagt\\, madboks og pak tasken.', 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:Klar til i morgen?', 'TRIGGER:PT0M', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    (async () => { try { const f = new File([data], 'daily-aftentjek.ics', { type: 'text/calendar' }); if (navigator.canShare && navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], title: 'Aftentjek' }); return; } } catch (err) { if (err && err.name === 'AbortError') return; }
+      const a = document.createElement('a'); a.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(data); a.download = 'daily-aftentjek.ics'; document.body.appendChild(a); a.click(); a.remove(); toast('✓ Åbn filen for at lægge påmindelsen i kalenderen'); })(); }
+});
+function renderHomeTomorrow(){
+  const el = document.getElementById('hTomorrow'); if (!el) return;
+  if (new Date().getHours() < 16) { el.innerHTML = ''; return; }
+  const k = tomorrowKey(), x = tomorrowData(k), ck = bagChk[k] || {}, packed = x.items.filter(i => ck[i]).length;
+  const bits = [x.ls.length ? `${x.ls.length} ${x.ls.length === 1 ? 'time' : 'timer'} fra ${x.ls[0].from}` : 'ingen skole', x.hw.length ? `${x.hw.length} lektie${x.hw.length === 1 ? '' : 'r'}` : '', x.sh.length ? 'vagt ' + m2h(x.sh[0].from) : '', x.frz ? '🧊 boks op af fryseren' : ''].filter(Boolean);
+  el.innerHTML = `<a class="alert a-cd" href="#imorgen"><span>🌙</span><div><b>Klar til i morgen?</b><small>${bits.join(' · ')} · tasken ${packed}/${x.items.length}</small></div><em>›</em></a>`;
+}
+
+// ---------- Mundtlig træning ----------
+let oral = { node: null, left: 120, len: 120, run: false, end: 0, show: false }, oralInt = null, oralLog = kv('mp_oral', []);
+function oralPick(fag){ const pool = SKIDX.filter(i => i.crumbs[0] === fag && i.md && i.md.length > 300 && !i.crumbs.includes('Dokumenter fra Mac')); return pool.length ? pool[Math.floor(Math.random() * pool.length)] : null; }
+function oralTick(){ if (!oral.run) return; oral.left = Math.max(0, Math.round((oral.end - Date.now()) / 1000)); if (!oral.left) { oral.run = false; clearInterval(oralInt); fzBeep(); toast('⏱️ Tiden er gået – tjek noten'); } renderMundtlig(true); }
+function renderMundtlig(only){
+  const body = document.getElementById('orBody'); if (!body) return;
+  const sel = document.getElementById('orFag'); if (SK && sel.options.length !== SK.subjects.length) { sel.innerHTML = SK.subjects.map(s => `<option>${skEsc(s.t)}</option>`).join(''); sel.value = kv('mp_orfag', SK.subjects[0].t); }
+  if (!SK) { body.innerHTML = '<p class="sub">Importér dine skolenoter først.</p>'; return; }
+  const tEl = document.getElementById('orTime'); if (only && tEl) { tEl.textContent = Math.floor(oral.left / 60) + ':' + String(oral.left % 60).padStart(2, '0'); document.getElementById('orGo').textContent = oral.run ? 'Stop' : oral.left < oral.len ? 'Fortsæt' : 'Start'; return; }
+  if (!oral.node) { body.innerHTML = `<div class="card skempty" style="margin-top:14px"><div class="big">🎤</div><h3>Træn til mundtlig</h3><p class="sub">Du får et tilfældigt emne fra dine noter og skal fortælle om det højt – uden at kigge. Bagefter tjekker du noten.</p><button class="btn primary" id="orNew">Træk et emne</button></div>` + oralStats(); return; }
+  const n = oral.node;
+  body.innerHTML = `<div class="fcard" style="cursor:default"><div class="fhint" style="margin:0 0 6px">${skEsc(n.crumbs.join(' › '))}</div><div class="fq">Fortæl om: ${skEsc(n.t)}</div><div class="fhint">Forklar begreberne, giv et eksempel og sig, hvorfor det er vigtigt.</div></div>
+    <div class="orbar"><b id="orTime">${Math.floor(oral.left / 60)}:${String(oral.left % 60).padStart(2, '0')}</b><select id="orLen"><option value="60">1 min</option><option value="120">2 min</option><option value="300">5 min</option><option value="600">10 min</option></select><button class="btn primary" id="orGo" style="margin:0;width:auto;padding:12px 22px">${oral.run ? 'Stop' : oral.left < oral.len ? 'Fortsæt' : 'Start'}</button></div>
+    ${oral.show ? `<div class="card" style="margin-top:12px"><div class="md orshow">${skMd(n.md.slice(0, 3500))}${n.md.length > 3500 ? '<p class="sub">…</p>' : ''}</div><a class="btn" style="display:block;text-align:center;text-decoration:none" href="${skHref(n.path)}">Åbn hele noten</a></div><p class="sub" style="margin-top:12px">Hvordan gik det?</p><div class="fbtns"><button class="f0" data-or="0">Svært</button><button data-or="1">OK</button><button class="f2" data-or="2">Godt</button></div>` : `<button class="btn" id="orShow">Vis noten</button>`}
+    <button class="btn" id="orNew">Nyt emne</button>`;
+  document.getElementById('orLen').value = oral.len;
+}
+function oralStats(){ if (!oralLog.length) return ''; const per = {}; oralLog.forEach(x => { per[x.fag] = per[x.fag] || [0, 0]; per[x.fag][0]++; per[x.fag][1] += x.g; });
+  return '<h2>Din træning</h2>' + Object.entries(per).map(([f, [n, s]]) => `<div class="fzbar"><span>${skEsc(f)}</span><div><i style="width:${s / n / 2 * 100}%"></i></div><b>${n} emner</b></div>`).join(''); }
+document.getElementById('orBody').addEventListener('click', e => {
+  const t = e.target;
+  if (t.id === 'orNew') { const n = oralPick(document.getElementById('orFag').value); if (!n) return toast('Ingen længere noter i faget'); clearInterval(oralInt); oral = Object.assign(oral, { node: n, left: oral.len, run: false, show: false }); renderMundtlig(); }
+  if (t.id === 'orGo') { if (oral.run) { oral.run = false; clearInterval(oralInt); } else { if (!oral.left) oral.left = oral.len; oral.run = true; oral.end = Date.now() + oral.left * 1000; clearInterval(oralInt); oralInt = setInterval(oralTick, 500); } renderMundtlig(true); }
+  if (t.id === 'orShow') { oral.run = false; clearInterval(oralInt); oral.show = true; renderMundtlig(); }
+  const g = t.closest('[data-or]'); if (g) { oralLog.push({ date: todayISO(), fag: oral.node.crumbs[0] || oral.node.t, t: oral.node.t, g: +g.dataset.or }); store.set('mp_oral', oralLog); toast(+g.dataset.or === 0 ? 'Det emne kommer igen 💪' : '✓ Gemt'); const n = oralPick(document.getElementById('orFag').value); oral = Object.assign(oral, { node: n, left: oral.len, run: false, show: false }); renderMundtlig(); }
+});
+document.getElementById('orBody').addEventListener('change', e => { if (e.target.id === 'orLen') { oral.len = +e.target.value; if (!oral.run) oral.left = oral.len; renderMundtlig(true); } });
+document.getElementById('orFag').addEventListener('change', e => { store.set('mp_orfag', e.target.value); oral.node = null; renderMundtlig(); });
+
+// ---------- Jobsøgning ----------
+let jobs = kv('mp_jobs', []);
+const JOB_ST = ['Idé', 'Søgt', 'Samtale', 'Tilbud', 'Afslag'];
+function jobImport(d, msg){ if (!d || d.type !== 'mp-job' || !Array.isArray(d.jobs)) return false; d.jobs.forEach(j => { if (!jobs.some(x => x.id === j.id)) jobs.push(j); }); store.set('mp_jobs', jobs); msg.className = 'sync live'; msg.textContent = `✓ ${d.jobs.length} jobs importeret.`; return true; }
+let jobEdit = null;
+function renderJob(){
+  const body = document.getElementById('jbBody'); if (!body) return; const t = todayISO();
+  const order = j => JOB_ST.indexOf(j.status) === 4 ? 9 : JOB_ST.indexOf(j.status);
+  const act = jobs.filter(j => j.status !== 'Afslag'), up = jobs.filter(j => j.when && j.when >= t).sort((a, b) => a.when.localeCompare(b.when))[0];
+  let h = `<div class="fstats"><div><b>${jobs.filter(j => j.status === 'Søgt' || j.status === 'Samtale').length}</b>i gang</div><div><b>${jobs.filter(j => j.status === 'Samtale').length}</b>samtaler</div><div><b>${jobs.filter(j => j.status === 'Afslag').length}</b>afslag</div></div>`;
+  if (up) h += `<div class="ovwarn" style="margin-top:12px">📅 ${skEsc(up.next || up.status)} hos <b>${skEsc(up.firm)}</b> ${up.when === t ? 'i dag' : dShort(up.when)}</div>`;
+  h += `<button class="btn primary" id="jbNew">+ Nyt job</button>`;
+  if (jobEdit) { const j = jobEdit; h += `<div class="card" style="margin-top:12px"><div class="frm"><label>Firma<input id="jbFirm" value="${skEsc(j.firm || '')}"></label><label>Stilling<input id="jbRole" value="${skEsc(j.role || '')}" placeholder="fx Revisorelev"></label><label>Status<select id="jbSt">${JOB_ST.map(s => `<option ${s === j.status ? 'selected' : ''}>${s}</option>`).join('')}</select></label><label>Næste skridt<input id="jbNext" value="${skEsc(j.next || '')}" placeholder="fx Samtale, ring tilbage, ansøgningsfrist"></label><label>Dato for næste skridt<input type="date" id="jbWhen" value="${j.when || ''}"></label><label>Kontaktperson<input id="jbWho" value="${skEsc(j.who || '')}"></label><label>Link<input id="jbUrl" value="${skEsc(j.url || '')}" placeholder="https://"></label></div><textarea id="jbNotes" class="sopnotes" placeholder="Noter: hvad talte I om, hvad skal du følge op på…">${skEsc(j.notes || '')}</textarea><button class="btn primary" id="jbSave">Gem</button><button class="btn" id="jbCancel">Annuller</button>${jobs.some(x => x.id === j.id) ? '<button class="btn" id="jbDel">Slet</button>' : ''}</div>`; }
+  h += jobs.slice().sort((a, b) => order(a) - order(b) || (b.when || '').localeCompare(a.when || '')).map(j => `<div class="jb st${JOB_ST.indexOf(j.status)}" data-jb="${j.id}"><div style="flex:1;min-width:0"><b>${skEsc(j.firm)}</b><small>${[j.role, j.who].filter(Boolean).map(skEsc).join(' · ')}</small>${j.next || j.when ? `<small>➜ ${skEsc(j.next || '')}${j.when ? ' · ' + dShort(j.when) : ''}</small>` : ''}</div><span class="jbst">${j.status}</span></div>`).join('') || '<p class="sub" style="margin-top:14px">Ingen jobs endnu.</p>';
+  body.innerHTML = h;
+}
+document.getElementById('jbBody').addEventListener('click', e => {
+  const t = e.target;
+  if (t.id === 'jbNew') { jobEdit = { id: uid(), status: 'Idé' }; renderJob(); return; }
+  if (t.id === 'jbCancel') { jobEdit = null; renderJob(); return; }
+  if (t.id === 'jbSave') { const v = id => document.getElementById(id).value.trim(); const j = Object.assign(jobEdit, { firm: v('jbFirm'), role: v('jbRole'), status: v('jbSt'), next: v('jbNext'), when: v('jbWhen'), who: v('jbWho'), url: v('jbUrl'), notes: document.getElementById('jbNotes').value });
+    if (!j.firm) return toast('Skriv firmaets navn'); const i = jobs.findIndex(x => x.id === j.id); if (i >= 0) jobs[i] = j; else jobs.push(j); store.set('mp_jobs', jobs); jobEdit = null; toast('✓ Gemt'); renderJob(); return; }
+  if (t.id === 'jbDel') { if (t.dataset.sure !== '1') { t.dataset.sure = '1'; t.textContent = 'Tryk igen for at slette'; return; } jobs = jobs.filter(x => x.id !== jobEdit.id); store.set('mp_jobs', jobs); jobEdit = null; renderJob(); return; }
+  const r = t.closest('[data-jb]'); if (r) { jobEdit = Object.assign({}, jobs.find(x => x.id === r.dataset.jb)); renderJob(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+});
+
+// ---------- Kodelås ----------
+let pinHash = kv('mp_pin', ''), hiddenAt = 0, pinBuf = '';
+async function sha(s){ try { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('daily:' + s)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); } catch (e) { let h = 0; for (const c of 'daily:' + s) h = (h * 31 + c.charCodeAt(0)) | 0; return 'x' + h; } }
+function lockShow(){ if (!pinHash) return; pinBuf = ''; const l = document.getElementById('lock'); l.classList.add('on'); lockDots(); }
+function lockDots(err){ document.getElementById('lockDots').innerHTML = [0, 1, 2, 3].map(i => `<i class="${i < pinBuf.length ? 'on' : ''}"></i>`).join(''); document.getElementById('lockMsg').textContent = err ? 'Forkert kode' : 'Indtast din kode'; }
+document.getElementById('lockPad').addEventListener('click', async e => { const b = e.target.closest('button'); if (!b) return; if (b.dataset.k === 'del') pinBuf = pinBuf.slice(0, -1); else if (pinBuf.length < 4) pinBuf += b.dataset.k;
+  lockDots(); if (pinBuf.length === 4) { if (await sha(pinBuf) === pinHash) { document.getElementById('lock').classList.remove('on'); pinBuf = ''; } else { pinBuf = ''; if (navigator.vibrate) navigator.vibrate(150); lockDots(true); } } });
+document.addEventListener('visibilitychange', () => { if (document.hidden) hiddenAt = Date.now(); else if (pinHash && hiddenAt && Date.now() - hiddenAt > 3 * 6e4) lockShow(); });
+function renderPinSettings(){ const el = document.getElementById('pinBox'); if (!el) return;
+  el.innerHTML = pinHash ? `<div class="sync live">🔒 Kodelåsen er slået til. Appen låser, når den har været lukket i 3 minutter.</div><button class="btn" id="pinOff">Slå kodelås fra</button>` : `<div class="frm"><label>Ny kode (4 cifre)<input id="pin1" inputmode="numeric" maxlength="4" type="password"></label><label>Gentag koden<input id="pin2" inputmode="numeric" maxlength="4" type="password"></label></div><button class="btn primary" id="pinOn">Slå kodelås til</button>`; }
+document.getElementById('pinBox').addEventListener('click', async e => {
+  if (e.target.id === 'pinOn') { const a = document.getElementById('pin1').value, b = document.getElementById('pin2').value; if (!/^\d{4}$/.test(a)) return toast('Koden skal være 4 cifre'); if (a !== b) return toast('Koderne er ikke ens'); pinHash = await sha(a); store.set('mp_pin', pinHash); toast('🔒 Kodelås slået til'); renderPinSettings(); }
+  if (e.target.id === 'pinOff') { if (e.target.dataset.sure !== '1') { e.target.dataset.sure = '1'; e.target.textContent = 'Tryk igen for at slå fra'; return; } pinHash = ''; store.set('mp_pin', ''); toast('Kodelås slået fra'); renderPinSettings(); }
+});
+
+// ---------- Synk mellem enheder ----------
+async function syncSend(){
+  const all = {}; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && k.startsWith('mp_') && k !== 'mp_pin') all[k] = localStorage.getItem(k); }
+  let mine = null; try { mine = await mineForBackup(); } catch (e) {}
+  const data = JSON.stringify({ type: 'mp-sync', saved: new Date().toISOString(), all, mine: mine && mine.items });
+  const name = `daily-synk-${iso(new Date())}.json`, msg = document.getElementById('syncMsg');
+  try { const f = new File([data], name, { type: 'application/json' }); if (navigator.canShare && navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], title: 'Daily synk' }); msg.className = 'sync live'; msg.textContent = '✓ Send filen med AirDrop – og åbn den i Daily på den anden enhed (Indstillinger → Modtag synk).'; return; } } catch (err) { if (err && err.name === 'AbortError') return; }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([data], { type: 'application/json' })); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  msg.className = 'sync live'; msg.textContent = '✓ Filen er hentet. AirDrop den til din anden enhed, eller læg den i iCloud Drive.';
+}
+const SYNC_LOCAL = ['mp_cfg', 'mp_rates', 'mp_hidden', 'mp_seg', 'mp_fzfag', 'mp_orfag'];
+function mergeVal(a, b){
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.every(x => x && typeof x === 'object' && 'id' in x) && b.every(x => x && typeof x === 'object' && 'id' in x)) { const m = new Map(a.map(x => [x.id, x])); b.forEach(x => m.set(x.id, Object.assign({}, m.get(x.id) || {}, x))); return [...m.values()]; }
+    if (a.every(x => typeof x !== 'object') && b.every(x => typeof x !== 'object')) return [...new Set(a.concat(b))];
+    return a.length >= b.length ? (JSON.stringify(a).length >= JSON.stringify(b).length ? a : b) : b;
+  }
+  if (a && b && typeof a === 'object' && typeof b === 'object') { const o = Object.assign({}, a); Object.keys(b).forEach(k => o[k] = k in a ? mergeVal(a[k], b[k]) : b[k]); return o; }
+  return b;
+}
+async function syncMerge(d, msg){
+  if (!d || d.type !== 'mp-sync') return false; let n = 0;
+  Object.entries(d.all || {}).forEach(([k, v]) => { if (!k.startsWith('mp_') || k === 'mp_pin') return; const cur = localStorage.getItem(k);
+    if (cur == null) { localStorage.setItem(k, v); n++; return; } if (SYNC_LOCAL.includes(k)) return;
+    try { const merged = mergeVal(JSON.parse(cur), JSON.parse(v)); localStorage.setItem(k, JSON.stringify(merged)); n++; } catch (e) {} });
+  let m = 0; for (const y of (d.mine || [])) { const have = MINE.find(x => x.id === y.id); if (have && (have.updated || have.created) >= (y.updated || y.created)) continue; const x = Object.assign({}, y); if (x.data) { x.blob = await (await fetch(x.data)).blob(); delete x.data; } await skMinePut(x); m++; }
+  msg.className = 'sync live'; msg.textContent = `✓ Synk færdig: ${n} dele af appen flettet og ${m} egne noter/filer opdateret. Genindlæser…`; setTimeout(() => location.reload(), 1200); return true;
+}
+document.getElementById('syncSend').addEventListener('click', syncSend);
+document.getElementById('syncGet').addEventListener('change', async e => { const f = e.target.files && e.target.files[0]; if (!f) return; const msg = document.getElementById('syncMsg');
+  try { const d = JSON.parse((await f.text()).replace(/^﻿/, '')); if (!(await syncMerge(d, msg))) { msg.className = 'sync warn'; msg.textContent = 'Det er ikke en synk-fil fra Daily.'; } } catch (err) { msg.className = 'sync warn'; msg.textContent = 'Filen kunne ikke læses.'; } e.target.value = ''; });
+
+const VIEWS = ['imorgen','mundtlig','job','overblik','lektier','laeseplan','fokus','karakterer','sop','skema','kort','skole','hjem','idag','uge','indkob','lon','penge','spil','streak','vand','vaegt','sparet','badges','hjul','timer','rapport','opskrifter','indstillinger','kat','udfordring','quiz','rejse','wrapped','traening','billeder','faste','fryser','nedtaelling'];
 function route(){
   const hv = location.hash.slice(1).split('/')[0], v = VIEWS.includes(hv) ? hv : 'hjem';
   VIEWS.forEach(x => document.getElementById('v-'+x).classList.toggle('on', x === v));
@@ -3872,6 +4086,7 @@ function route(){
   if (v === 'hjem') { renderHome(); renderHome2(); renderHome3(); }
   if (v === 'skole') renderSkole();
   if (v === 'skema') renderSkema();
+  if (v === 'imorgen') renderTomorrow(); if (v === 'mundtlig') renderMundtlig(); if (v === 'job') renderJob();
   if (v === 'overblik') renderOverblik(); if (v === 'lektier') renderLektier(); if (v === 'laeseplan') renderLaeseplan(); if (v === 'fokus') renderFokus(); if (v === 'karakterer') renderKarakterer(); if (v === 'sop') renderSop();
   if (v === 'kort') renderKort();
   if (v === 'rapport') renderReport();
@@ -3894,6 +4109,7 @@ window.addEventListener('hashchange', route);
 renderToday(); renderCook(); renderShop(); renderLon(); renderPenge(); renderHome(); renderFun(); applyTheme(); resetForm(); renderRecipes(); renderSettings(); renderHome3(); renderSkins(); renderV9(); route(); setTimeout(checkMisc, 500);
 // opdater "I dag" når appen åbnes igen fra hjemmeskærmen
 document.addEventListener('visibilitychange', () => { if (!document.hidden) { renderToday(); renderHome(); renderFun(); renderHome3(); renderV9(); if (tm.total) tickTimer(); } });
+applyHidden(); lockShow();
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 </script>
 </body>
