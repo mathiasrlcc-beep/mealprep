@@ -878,7 +878,7 @@
     <div class="sub" style="line-height:1.5">Alt i appen gemmes kun på denne enhed. Tag en backup en gang om ugen og gem filen i Filer eller iCloud – så mister du aldrig noget.</div>
     <div class="sync" id="bkLast"></div>
     <button class="btn primary" id="exportBtn">💾 Gem backup nu</button>
-    <label class="btn filebtn">📥 Importér backup, datafil eller skolenoter<input type="file" id="importFile"></label>
+    <label class="btn filebtn">📥 Importér backup, datafil eller skolenoter<input type="file" id="importFile" multiple></label>
     <div class="sync" id="dataMsg"></div>
     <div class="row"><label>Påmind mig hver</label><span class="unit"><input id="bkEvery" inputmode="numeric"><em>dage</em></span></div>
   </div>
@@ -906,7 +906,7 @@
     <div class="sync" id="payNext"></div>
   </div>
   <h2>ℹ️ Om appen</h2>
-  <div class="card"><div class="sub" style="line-height:1.6">Mealprep · version 13<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
+  <div class="card"><div class="sub" style="line-height:1.6">Mealprep · version 14<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
   </div></div>
 </section>
 <!-- KAT -->
@@ -1701,7 +1701,9 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
   } catch (err) { msg.textContent = 'Kunne ikke gemme backup på denne enhed.'; }
 });
 document.getElementById('importFile').addEventListener('change', async e => {
-  const f = e.target.files && e.target.files[0]; const msg = document.getElementById('dataMsg'); if (!f) return;
+  const fsAll = [...(e.target.files || [])]; const msg = document.getElementById('dataMsg'); if (!fsAll.length) return;
+  if (fsAll.length > 1 || /skole/i.test(fsAll[0].name)) { await skImportFiles(fsAll, msg); e.target.value = ''; return; }
+  const f = fsAll[0];
   try {
     const d = JSON.parse((await f.text()).replace(/^\uFEFF/, ''));
     if (await skImport(d, msg) || await skMineImport(d, msg)) { e.target.value = ''; return; }
@@ -2980,7 +2982,7 @@ let skUrls = [];
 function skMineHtml(key){
   skUrls.forEach(u => URL.revokeObjectURL(u)); skUrls = [];
   const items = skMineFor(key), pages = items.filter(x => x.type === 'page'), rest = items.filter(x => x.type !== 'page');
-  let h = '<h2>Mine tilføjelser</h2><div class="mineadd"><button data-a="text">✏️ Tekst</button><label>📎 Dokument<input type="file" id="mineFile" multiple style="display:none"></label><button data-a="page">📁 Nyt underemne</button></div><div id="mineEd"></div>';
+  let h = `<h2>${key.includes(' › Dokumenter fra Mac › ') ? 'Original fil og tilføjelser' : 'Mine tilføjelser'}</h2>`; h += '<div class="mineadd"><button data-a="text">✏️ Tekst</button><label>📎 Dokument<input type="file" id="mineFile" multiple style="display:none"></label><button data-a="page">📁 Nyt underemne</button></div><div id="mineEd"></div>';
   if (pages.length) h += '<div class="sklist" style="margin-bottom:10px">' + pages.map(p => `<a class="skrow own" href="#skole/u/${p.id}"><span>${skEsc(p.title)}</span><small>${skMineFor('u:' + p.id).length} ting</small></a>`).join('') + '</div>';
   if (!rest.length && !pages.length) h += '<p class="sub">Her kan du skrive dine egne noter eller gemme dokumenter, billeder og PDF\u2019er til emnet.</p>';
   h += '<div class="minelist">' + rest.map(x => {
@@ -3114,11 +3116,8 @@ function renderSkole(){
   const parts = location.hash.replace(/^#skole\/?/, '').split('/').filter(Boolean);
   if (!SK) {
     tEl.textContent = 'Skole'; cr.innerHTML = ''; sub.textContent = ''; qIn.parentNode.style.display = 'none';
-    body.innerHTML = `<div class="card skempty"><div class="big">🎒</div><h3>Ingen noter endnu</h3><p class="sub">Dine skolenoter ligger i en privat fil (<b>mathias-skolenoter.json</b>), så de aldrig kommer på internettet. Importér den under Indstillinger – så gemmes de kun på denne enhed.</p><label class="btn primary filebtn" style="display:block;margin-top:12px">📥 Vælg mathias-skolenoter.json<input type="file" id="skFile" style="display:none"></label><p class="sync" id="skMsg"></p></div>`;
-    document.getElementById('skFile').onchange = async e => { const f = e.target.files && e.target.files[0], m = document.getElementById('skMsg'); if (!f) return;
-      m.textContent = 'Læser filen…';
-      try { const d = JSON.parse((await f.text()).replace(/^\uFEFF/, '')); if (await skImport(d, m)) { setTimeout(renderSkole, 700); } else { m.className = 'sync warn'; m.textContent = 'Det er ikke skolenote-filen. Vælg mathias-skolenoter.json.'; } }
-      catch (err) { m.className = 'sync warn'; m.textContent = 'Kunne ikke læse filen (' + (err && err.message || 'ukendt fejl') + ').'; } };
+    body.innerHTML = `<div class="card skempty"><div class="big">🎒</div><h3>Ingen noter endnu</h3><p class="sub">Dine skolenoter ligger i en privat fil (<b>mathias-skolenoter.json</b>), så de aldrig kommer på internettet. Importér den under Indstillinger – så gemmes de kun på denne enhed.</p><label class="btn primary filebtn" style="display:block;margin-top:12px">📥 Vælg mathias-skolenoter.json<input type="file" id="skFile" multiple style="display:none"></label><p class="sync" id="skMsg"></p></div>`;
+    document.getElementById('skFile').onchange = async e => { const m = document.getElementById('skMsg'); if (await skImportFiles([...(e.target.files || [])], m)) setTimeout(renderSkole, 900); };
     return;
   }
   qIn.parentNode.style.display = '';
@@ -3170,7 +3169,7 @@ function skSearch(){
   res.sort((a, b) => b.score - a.score);
   const own = SKMIDX.filter(m => m.low.includes(ql)).map(m => m.x);
   const hl = t => skEsc(t).replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), m => `<mark>${m}</mark>`);
-  body.innerHTML = `<p class="sub">${res.length + own.length ? (res.length + own.length) + ' fundet' : 'Ingen resultater'}</p><div class="sklist">` + own.map(x => `<a class="skres own" href="${x.type === 'page' ? '#skole/u/' + x.id : (x.href || '#skole')}"><b>${hl(x.title || x.name || 'Din note')}</b><em>${x.type === 'file' ? '📎 Dit dokument' : x.type === 'page' ? '📁 Dit underemne' : '✏️ Din note'} · ${skEsc((x.key || '').replace(/^n:/, '').replace(/^u:.*/, 'eget emne'))}</em>${x.text ? '<p>' + hl(x.text.slice(0, 160)) + '</p>' : ''}</a>`).join('') + res.slice(0, 50).map(({ x, k }) => {
+  body.innerHTML = `<p class="sub">${res.length + own.length ? (res.length + own.length) + ' fundet' : 'Ingen resultater'}</p><div class="sklist">` + own.map(x => `<a class="skres own" href="${x.type === 'page' ? '#skole/u/' + x.id : (x.href || skPathForKey(x.key))}"><b>${hl(x.title || x.name || 'Din note')}</b><em>${x.type === 'file' ? '📎 Dit dokument' : x.type === 'page' ? '📁 Dit underemne' : '✏️ Din note'} · ${skEsc((x.key || '').replace(/^n:/, '').replace(/^u:.*/, 'eget emne'))}</em>${x.text ? '<p>' + hl(x.text.slice(0, 160)) + '</p>' : ''}</a>`).join('') + res.slice(0, 50).map(({ x, k }) => {
     let snip = ''; if (k >= 0) { const a = Math.max(0, k - 70); snip = (a ? '…' : '') + x.md.slice(a, k + q.length + 110).replace(/[#*|>`]/g, ' ').replace(/\s+/g, ' ') + '…'; }
     return `<a class="skres" href="${skHref(x.path)}" data-p="${x.path.join('/')}"><b>${hl(x.t)}</b><em>${skEsc(x.crumbs.join(' / '))}</em>${snip ? '<p>' + hl(snip) + '</p>' : ''}</a>`; }).join('') + '</div>';
   body.querySelectorAll('.skres').forEach(a => a.addEventListener('click', () => sessionStorage.setItem('skhl', a.dataset.p)));
@@ -3180,6 +3179,23 @@ document.getElementById('skQ').addEventListener('input', () => { const q = docum
   if (/^#skole\/?(sog)?$/.test(location.hash) || location.hash === '#skole') { if (q.length >= 2 || location.hash === '#skole/sog') skSearch(); else renderSkole(); } });
 if (store.get('skbig', false)) document.body.classList.add('sk-big');
 Promise.all([skLoad(), skMineLoad()]).then(([d]) => { if (d && d.subjects) { SK = d; skIndex(); } skIndexMine(); if (location.hash.startsWith('#skole')) renderSkole(); });
+
+async function skImportFiles(fs, m){
+  let okN = 0, bad = [], notes = 0, files = 0;
+  for (const [i, f] of fs.entries()) {
+    m.className = 'sync'; m.textContent = `Importerer ${f.name} (${i + 1}/${fs.length})… vent venligst`;
+    try { const d = JSON.parse((await f.text()).replace(/^﻿/, ''));
+      const before = MINE.length, dummy = { set className(v){}, set textContent(v){} };
+      if (await skImport(d, dummy)) { okN++; notes++; }
+      else if (await skMineImport(d, dummy)) { okN++; files += MINE.length - before || (d.items || []).length; }
+      else bad.push(f.name);
+    } catch (err) { bad.push(f.name + ' (' + (err && err.message || 'fejl') + ')'); }
+  }
+  m.className = bad.length ? 'sync warn' : 'sync live';
+  m.textContent = (okN ? `✓ Importeret: ${notes ? SKIDX.length + ' sider' : ''}${notes && files ? ' og ' : ''}${files ? files + ' filer' : ''}. ` : '') + (bad.length ? 'Kunne ikke læse: ' + bad.join(', ') : '');
+  return okN > 0;
+}
+function skPathForKey(key){ const x = SKIDX.find(x => 'n:' + x.crumbs.concat(x.t).join(' › ') === key); return x ? '#skole/' + x.path.join('/') : '#skole'; }
 async function skImport(d, msg){
   if (!d || d.type !== 'mp-skolenoter' || !Array.isArray(d.subjects)) return false;
   await skSave(d); SK = d; skIndex();
