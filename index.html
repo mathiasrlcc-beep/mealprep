@@ -906,7 +906,7 @@
     <div class="sync" id="payNext"></div>
   </div>
   <h2>ℹ️ Om appen</h2>
-  <div class="card"><div class="sub" style="line-height:1.6">Mealprep · version 14<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
+  <div class="card"><div class="sub" style="line-height:1.6">Mealprep · version 15<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
   </div></div>
 </section>
 <!-- KAT -->
@@ -1410,32 +1410,75 @@ function calcShift(s){
   const pay = paid * rates.hour + aften * rates.aften + sun * rates.sun;
   return { paid, aften, sun, pause, pay, wd };
 }
-// Udbetalingsmåned m (0-11) dækker vagter fra d. 19 i måneden før til d. 18
+// ---------- Lønperioder: 'custom' (fx 19.–18.), 'biweekly' (hver 2. uge), 'month' (1.–31.) ----------
+const pmode = () => rates.periodMode || 'custom';
+const wkNo = dt => { const d = new Date(dt); d.setHours(0,0,0,0); d.setDate(d.getDate() + 3 - ((d.getDay() + 6) % 7)); const w1 = new Date(d.getFullYear(), 0, 4); return 1 + Math.round(((d - w1) / 864e5 - 3 + ((w1.getDay() + 6) % 7)) / 7); };
+const BW_FRAC = 12 / 26; // månedlige beløb (fradrag, ATP, personaleforening) omregnet til 14 dage
 function periodOf(y, m){
+  if (pmode() === 'month') return { from: new Date(y, m, 1), to: new Date(y, m + 1, 0) };
   const ps = +rates.periodStart || 19;
   return { from: new Date(y, m-1, ps), to: new Date(y, m, ps-1) };
 }
-function payslip(y, m){
-  const { from, to } = periodOf(y, m);
+const bwAnchor = () => { const d = parseISO(rates.bwStart || '2026-01-05'); d.setHours(0,0,0,0); return d; };
+const bwIndexOf = date => { const d = new Date(date); d.setHours(0,0,0,0); return Math.floor(Math.round((d - bwAnchor()) / 864e5) / 14); };
+function bwPeriod(n){
+  const from = bwAnchor(); from.setDate(from.getDate() + 14 * n);
+  const to = new Date(from); to.setDate(to.getDate() + 13);
+  const pay = new Date(to); pay.setDate(pay.getDate() + (+rates.bwLag || 5));
+  while (pay.getDay() === 0 || pay.getDay() === 6) pay.setDate(pay.getDate() - 1);
+  return { n, from, to, pay, key: 'bw' + n };
+}
+function slipFor(from, to, key, frac){
   const list = shifts.filter(s => { const d = parseISO(s.date); return d >= from && d <= to; })
                      .sort((a,b) => a.date.localeCompare(b.date));
   let hours=0, aften=0, sun=0, loen=0;
   list.forEach(s => { const c = calcShift(s); if (c) { hours += c.paid; aften += c.aften; sun += c.sun; loen += c.pay; } });
-  const andet = +extra[mKey(y,m)] || 0;
+  const andet = +extra[key] || 0;
   const brutto = loen + andet;
-  const atp = brutto > 0 ? +rates.atp : 0;
+  const atp = brutto > 0 ? Math.round(+rates.atp * frac * 100) / 100 : 0;
   const am = Math.round((brutto - atp) * rates.am / 100);
-  const grund = Math.max(0, Math.floor(brutto - atp - am - rates.fradrag + 1e-9));
+  const grund = Math.max(0, Math.floor(brutto - atp - am - rates.fradrag * frac + 1e-9));
   const askat = Math.ceil(grund * rates.trk / 100 - 1e-9);
-  const pf = brutto > 0 ? +rates.pf : 0;
+  const pf = brutto > 0 ? Math.round(+rates.pf * frac * 100) / 100 : 0;
   const net = brutto === 0 ? 0 : brutto - atp - am - askat - pf;
-  return { list, from, to, hours, aften, sun, loen, andet, brutto, atp, am, askat, pf, net,
+  return { list, from, to, key, hours, aften, sun, loen, andet, brutto, atp, am, askat, pf, net,
     ferie: loen * rates.ferie/100, fritvalg: loen * rates.fritvalg/100, feriefri: loen * rates.feriefri/100 };
+}
+// Biweekly: perioder hvis udbetalingsdag ligger i måneden
+function bwPeriodsPaidIn(y, m){
+  const out = []; const start = bwIndexOf(new Date(y, m, 1)) - 3;
+  for (let n = start; n < start + 6; n++){ const P = bwPeriod(n); if (P.pay.getFullYear() === y && P.pay.getMonth() === m) out.push(P); }
+  return out;
+}
+// Månedens samlede løn (bruges af Penge, nedtælling og rapporter)
+function payslip(y, m){
+  if (pmode() !== 'biweekly') { const { from, to } = periodOf(y, m); return slipFor(from, to, mKey(y,m), 1); }
+  const ps = bwPeriodsPaidIn(y, m).map(P => slipFor(P.from, P.to, P.key, BW_FRAC));
+  const sum = k => ps.reduce((a, p) => a + p[k], 0);
+  const r = { list: ps.flatMap(p => p.list), from: ps.length ? ps[0].from : new Date(y, m, 1), to: ps.length ? ps[ps.length-1].to : new Date(y, m+1, 0), key: mKey(y,m), periods: ps.length };
+  ['hours','aften','sun','loen','andet','brutto','atp','am','askat','pf','net','ferie','fritvalg','feriefri'].forEach(k => r[k] = sum(k));
+  return r;
+}
+// Løn-sidens valgte periode
+function lonStateFor(date){
+  const d = new Date(date);
+  if (pmode() === 'biweekly') return { bw: bwIndexOf(d) };
+  let y = d.getFullYear(), m = d.getMonth();
+  if (pmode() === 'custom' && d.getDate() >= (+rates.periodStart || 19)) { m++; if (m > 11) { m = 0; y++; } }
+  return { y, m };
+}
+function lonStep(st, dir){
+  if (st.bw != null) return { bw: st.bw + dir };
+  let y = st.y, m = st.m + dir; if (m < 0) { m = 11; y--; } if (m > 11) { m = 0; y++; } return { y, m };
+}
+function lonCurrent(){
+  if (pmode() === 'biweekly') { if (lonS.bw == null) lonS = lonStateFor(new Date()); const P = bwPeriod(lonS.bw); return { slip: slipFor(P.from, P.to, P.key, BW_FRAC), P }; }
+  if (lonS.bw != null) lonS = lonStateFor(new Date());
+  return { slip: payslip(lonS.y, lonS.m), P: null };
 }
 
 const now = new Date();
-let lonY = now.getFullYear(), lonM = now.getMonth();
-if (now.getDate() >= (+rates.periodStart || 19)) { lonM++; if (lonM > 11) { lonM = 0; lonY++; } }
+let lonS = lonStateFor(now);
 let penY = now.getFullYear(), penM = now.getMonth();
 
 document.getElementById('sDate').value = iso(now);
@@ -1459,8 +1502,7 @@ document.getElementById('sAdd').addEventListener('click', () => {
   shifts.push({ id: uid(), ...s }); saveAll();
   document.getElementById('sTxt').value = ''; document.getElementById('sPause').value = '';
   // hop til den lønseddel, vagten hører til
-  const d = parseISO(s.date); lonY = d.getFullYear(); lonM = d.getMonth();
-  if (d.getDate() >= (+rates.periodStart || 19)) { lonM++; if (lonM > 11) { lonM = 0; lonY++; } }
+  lonS = lonStateFor(parseISO(s.date));
   shiftPreview(); renderLon(); renderPenge();
 });
 
@@ -1473,21 +1515,34 @@ const RATE_FIELDS = [
   ["periodStart","Lønperiode starter d.",""],["pauseFra","Pause ved vagt på mindst (t:mm)",""],["pause","Ubetalt pause (min)",""]
 ];
 const TEXT_RATES = ["aftenFra","aftenFraLor","pauseFra"];
-document.getElementById('rates').innerHTML = RATE_FIELDS.map(([k,l,u]) =>
+document.getElementById('rates').innerHTML = `<div class="frm" style="margin-bottom:10px"><label>Lønperiode<select id="pMode"><option value="custom">Fast periode (fx 19.–18.)</option><option value="biweekly">Hver 2. uge (14-dages løn)</option><option value="month">Kalendermåned (1.–31.)</option></select></label></div>
+  <div id="bwRow" class="frm" style="margin-bottom:10px"><label>Første dag i en 14-dages periode<input type="date" id="bwStart"></label><label>Udbetales dage efter periodens slut<input id="bwLag" inputmode="numeric" placeholder="5"></label></div>` + RATE_FIELDS.map(([k,l,u]) =>
   `<div class="row"><label style="font-size:14px">${l}</label><span class="unit"><input data-rate="${k}" inputmode="${TEXT_RATES.includes(k)?'text':'decimal'}">${u?`<em>${u}</em>`:''}</span></div>`).join('');
-function fillRates(){ document.querySelectorAll('[data-rate]').forEach(i => { if (document.activeElement !== i) {
+function fillRates(){
+  const pm = document.getElementById('pMode'); if (pm) { pm.value = pmode(); document.getElementById('bwRow').style.display = pmode() === 'biweekly' ? '' : 'none';
+    const ps = document.querySelector('[data-rate="periodStart"]'); if (ps) ps.closest('.row').style.display = pmode() === 'custom' ? '' : 'none';
+    const bs = document.getElementById('bwStart'); if (document.activeElement !== bs) bs.value = rates.bwStart || '2026-01-05';
+    const bl = document.getElementById('bwLag'); if (document.activeElement !== bl) bl.value = rates.bwLag != null ? rates.bwLag : 5; }
+  document.querySelectorAll('[data-rate]').forEach(i => { if (document.activeElement !== i) {
   const k = i.dataset.rate; i.value = TEXT_RATES.includes(k) ? rates[k] : String(rates[k]).replace('.', ','); } }); }
+document.getElementById('rates').addEventListener('change', e => {
+  if (e.target.id === 'pMode') { rates.periodMode = e.target.value; saveAll(); lonS = lonStateFor(new Date()); renderLon(); renderPenge(); if (typeof renderHome3 === 'function') renderHome3(); }
+  if (e.target.id === 'bwStart' && e.target.value) { rates.bwStart = e.target.value; saveAll(); lonS = lonStateFor(new Date()); renderLon(); renderPenge(); }
+});
 document.getElementById('rates').addEventListener('input', e => {
+  if (e.target.id === 'bwLag') { rates.bwLag = Math.max(0, Math.min(30, parseInt(e.target.value) || 0)); saveAll(); renderLon(); renderPenge(); return; }
   const i = e.target.closest('[data-rate]'); if (!i) return;
   const k = i.dataset.rate; rates[k] = TEXT_RATES.includes(k) ? i.value.trim() : numDot(i.value);
   saveAll(); renderLon(); renderPenge(); shiftPreview();
 });
 
 function renderLon(){
-  const p = payslip(lonY, lonM);
-  document.getElementById('lMonth').textContent = `${cap(MONTHS[lonM])} ${lonY}`;
+  const { slip: p, P } = lonCurrent();
   const f = d => d.toLocaleDateString('da-DK',{day:'numeric',month:'short'});
-  document.getElementById('lPeriod').textContent = `Vagter fra ${f(p.from)} til ${f(p.to)}`;
+  if (P) { document.getElementById('lMonth').textContent = `Uge ${wkNo(P.from)}–${wkNo(P.to)}`;
+    document.getElementById('lPeriod').textContent = `Vagter ${f(P.from)} – ${f(P.to)} · udbetales ${f(P.pay)}`; }
+  else { document.getElementById('lMonth').textContent = `${cap(MONTHS[lonS.m])} ${lonS.y}`;
+    document.getElementById('lPeriod').textContent = `Vagter fra ${f(p.from)} til ${f(p.to)}`; }
   document.getElementById('lNet').textContent = kr(p.net);
   const noRates = !rates.hour;
   const line = (a, b, c, cls='') => `<div class="sl ${cls}"><span>${a}</span><span class="sub">${b}</span><span>${c}</span></div>`;
@@ -1520,9 +1575,10 @@ function renderLon(){
 }
 document.getElementById('v-lon').addEventListener('input', e => {
   if (e.target.id !== 'lExtra') return;
-  const v = numDot(e.target.value); if (v) extra[mKey(lonY,lonM)] = v; else delete extra[mKey(lonY,lonM)];
+  const key = lonCurrent().slip.key;
+  const v = numDot(e.target.value); if (v) extra[key] = v; else delete extra[key];
   saveAll();
-  const p = payslip(lonY, lonM); document.getElementById('lNet').textContent = kr(p.net);
+  document.getElementById('lNet').textContent = kr(lonCurrent().slip.net);
   renderPenge();
 });
 document.getElementById('v-lon').addEventListener('focusout', e => { if (e.target.id === 'lExtra') renderLon(); });
@@ -1681,7 +1737,7 @@ document.getElementById('catEdit').addEventListener('click', e => {
 document.addEventListener('click', e => {
   const b = e.target.closest('.mnav button'); if (!b) return;
   const st = +b.dataset.step;
-  if (b.dataset.for === 'lon') { lonM += st; if (lonM < 0) { lonM = 11; lonY--; } if (lonM > 11) { lonM = 0; lonY++; } renderLon(); }
+  if (b.dataset.for === 'lon') { lonS = lonStep(lonS, st); renderLon(); }
   else { penM += st; if (penM < 0) { penM = 11; penY--; } if (penM > 11) { penM = 0; penY++; } expFilter = 'alle'; expAll = false; renderPenge(); }
 });
 
@@ -2216,10 +2272,16 @@ function paydayIn(y, m){
 }
 function nextPayday(){
   const n = new Date(); n.setHours(0,0,0,0);
+  if (pmode() === 'biweekly') {
+    let k = bwIndexOf(n) - 3, P = bwPeriod(k); while (P.pay < n) P = bwPeriod(++k);
+    const sl = slipFor(P.from, P.to, P.key, BW_FRAC);
+    return { date: P.pay, days: Math.round((P.pay - n) / DAYMS), amount: sl.brutto > 0 ? sl.net : 0 };
+  }
   let y = n.getFullYear(), m = n.getMonth(), d = paydayIn(y, m);
   if (d < n) { m++; if (m > 11) { m = 0; y++; } d = paydayIn(y, m); }
   // lønsedlen for måned m dækker 19. (m-1) til 18. m. Udbetales lønnen før periodens slut (fx d. 1.), er det forrige måneds lønseddel
-  let py = y, pm = m; if (d.getDate() < (+rates.periodStart || 19)) { pm = m - 1; if (pm < 0) { pm = 11; py--; } }
+  const cut = pmode() === 'month' ? 15 : (+rates.periodStart || 19);
+  let py = y, pm = m; if (d.getDate() < cut) { pm = m - 1; if (pm < 0) { pm = 11; py--; } }
   const p = payslip(py, pm), man = manualIncome[mKey(py, pm)];
   return { date: d, days: Math.round((d - n) / DAYMS), amount: p.brutto > 0 ? p.net : (man || 0) };
 }
