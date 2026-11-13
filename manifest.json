@@ -1,6 +1,6 @@
 {
-  "name": "Mealprep",
-  "short_name": "Mealprep",
+  "name": "Daily",
+  "short_name": "Daily",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
