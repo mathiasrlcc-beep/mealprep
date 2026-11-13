@@ -12,7 +12,7 @@
 <link rel="icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-title" content="Mealprep">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0E0F12; --card:#17191E; --card2:#1E2128; --line:#262A32;
@@ -372,6 +372,143 @@
   #gTabs button{font-size:14px}
   #v-spil .game canvas{touch-action:none}
   @media (min-width: 900px){ .pass{grid-template-columns:repeat(6,1fr)} .funs2{grid-template-columns:repeat(4,1fr)} }
+
+  /* ===== MINIMAL (inspireret af minimalistiske modebutikker) ===== */
+  .wm,.srchbtn,.msearch,.mtabs,.mbm{display:none}
+  html:has(body.minimal){background:#fff}
+  body.minimal .top .in{position:relative;z-index:21}
+  body.minimal .mbl{display:none} body.minimal .mbm{display:inline}
+  body.minimal .top{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  body.minimal{--bg:#FFFFFF;--card:#FFFFFF;--card2:#F5F5F5;--line:#E5E5E5;--text:#000000;--muted:#7A7A7A;--blue:#000000;--orange:#000000;--red:#C8102E}
+  body.minimal, body.minimal button, body.minimal input, body.minimal select, body.minimal textarea{font-family:Inter,"Helvetica Neue",Helvetica,Arial,sans-serif}
+  body.minimal *{border-radius:0!important;box-shadow:none!important}
+  body.minimal .wrap{max-width:560px}
+  /* topbar: MENU · ORDMÆRKE · SØG */
+  body.minimal .top{background:rgba(255,255,255,.96)!important;border-bottom:1px solid transparent;padding-top:calc(env(safe-area-inset-top) + 14px);padding-bottom:14px}
+  body.minimal .top.scrolled{border-bottom-color:#000}
+  body.minimal .top .in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+  body.minimal .mealbtn{background:none;color:#000;padding:0;font:500 11px Inter,sans-serif;letter-spacing:.14em;gap:10px;justify-self:start}
+  body.minimal .mealbtn .bars i{background:#000;height:1px}
+  body.minimal .wm{display:block;font-weight:200;font-size:22px;letter-spacing:.42em;margin-right:-.42em;color:#000;text-decoration:none}
+  body.minimal .srchbtn{display:block;justify-self:end;background:none;border:0;border-bottom:1px solid #000;padding:0 0 2px;font:500 11px Inter,sans-serif;letter-spacing:.14em;color:#000;cursor:pointer}
+  body.minimal .curv{display:none}
+  /* skuffe-menu fra venstre */
+  body.minimal #menuBg{background:rgba(255,255,255,.6);backdrop-filter:none;-webkit-backdrop-filter:none}
+  body.minimal #menu{position:fixed;top:0;bottom:0;left:0;right:auto;width:min(440px,100%);max-width:none;max-height:none;margin:0;background:#fff;border:0;border-right:1px solid #000;
+    padding:calc(env(safe-area-inset-top) + 70px) 28px 40px;display:block;overflow:auto;transform:translateX(-102%);opacity:1;transition:transform .35s cubic-bezier(.2,.8,.2,1);z-index:19}
+  body.minimal.menu-open #menu{transform:none}
+  body.minimal.menu-open .top{z-index:25}
+  body.minimal .msearch{display:block;margin-bottom:26px}
+  body.minimal .msearch input{width:100%;border:0;border-bottom:1px solid #000;background:none;font:400 12px Inter,sans-serif;letter-spacing:.12em;padding:8px 0;color:#000}
+  body.minimal .msearch input:focus{outline:none}
+  body.minimal .mtabs{display:flex;gap:22px;margin-bottom:26px;flex-wrap:wrap}
+  body.minimal .mtabs button{background:none;border:0;padding:0 0 4px;font:400 12px Inter,sans-serif;letter-spacing:.14em;color:#7A7A7A;cursor:pointer;border-bottom:1px solid transparent}
+  body.minimal .mtabs button.on{color:#000;border-bottom-color:#000}
+  body.minimal #menu .mg{display:none}
+  body.minimal #menu a{display:none;background:none!important;outline:0!important;padding:9px 0;font-size:13px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;gap:0}
+  body.minimal #menu a .e,body.minimal #menu a small{display:none}
+  body.minimal #menu a.on{font-weight:600;text-decoration:underline;text-underline-offset:5px}
+  body.minimal #menu a:hover{text-decoration:underline;text-underline-offset:5px}
+  body.minimal #menu[data-tab="Mad"] a[data-grp="Mad"],body.minimal #menu[data-tab="Krop"] a[data-grp="Krop"],body.minimal #menu[data-tab="Penge"] a[data-grp="Penge"],
+  body.minimal #menu[data-tab="Sjov"] a[data-grp="Sjov"],body.minimal #menu[data-tab="Andet"] a[data-grp="Andet"]{display:block}
+  body.minimal #menu.searching a{display:none!important}
+  body.minimal #menu.searching a.hit{display:block!important}
+  body.minimal #menu.searching .mtabs{visibility:hidden}
+  /* typografi */
+  body.minimal h1{font-weight:300;font-size:34px;letter-spacing:.01em;text-transform:uppercase;margin:34px 0 6px;line-height:1.05}
+  body.minimal h2{font-size:11px;font-weight:500;letter-spacing:.16em;color:#000;margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid #000}
+  body.minimal .sub{color:#7A7A7A;font-size:12.5px;letter-spacing:.01em}
+  body.minimal .card,body.minimal .meal,body.minimal .item,body.minimal .exp,body.minimal .rec,body.minimal .cdc,body.minimal .alert,body.minimal details,body.minimal .tile,
+  body.minimal .fun,body.minimal .badge,body.minimal .eqi,body.minimal .pre,body.minimal .skin,body.minimal .stamp,body.minimal .day{background:#fff!important;border:1px solid #E5E5E5}
+  body.minimal .meal::before{display:none}
+  body.minimal .meal .lbl,body.minimal .tk,body.minimal .k,body.minimal .tile .tk,body.minimal .rt .k,body.minimal .dayh,body.minimal .ch,body.minimal .frm label,body.minimal .mt{
+    font-size:10.5px!important;font-weight:500!important;letter-spacing:.14em!important;text-transform:uppercase;color:#000!important}
+  body.minimal .mt{font-size:13px!important}
+  body.minimal .meal .name,body.minimal .fun b,body.minimal .stat .v,body.minimal .bignum,body.minimal .left,body.minimal .tv,body.minimal .rt b,body.minimal .tbig{font-weight:300!important;letter-spacing:-.01em}
+  body.minimal .ok,body.minimal .v.ok{color:#000!important}
+  body.minimal .bad{color:var(--red)!important}
+  /* knapper og felter */
+  body.minimal .btn{background:#fff;color:#000;border:1px solid #000;font:500 11px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:15px}
+  body.minimal .btn.primary,body.minimal .btn.doneb{background:#000;color:#fff;border-color:#000}
+  body.minimal .btn:disabled{opacity:.35}
+  body.minimal .qb{background:#fff;border:1px solid #000;font:500 11px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+  body.minimal .qb.done{background:#000;color:#fff}
+  body.minimal .frm input,body.minimal .frm select,body.minimal .row input,body.minimal .unit input,body.minimal .sl input,body.minimal .addrow input,body.minimal .ingr input,body.minimal .frm textarea{
+    background:transparent!important;border:0!important;border-bottom:1px solid #000!important;padding-left:0;padding-right:0;font-weight:400}
+  body.minimal .seg{background:none;border:0;border-bottom:1px solid #E5E5E5;padding:0;gap:18px}
+  body.minimal .seg button{flex:none;padding:10px 0;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#7A7A7A;background:none!important;border-bottom:1px solid transparent;margin-bottom:-1px}
+  body.minimal .seg button.on{color:#000;border-bottom-color:#000}
+  body.minimal .bar{height:2px!important;background:#E5E5E5}
+  body.minimal .bar>i{background:#000!important}
+  body.minimal .box{border:1px solid #000}
+  body.minimal .item.done .box{background:#000;border-color:#000}
+  body.minimal .item.done .box::after{border-color:#fff}
+  body.minimal .x{background:none;border:1px solid #E5E5E5;color:#000}
+  body.minimal .pill,body.minimal .own{background:none!important;border:1px solid #000;color:#000!important;font-weight:500;letter-spacing:.08em}
+  body.minimal .banner{background:#fff!important;color:#000!important;border:1px solid #000;font-weight:500;font-size:13px;letter-spacing:.02em}
+  body.minimal .preview,body.minimal .sync{background:none}
+  body.minimal .sync{border-top:1px solid #E5E5E5}
+  body.minimal .cd.on{background:#000;color:#fff;border-color:#000}
+  body.minimal .cd.today{outline:1px solid #000}
+  body.minimal .fun{background:#fff!important}
+  body.minimal .f-streak,body.minimal .f-water,body.minimal .f-save,body.minimal .f-badge,body.minimal .f-cat,body.minimal .f-chal,body.minimal .f-frz,body.minimal .f-qz,
+  body.minimal .a-bk,body.minimal .a-pay,body.minimal .a-rp,body.minimal .a-cd{background:#fff!important}
+  body.minimal .a-bk{border-color:#000}
+  body.minimal .lvb{background:#000;color:#fff;font-weight:300}
+  body.minimal .lvl .bar>i{background:#000!important}
+  body.minimal .badge.got{border-color:#000}
+  body.minimal .badge .bdt{color:#000}
+  body.minimal .stamp.got{border:1px solid #000;transform:none}
+  body.minimal .stamp.now{outline:1px solid #000}
+  body.minimal .cdc.soon .cdn{background:#000;color:#fff}
+  body.minimal .cdn{background:#fff;border:1px solid #000;font-weight:300}
+  body.minimal .skin.on,body.minimal .qa.right{outline:1px solid #000;background:#F5F5F5!important;color:#000}
+  body.minimal .qa{background:#fff;border:1px solid #E5E5E5}
+  body.minimal .qa.wrong{background:#fff;color:var(--red);border-color:var(--red)}
+  body.minimal #toast{background:#000;color:#fff;border:0;font-size:12.5px;letter-spacing:.02em}
+  body.minimal .wr{background:#fff!important;border:1px solid #000}
+  body.minimal .wrb{color:#000!important;font-weight:200;font-size:56px}
+  body.minimal .wrdots i.on{background:#000}
+  body.minimal .ring .rf{stroke:#000!important;stroke-width:4}
+  body.minimal .ring .rb{stroke:#E5E5E5;stroke-width:4}
+  body.minimal .kchart .kl{stroke:#000!important;stroke-width:2}
+  body.minimal .kchart .kd{stroke:#000!important;fill:#fff}
+  body.minimal .kchart .ka{fill:rgba(0,0,0,.04)}
+  body.minimal .kchart .goal{stroke:#000;stroke-width:1}
+  body.minimal .b7b i{background:#000!important}
+  body.minimal .glass{border-color:#000;border-width:1px}
+  body.minimal .water{background:#000}
+  body.minimal .wave{display:none}
+  body.minimal .glass span{mix-blend-mode:difference;color:#fff}
+  body.minimal .flame{filter:grayscale(1) contrast(1.2)}
+  body.minimal .tip .tk{color:#000!important}
+  body.minimal .game{border:1px solid #000}
+  body.minimal .wheelbox canvas{box-shadow:0 0 0 1px #000!important}
+  /* forside som et redaktionelt opslag */
+  body.minimal .logo{flex-direction:column;align-items:flex-start;gap:0;margin:42px 0 8px}
+  body.minimal .logo svg{display:none}
+  body.minimal .logo .lt{font-weight:200;font-size:52px;letter-spacing:-.01em;line-height:.95}
+  body.minimal .logo .lt span{color:#000;font-size:52px;font-weight:200;margin:0}
+  body.minimal .logo .ls{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#000;margin-top:14px}
+  body.minimal .funs,body.minimal .quickrow{gap:0}
+  body.minimal .funs .fun,body.minimal .funs2 .fun{border:0;border-top:1px solid #E5E5E5;padding:20px 0}
+  body.minimal .funs .fun .fi{font-size:18px;filter:grayscale(1)}
+  body.minimal .funs .fun b{font-size:28px}
+  body.minimal .funs .fun small{text-transform:uppercase;letter-spacing:.12em;font-size:10px;color:#000}
+  body.minimal .quickrow{gap:10px}
+  body.minimal .alerts{gap:0}
+  body.minimal .alert{border:0;border-top:1px solid #E5E5E5;padding:16px 0}
+  body.minimal .alert>span{filter:grayscale(1);font-size:18px}
+  body.minimal .alert b{font-weight:500;font-size:13px;letter-spacing:.02em}
+  body.minimal .tip{border:0;border-top:1px solid #000;border-bottom:1px solid #000;padding:20px 0;font-weight:300;font-size:17px;line-height:1.5}
+  body.minimal #hLevel{border:0;padding:0;margin-top:20px}
+  @media (min-width: 900px){
+    body.minimal .wrap{max-width:1120px}
+    body.minimal h1{font-size:46px}
+    body.minimal .logo .lt,body.minimal .logo .lt span{font-size:84px}
+    body.minimal .funs{grid-template-columns:repeat(4,1fr);gap:0 24px}
+    body.minimal .funs2{grid-template-columns:repeat(4,1fr);gap:0 24px}
+  }
   /* forside */
   .logo{display:flex;align-items:center;gap:14px;margin:16px 0 4px}
   .logo .lt{font-size:30px;font-weight:800;letter-spacing:.04em;line-height:1}
@@ -405,10 +542,14 @@
 <body>
 <div class="wrap">
 <header class="top" id="top"><div class="in">
-  <button class="mealbtn" id="mealBtn" aria-label="Menu"><span class="bars"><i></i><i></i><i></i></span>Meal</button>
+  <button class="mealbtn" id="mealBtn" aria-label="Menu"><span class="bars"><i></i><i></i><i></i></span><span class="mbl">Meal</span><span class="mbm">MENU</span></button>
+  <a class="wm" href="#hjem">MEALPREP</a>
   <div class="curv" id="curV"></div>
+  <button class="srchbtn" id="srchBtn">SØG</button>
 </div>
   <div id="menu">
+    <div class="msearch"><input id="mSearch" placeholder="SØG EFTER EN SIDE" autocomplete="off"></div>
+    <div class="mtabs" id="mTabs"></div>
     <div class="mg">Mad</div>
     <a href="#hjem" data-v="hjem"><span class="e">🏠</span><span>Forside<small>Motivation</small></span></a>
     <a href="#idag" data-v="idag"><span class="e">☀️</span><span>I dag<small>Dagens mad</small></span></a>
@@ -652,7 +793,7 @@
   </div>
   <h2>🎨 Udseende</h2>
   <div class="card">
-    <div class="seg" id="themeSeg" style="margin-top:0"><button data-t="dark">🌙 Mørkt</button><button data-t="light">☀️ Lyst</button></div>
+    <div class="seg" id="themeSeg" style="margin-top:0"><button data-t="minimal">◻️ Minimal</button><button data-t="dark">🌙 Mørkt</button><button data-t="light">☀️ Lyst</button></div>
   </div>
   </div><div>
   <h2>🎯 Dine mål</h2>
@@ -667,7 +808,7 @@
     <div class="sync" id="payNext"></div>
   </div>
   <h2>ℹ️ Om appen</h2>
-  <div class="card"><div class="sub" style="line-height:1.6">Mealprep · version 9<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
+  <div class="card"><div class="sub" style="line-height:1.6">Mealprep · version 10<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
   </div></div>
 </section>
 <!-- KAT -->
@@ -1933,9 +2074,11 @@ const saveCfg8 = () => { store.set('mp_cfg', cfg); store.set('mp_goals', GOAL); 
 const hasData = () => shifts.length || exps.length || Object.keys(streak).length || weights.length;
 
 // ---------- tema ----------
+if (!cfg.v10) { cfg.theme = 'minimal'; cfg.v10 = true; saveCfg8(); }
 function applyTheme(){
-  document.body.classList.toggle('light', cfg.theme === 'light');
-  const m = document.querySelector('meta[name=theme-color]'); if (m) m.content = cfg.theme === 'light' ? '#F4F5F7' : '#0E0F12';
+  document.body.classList.toggle('light', cfg.theme === 'light' || cfg.theme === 'minimal');
+  document.body.classList.toggle('minimal', cfg.theme === 'minimal');
+  const m = document.querySelector('meta[name=theme-color]'); if (m) m.content = cfg.theme === 'minimal' ? '#FFFFFF' : cfg.theme === 'light' ? '#F4F5F7' : '#0E0F12';
   document.querySelectorAll('#themeSeg button').forEach(b => b.classList.toggle('on', b.dataset.t === cfg.theme));
   if (typeof drawWheel === 'function') drawWheel();
 }
@@ -2685,7 +2828,32 @@ const _rq9 = renderQuiz; renderQuiz = function(){ _rq9(); const a = (kv('mp_quiz
 
 // ================= MENU =================
 const TITLES = {hjem:'', idag:'I dag', uge:'Ugen', indkob:'Indkøb', lon:'Løn', penge:'Penge', spil:'Spil', streak:'Streak', vand:'Vand', vaegt:'Vægt', sparet:'Sparet', badges:'Badges', hjul:'Smagshjul', timer:'Timer', rapport:'Rapport', opskrifter:'Opskrifter', indstillinger:'Indstillinger', kat:'Kat', udfordring:'Udfordring', quiz:'Quiz', rejse:'Madrejse', wrapped:'Dit år', traening:'Træning', billeder:'Før & efter', faste:'Faste', fryser:'Fryser', nedtaelling:'Nedtællinger'};
-const setMenu = open => document.body.classList.toggle('menu-open', open);
+const setMenu = open => {
+  document.body.classList.toggle('menu-open', open);
+  if (!open) { const q = document.getElementById('mSearch'); if (q && q.value) { q.value = ''; filterMenu(''); } }
+};
+(function buildMenuTabs(){
+  let g = ''; const groups = [];
+  [...document.getElementById('menu').children].forEach(el => {
+    if (el.classList.contains('mg')) { g = el.textContent.trim(); groups.push(g); el.dataset.grp = g; }
+    else if (el.tagName === 'A') el.dataset.grp = g;
+  });
+  const tabs = document.getElementById('mTabs');
+  tabs.innerHTML = groups.map((x, i) => `<button data-tab="${x}" class="${i ? '' : 'on'}">${x.toUpperCase()}</button>`).join('');
+  tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; setTab(b.dataset.tab); });
+})();
+function setTab(t){
+  document.querySelectorAll('#mTabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === t));
+  document.getElementById('menu').dataset.tab = t;
+}
+function filterMenu(q){
+  q = q.trim().toLowerCase(); const m = document.getElementById('menu'); m.classList.toggle('searching', !!q);
+  m.querySelectorAll('a[data-v]').forEach(a => a.classList.toggle('hit', !!q && a.textContent.toLowerCase().includes(q)));
+}
+setTab('Mad');
+document.getElementById('mSearch').addEventListener('input', e => filterMenu(e.target.value));
+document.getElementById('mSearch').addEventListener('keydown', e => { if (e.key === 'Enter') { const a = document.querySelector('#menu a.hit'); if (a) { location.hash = a.getAttribute('href'); setMenu(false); } } });
+document.getElementById('srchBtn').addEventListener('click', () => { setMenu(true); setTimeout(() => document.getElementById('mSearch').focus(), 120); });
 document.getElementById('mealBtn').addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
 document.getElementById('menuBg').addEventListener('click', () => setMenu(false));
 document.getElementById('menu').addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
@@ -2699,6 +2867,7 @@ function route(){
   VIEWS.forEach(x => document.getElementById('v-'+x).classList.toggle('on', x === v));
   document.querySelectorAll('#menu a').forEach(a => a.classList.toggle('on', a.dataset.v === v));
   document.getElementById('curV').textContent = TITLES[v] || '';
+  { const a = document.querySelector(`#menu a[data-v="${v}"]`); if (a && a.dataset.grp) setTab(a.dataset.grp); }
   if (v === 'hjem') { renderHome(); renderHome2(); renderHome3(); }
   if (v === 'rapport') renderReport();
   if (v === 'opskrifter') renderRecipes();
