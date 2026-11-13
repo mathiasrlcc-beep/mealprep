@@ -965,7 +965,7 @@
     <div class="sync" id="payNext"></div>
   </div>
   <h2>ℹ️ Om appen</h2>
-  <div class="card"><div class="sub" style="line-height:1.6">Daily · version 16<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
+  <div class="card"><div class="sub" style="line-height:1.6">Daily · version 17<br>Lavet til Mathias. Dine data forlader aldrig din enhed, medmindre du selv gemmer en backup.</div></div>
   </div></div>
 </section>
 <!-- KAT -->
@@ -3395,6 +3395,14 @@ function fcPick(subj){
   const list = review.length ? review : newOnes;
   return { card: list.length ? list[Math.floor(Math.random() * Math.min(list.length, 12))] : null, total: pool.length, due: review.length + newOnes.length, learned, review: review.length };
 }
+function fcResetBind(){
+  const b = document.getElementById('fcReset'); if (!b) return; let armed = false;
+  b.onclick = () => {
+    if (!armed) { armed = true; b.textContent = 'Tryk igen for at nulstille alt'; b.style.opacity = 1; setTimeout(() => { if (armed) { armed = false; b.textContent = 'Nulstil alle flashcards'; b.style.opacity = .75; } }, 4000); return; }
+    FC = {}; store.set('mp_fc', FC); store.set('fcnew', {}); fcCur = null; fcShow = false; renderKort();
+    const n = document.getElementById('fcBody'); n.insertAdjacentHTML('afterbegin', '<p class="sub" style="text-align:center;margin-bottom:10px">✓ Alle kort er nulstillet</p>');
+  };
+}
 function renderKort(){
   const body = document.getElementById('fcBody'), sel = document.getElementById('fcSubj');
   if (!SK) { body.innerHTML = `<div class="card skempty"><div class="big">🃏</div><h3>Ingen noter endnu</h3><p class="sub">Flashcards laves ud fra dine skolenoter. Importér dem under Indstillinger.</p></div>`; return; }
@@ -3403,10 +3411,12 @@ function renderKort(){
   const st = fcPick(sel.value);
   if (!fcCur || (sel.value && fcCur.subj !== sel.value)) { fcCur = st.card; fcShow = false; }
   const stats = `<div class="fstats"><div><b>${st.due}</b>klar i dag</div><div><b>${st.learned}</b>lært</div><div><b>${st.total}</b>kort i alt</div></div>`;
-  if (!fcCur) { body.innerHTML = stats + `<div class="card skempty" style="margin-top:14px"><div class="big">🎉</div><h3>Færdig for i dag</h3><p class="sub">Kom tilbage i morgen – så kommer kortene igen, når det er tid til at gentage dem.</p></div>`; return; }
+  const rst = `<button class="btn" id="fcReset" style="display:block;width:100%;margin-top:22px;opacity:.75">Nulstil alle flashcards</button>`;
+  if (!fcCur) { body.innerHTML = stats + `<div class="card skempty" style="margin-top:14px"><div class="big">🎉</div><h3>Færdig for i dag</h3><p class="sub">Kom tilbage i morgen – så kommer kortene igen, når det er tid til at gentage dem.</p></div>` + rst; fcResetBind(); return; }
   const ans = fcCur.a ? `<div class="fa">${skMd(fcCur.a)}</div>` : `<div class="fa"><p>Svar for dig selv – åbn noten for at tjekke.</p></div>`;
   body.innerHTML = stats + `<div class="fcard" id="fcCard"><div class="fq">${skEsc(fcCur.q)}</div>${fcShow ? ans + `<div class="fsrc">📚 ${skEsc(fcCur.src)}</div>` : '<div class="fhint">Tryk for at se svaret</div>'}</div>` +
     (fcShow ? `<div class="fbtns"><button class="f0" data-g="0">Kunne ikke</button><button data-g="1">Næsten</button><button class="f2" data-g="2">Kunne det</button></div><a class="btn" style="display:block;text-align:center;text-decoration:none;margin-top:10px" href="javascript:void 0" id="fcOpen">Åbn noten</a>` : '');
+  body.insertAdjacentHTML('beforeend', rst); fcResetBind();
   document.getElementById('fcCard').onclick = () => { fcShow = !fcShow; renderKort(); };
   body.querySelectorAll('[data-g]').forEach(b => b.onclick = () => {
     const g = +b.dataset.g, isNew = !FC[fcCur.id], s = FC[fcCur.id] || { box: 0 };
